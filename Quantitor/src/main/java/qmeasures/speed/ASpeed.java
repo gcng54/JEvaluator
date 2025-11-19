@@ -22,10 +22,10 @@ public abstract class ASpeed<Q extends ASpeed<Q>> extends AQuantity<Q, ESpeeds, 
 
     public ASpeed<?> toDimension(ESpeedDims dimension) {
         return switch (dimension) {
-            case ESpeedDims.SPEED ->  toQSpeed();
-            case ESpeedDims.GROUND_SPEED ->  toQGroundSpeed();
-            case ESpeedDims.SEA_SPEED ->  toQSeaSpeed();
-            case ESpeedDims.AIR_SPEED ->  toQAirSpeed();
+            case SPEED ->  toQSpeed();
+            case GROUND_SPEED ->  toQGroundSpeed();
+            case SEA_SPEED ->  toQSeaSpeed();
+            case AIR_SPEED ->  toQAirSpeed();
             default -> throw new IllegalStateException("Unexpected getBaseValue: " + dimension);
         };
     }

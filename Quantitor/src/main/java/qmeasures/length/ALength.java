@@ -24,12 +24,12 @@ public abstract class ALength<Q extends ALength<Q>> extends AQuantity<Q, ELength
 
     public ALength<?> toDimension(ELengthDims dimension) {
         return switch (dimension) {
-            case ELengthDims.LENGTH ->  to(QLength.class);
-            case ELengthDims.DISTANCE ->  to(QDistance.class);
-            case ELengthDims.ALTITUDE ->  to(QAltitude.class);
-            case ELengthDims.HEIGHT ->  to(QHeight.class);
-            case ELengthDims.AREA ->  to(QArea.class);
-            case ELengthDims.VOLUME ->  to(QVolume.class);
+            case LENGTH ->  to(QLength.class);
+            case DISTANCE ->  to(QDistance.class);
+            case ALTITUDE ->  to(QAltitude.class);
+            case HEIGHT ->  to(QHeight.class);
+            case AREA ->  to(QArea.class);
+            case VOLUME ->  to(QVolume.class);
             default -> throw new IllegalStateException("Unexpected getBaseValue: " + dimension);
         };
     }

@@ -23,10 +23,10 @@ public abstract class ATime<Q extends ATime<Q>> extends AQuantity<Q, ETimes, ETi
 
     public ATime<?> toDimension(ETimeDims dimension) {
         return switch (dimension) {
-            case ETimeDims.TIME ->  to(QTime.class);
-			case ETimeDims.DURATION ->  to(QDuration.class);
-			case ETimeDims.PERIOD ->  to(QPeriod.class);
-			case ETimeDims.FREQUENCY ->  to(QFrequency.class);
+            case TIME ->  to(QTime.class);
+			case DURATION ->  to(QDuration.class);
+			case PERIOD ->  to(QPeriod.class);
+			case FREQUENCY ->  to(QFrequency.class);
             default -> throw new IllegalStateException("Unexpected getBaseValue: " + dimension);
         };
     }

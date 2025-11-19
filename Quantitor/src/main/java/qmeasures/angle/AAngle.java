@@ -24,16 +24,16 @@ public abstract class AAngle<Q extends AAngle<Q>> extends AQuantity<Q, EAngles, 
 
     public AAngle<?> toDimension(EAngleDims dimension) {
         return switch (dimension) {
-            case EAngleDims.ANGLE ->  to(QAngle.class);
-			case EAngleDims.LATITUDE ->  to(QLatitude.class);
-			case EAngleDims.LONGITUDE ->  to(QLongitude.class);
-			case EAngleDims.BEARING ->  to(QBearing.class);
-			case EAngleDims.AZIMUTH ->  to(QAzimuth.class);
-			case EAngleDims.HEADING ->  to(QHeading.class);
-			case EAngleDims.COURSE ->  to(QCourse.class);
-			case EAngleDims.DIRECTION ->  to(QDirection.class);
-			case EAngleDims.ROTATION ->  to(QRotation.class);
-			case EAngleDims.ORIENTATION ->  to(QOrientation.class);
+            case ANGLE ->  to(QAngle.class);
+			case LATITUDE ->  to(QLatitude.class);
+			case LONGITUDE ->  to(QLongitude.class);
+			case BEARING ->  to(QBearing.class);
+			case AZIMUTH ->  to(QAzimuth.class);
+			case HEADING ->  to(QHeading.class);
+			case COURSE ->  to(QCourse.class);
+			case DIRECTION ->  to(QDirection.class);
+			case ROTATION ->  to(QRotation.class);
+			case ORIENTATION ->  to(QOrientation.class);
             default -> throw new IllegalStateException("Unexpected getBaseValue: " + dimension);
         };
     }
