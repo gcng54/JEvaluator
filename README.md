@@ -2,6 +2,26 @@
 
 JEvaluator is a Java-based project that provides a comprehensive framework for working with physical quantities and measurements through its **JQuantitor** module.
 
+## Installation
+
+### Maven
+
+```xml
+<dependency>
+    <groupId>io.github.gcng54</groupId>
+    <artifactId>Quantitor</artifactId>
+    <version>0.1.1</version>
+</dependency>
+```
+
+### Gradle
+
+```groovy
+implementation 'io.github.gcng54:Quantitor:0.1.1'
+```
+
+> **Note**: The package is configured for Maven Central publication. See [PUBLISHING.md](PUBLISHING.md) for publishing instructions.
+
 ## JQuantitor
 
 JQuantitor is a type-safe, object-oriented library for representing and manipulating physical quantities with units in Java. It provides a robust framework for working with measurements across multiple domains including angles, lengths, speeds, and time.
@@ -139,7 +159,7 @@ JQuantitor supports multiple clamping modes to handle values outside valid range
 
 ### Building the Project
 
-JQuantitor requires Java 25 or later and uses Maven for build management.
+JQuantitor requires Java 17 or later and uses Maven for build management.
 
 ```bash
 # Clean and compile
@@ -151,6 +171,20 @@ mvn test
 # Package the library
 mvn package
 ```
+
+### Maven Central Distribution
+
+JQuantitor is configured for publication to Maven Central. Once published, you can use it in your projects:
+
+```xml
+<dependency>
+    <groupId>io.github.gcng54</groupId>
+    <artifactId>Quantitor</artifactId>
+    <version>0.1.1</version>
+</dependency>
+```
+
+For instructions on publishing to Maven Central, see [PUBLISHING.md](PUBLISHING.md).
 
 ### Project Structure
 
