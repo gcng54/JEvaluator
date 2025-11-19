@@ -14,7 +14,7 @@ public interface IQuantity<Q extends IQuantity<Q, U, E>, U extends IUnit<?>, E e
 
 	default Q of(U unit) {  return of(unit.fromBaseValue(getBaseValue()), unit);   }
 
-    default Double getValueInUnit(U unit) { return unit.fromBaseValue(getBaseValue()); }
+    default Double inUnit(U unit) { return unit.fromBaseValue(getBaseValue()); }
     
     default Double getValue() { return getUnit().fromBaseValue(getBaseValue()); }
 

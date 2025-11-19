@@ -8,7 +8,6 @@ import qmeasures.core.Clampable;
  */
 public abstract class ALength<Q extends ALength<Q>> extends AQuantity<Q, ELengths, ELengthDims> {
 
-
     protected ALength(Double value, ELengths unit, ELengthDims dimension) {  super(value, unit, dimension);  }
 
     protected ALength(Double value, ELengthDims dimension) {  super(value, ELengths.METER, dimension);  }
@@ -67,46 +66,28 @@ public abstract class ALength<Q extends ALength<Q>> extends AQuantity<Q, ELength
     // convert of specific units
     
 	public Q ofMeter() { return this.of(ELengths.METER);}
-
 	public Q ofKilometer() {return this.of(ELengths.KILOMETER);	}
-
 	public Q ofMillimeter() {return this.of(ELengths.MILLIMETER);	}
-
 	public Q ofFoot() {	return this.of(ELengths.FOOT);}
-
 	public Q ofNauticalMile() {	return this.of(ELengths.NAUTMILE);}
-
 	public Q ofDataMile() {	return this.of(ELengths.DATAMILE);	}
-
 	public Q ofFlightLevel() {	return this.of(ELengths.FLIGHTLEVEL);}
-
 	public Q ofYard() {	return this.of(ELengths.YARD);}
-
 	public Q ofInch() {	return this.of(ELengths.INCH);	}
-
 	public Q ofMile() {	return this.of(ELengths.MILE);}
 
     // get value in specific units
 
-	public double inMeter() { return this.getValueInUnit(ELengths.METER);	}
-
-	public double inKilometer() { return this.getValueInUnit(ELengths.KILOMETER);	}
-
-    public double inMillimeter() { return this.getValueInUnit(ELengths.MILLIMETER);	}
-
-	public double inYard() { return this.getValueInUnit(ELengths.YARD);	}
-
-    public double inFoot() { return this.getValueInUnit(ELengths.FOOT);	}
-
-	public double inInch() { return this.getValueInUnit(ELengths.INCH);	}
-
-    public double inMile() { return this.getValueInUnit(ELengths.MILE);	}
-
-	public double inNautMile() { return this.getValueInUnit(ELengths.NAUTMILE);	}
-
-	public double inDataMile() { return this.getValueInUnit(ELengths.DATAMILE);	}
-
-	public double inFlightLevel() { return this.getValueInUnit(ELengths.FLIGHTLEVEL);	}
+	public Double inMeter() { return this.inUnit(ELengths.METER);	}
+	public Double inKilometer() { return this.inUnit(ELengths.KILOMETER);	}
+    public Double inMillimeter() { return this.inUnit(ELengths.MILLIMETER);	}
+	public Double inYard() { return this.inUnit(ELengths.YARD);	}
+    public Double inFoot() { return this.inUnit(ELengths.FOOT);	}
+	public Double inInch() { return this.inUnit(ELengths.INCH);	}
+    public Double inMile() { return this.inUnit(ELengths.MILE);	}
+	public Double inNautMile() { return this.inUnit(ELengths.NAUTMILE);	}
+	public Double inDataMile() { return this.inUnit(ELengths.DATAMILE);	}
+	public Double inFlightLevel() { return this.inUnit(ELengths.FLIGHTLEVEL);	}
 
 }
 

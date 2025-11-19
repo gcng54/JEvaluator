@@ -2,7 +2,6 @@ package qmeasures.length;
 
 
 import java.util.Locale;
-import java.util.Objects;
 
 import qmeasures.core.IUnit;
 
@@ -44,10 +43,7 @@ public enum ELengths implements IUnit<ELengths> {
 		};
     }
 
-    public static ELengths fromName(String name_) {
-        Objects.requireNonNull(name_, "Name must not be null");
-		return ELengths.valueOf(name_.toUpperCase(Locale.ENGLISH));
-	}
+    public static ELengths fromName(String name_) {	return ELengths.valueOf(name_.toUpperCase(Locale.ENGLISH));	}
 
     @Override public ELengthDims getBaseDimension() { return ELengthDims.LENGTH; }
 
