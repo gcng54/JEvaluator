@@ -3,6 +3,9 @@ package qmeasures.time;
 import qmeasures.core.AQuantity;
 import qmeasures.core.Clampable;
 
+/**
+ * Abstract time quantity.
+ */
 public abstract class ATime<Q extends ATime<Q>> extends AQuantity<Q, ETimes, ETimeDims> {
 
     protected ATime(Double value, ETimes unit, ETimeDims dimension) {  super(value, unit, dimension);  }
@@ -20,21 +23,23 @@ public abstract class ATime<Q extends ATime<Q>> extends AQuantity<Q, ETimes, ETi
 
     public ATime<?> toDimension(ETimeDims dimension) {
         return switch (dimension) {
-            case ETimeDims.TIME ->  toQTime();
-			case ETimeDims.DURATION ->  toQDuration();
-			case ETimeDims.PERIOD ->  toQPeriod();
-			case ETimeDims.FREQUENCY ->  toQFrequency();
+            case ETimeDims.TIME ->  to(QTime.class);
+			case ETimeDims.DURATION ->  to(QDuration.class);
+			case ETimeDims.PERIOD ->  to(QPeriod.class);
+			case ETimeDims.FREQUENCY ->  to(QFrequency.class);
             default -> throw new IllegalStateException("Unexpected getBaseValue: " + dimension);
         };
     }
 
-    // Dimension Conversions
-
-    public QTime toQTime(){ return new QTime(this.getValue(), this.getUnit()); }
-    public QDuration toQDuration(){ return new QDuration(this.getValue(), this.getUnit()); }
-    public QPeriod toQPeriod(){ return new QPeriod(this.getValue(), this.getUnit()); }
-    public QFrequency toQFrequency(){ return new QFrequency(this.getValue(), this.getUnit()); }
-
+    public <T extends ATime<T>> T to(Class<T> targetType) {
+    // Use reflection or a factory to create the target type
+        try {
+            return targetType.getConstructor(Double.class, ETimes.class)
+                            .newInstance(this.getValue(), this.getUnit());
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Conversion to the specified type is not supported.", e);
+        }
+    }
 
 	// Get Quantity of this.value in Unit
 

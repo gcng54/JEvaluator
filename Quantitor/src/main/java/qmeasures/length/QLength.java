@@ -3,7 +3,7 @@ package qmeasures.length;
 /**
  * Concrete length quantity representing a distance.
  */
-public final class QLength extends ALength<QLength> {
+public class QLength extends ALength<QLength> {
 
     public QLength(Double value) {
         super(value, ELengths.METER, ELengthDims.LENGTH);

@@ -1,8 +1,9 @@
 package qmeasures.core;
 
 import java.util.Objects;
-
-
+/**
+ * Abstract base class for all quantity types.
+ */
 
 public abstract class AQuantity<Q extends AQuantity<Q, U, E>, U extends IUnit<U>, E extends IDimension<E>> implements IQuantity<Q, U, E> {
     
@@ -28,6 +29,8 @@ public abstract class AQuantity<Q extends AQuantity<Q, U, E>, U extends IUnit<U>
         this.baseValue = dimension.getBaseValueClamped(unit.toBaseValue(value));
     }
 
+    @Override public Double getValue() { return unit.fromBaseValue(baseValue); }
+    
     public Q cloneQuantity() { return of(this.getValue(), this.getUnit());  }
 
     @Override public String toString() { return getValue() + " " + getUnitSymbol(); }

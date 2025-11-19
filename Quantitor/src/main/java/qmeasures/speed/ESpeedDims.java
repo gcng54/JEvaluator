@@ -10,10 +10,9 @@ import qmeasures.core.IDimension;
  */
 public enum ESpeedDims implements IDimension<ESpeedDims> {
     SPEED("m/s", 0.0, Double.POSITIVE_INFINITY),
-    FREQUENCY("Hz", 0.0, Double.POSITIVE_INFINITY),
     GROUND_SPEED("m/s", 0.0, 343.0),
-    VERTICAL_SPEED("m/s",  -100.0, 100.0);
-
+    SEA_SPEED("m/s", 0.0, Double.POSITIVE_INFINITY),
+    AIR_SPEED("m/s", 0.0, Double.POSITIVE_INFINITY);
 
     private final String symbol;
     

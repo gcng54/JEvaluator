@@ -20,36 +20,33 @@ public abstract class AAngle<Q extends AAngle<Q>> extends AQuantity<Q, EAngles, 
     
     @Override public EAngleDims getDimension() { return (EAngleDims) super.getDimension(); }
 
-    public Clampable.EClampMode getClampMode(){ return Clampable.EClampMode.BOUND; };
+    public Clampable.EClampMode getClampMode(){ return Clampable.EClampMode.WRAP; };
 
     public AAngle<?> toDimension(EAngleDims dimension) {
         return switch (dimension) {
-            case EAngleDims.ANGLE ->  toQAngle();
-			case EAngleDims.LATITUDE ->  toQAngle();
-			case EAngleDims.LONGITUDE ->  toQAngle();
-			case EAngleDims.BEARING ->  toQAngle();
-			case EAngleDims.AZIMUTH ->  toQAngle();
-			case EAngleDims.HEADING ->  toQAngle();
-			case EAngleDims.COURSE ->  toQAngle();
-			case EAngleDims.DIRECTION ->  toQAngle();
-			case EAngleDims.ROTATION ->  toQAngle();
-			case EAngleDims.ORIENTATION ->  toQAngle();
+            case EAngleDims.ANGLE ->  to(QAngle.class);
+			case EAngleDims.LATITUDE ->  to(QLatitude.class);
+			case EAngleDims.LONGITUDE ->  to(QLongitude.class);
+			case EAngleDims.BEARING ->  to(QBearing.class);
+			case EAngleDims.AZIMUTH ->  to(QAzimuth.class);
+			case EAngleDims.HEADING ->  to(QHeading.class);
+			case EAngleDims.COURSE ->  to(QCourse.class);
+			case EAngleDims.DIRECTION ->  to(QDirection.class);
+			case EAngleDims.ROTATION ->  to(QRotation.class);
+			case EAngleDims.ORIENTATION ->  to(QOrientation.class);
             default -> throw new IllegalStateException("Unexpected getBaseValue: " + dimension);
         };
     }
 
-    // Dimension Conversions
-
-    public QAngle toQAngle(){ return new QAngle(this.getValue(), this.getUnit()); }
-	public QLatitude toQLatitude(){ return new QLatitude(this.getValue(), this.getUnit()); }
-	public QLongitude toQLongitude(){ return new QLongitude(this.getValue(), this.getUnit()); }
-	public QBearing toQBearing(){ return new QBearing(this.getValue(), this.getUnit()); }
-	public QAzimuth toQAzimuth(){ return new QAzimuth(this.getValue(), this.getUnit()); }
-	public QHeading toQHeading(){ return new QHeading(this.getValue(), this.getUnit()); }
-	public QCourse toQCourse(){ return new QCourse(this.getValue(), this.getUnit()); }
-	public QDirection toQDirection(){ return new QDirection(this.getValue(), this.getUnit()); }
-	public QRotation toQRotation(){ return new QRotation(this.getValue(), this.getUnit()); }
-	public QOrientation toQOrientation(){ return new QOrientation(this.getValue(), this.getUnit()); }
+    public <T extends AAngle<T>> T to(Class<T> targetType) {
+    // Use reflection or a factory to create the target type
+        try {
+            return targetType.getConstructor(Double.class, EAngles.class)
+                            .newInstance(this.getValue(), this.getUnit());
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Conversion to the specified type is not supported.", e);
+        }
+    }
 
 	// TRIGONOMETRIC FUNCTIONS
 

@@ -24,12 +24,27 @@ public abstract class ALength<Q extends ALength<Q>> extends AQuantity<Q, ELength
 
     public ALength<?> toDimension(ELengthDims dimension) {
         return switch (dimension) {
-            case ELengthDims.LENGTH ->  toQLength();
-            case ELengthDims.DISTANCE ->  toQDistance();
-            case ELengthDims.ALTITUDE ->  toQAltitude();
+            case ELengthDims.LENGTH ->  to(QLength.class);
+            case ELengthDims.DISTANCE ->  to(QDistance.class);
+            case ELengthDims.ALTITUDE ->  to(QAltitude.class);
+            case ELengthDims.HEIGHT ->  to(QHeight.class);
+            case ELengthDims.AREA ->  to(QArea.class);
+            case ELengthDims.VOLUME ->  to(QVolume.class);
             default -> throw new IllegalStateException("Unexpected getBaseValue: " + dimension);
         };
     }
+
+    public <T extends ALength<T>> T to(Class<T> targetType) {
+    // Use reflection or a factory to create the target type
+        try {
+            return targetType.getConstructor(Double.class, ELengths.class)
+                            .newInstance(this.getValue(), this.getUnit());
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Conversion to the specified type is not supported.", e);
+        }
+    }
+
+    // Dimension Conversions
 
     public QArea toArea(Q length) {
         if (length == null) {
@@ -55,23 +70,7 @@ public abstract class ALength<Q extends ALength<Q>> extends AQuantity<Q, ELength
         return new QLength(new_value, this.getUnit());
     }
 
-    // Dimension Conversions
 
-    public QLength toQLength(){ return new QLength(this.getValue(), this.getUnit()); }
-
-    public QDistance toQDistance(){ return new QDistance(this.getValue(), this.getUnit()); }
-
-    public QAltitude toQAltitude(){ return new QAltitude(this.getValue(), this.getUnit()); }
-
-    public QEarthecric toQEarthecric(){ return new QEarthecric(this.getValue(), this.getUnit()); }
-
-    public QRange toQRange(){ return new QRange(this.getValue(), this.getUnit()); }
-
-    public QHeight toQHeight(){ return new QHeight(this.getValue(), this.getUnit()); }
-
-    public QElevation toQElevation(){ return new QElevation(this.getValue(), this.getUnit()); }
-
-    public QWaveLength toQWaveLength(){ return new QWaveLength(this.getValue(), this.getUnit()); }
 
     
 

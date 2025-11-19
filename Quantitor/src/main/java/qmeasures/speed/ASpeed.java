@@ -3,6 +3,9 @@ package qmeasures.speed;
 import qmeasures.core.AQuantity;
 import qmeasures.core.Clampable;
 
+/**
+ * Abstract speed quantity.
+ */
 public abstract class ASpeed<Q extends ASpeed<Q>> extends AQuantity<Q, ESpeeds, ESpeedDims> {
 
     protected ASpeed(Double value, ESpeeds unit, ESpeedDims dimension) {  super(value, unit, dimension);  }
@@ -20,13 +23,29 @@ public abstract class ASpeed<Q extends ASpeed<Q>> extends AQuantity<Q, ESpeeds, 
     public ASpeed<?> toDimension(ESpeedDims dimension) {
         return switch (dimension) {
             case ESpeedDims.SPEED ->  toQSpeed();
+            case ESpeedDims.GROUND_SPEED ->  toQGroundSpeed();
+            case ESpeedDims.SEA_SPEED ->  toQSeaSpeed();
+            case ESpeedDims.AIR_SPEED ->  toQAirSpeed();
             default -> throw new IllegalStateException("Unexpected getBaseValue: " + dimension);
         };
+    }
+
+    public <T extends ASpeed<T>> T to(Class<T> targetType) {
+    // Use reflection or a factory to create the target type
+        try {
+            return targetType.getConstructor(Double.class, ESpeeds.class)
+                            .newInstance(this.getValue(), this.getUnit());
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Conversion to the specified type is not supported.", e);
+        }
     }
 
     // Dimension Conversions
 
     public QSpeed toQSpeed(){ return new QSpeed(this.getValue(), this.getUnit()); }
+    public QGroundSpeed toQGroundSpeed(){ return new QGroundSpeed(this.getValue(), this.getUnit()); }
+    public QSeaSpeed toQSeaSpeed(){ return new QSeaSpeed(this.getValue(), this.getUnit()); }
+    public QAirSpeed toQAirSpeed(){ return new QAirSpeed(this.getValue(), this.getUnit()); }
 
 	// Get Quantity of this.value in Unit
 
