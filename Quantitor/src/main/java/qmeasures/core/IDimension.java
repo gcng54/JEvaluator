@@ -11,6 +11,8 @@ public interface IDimension<E extends IDimension<E>> extends Clampable {
 
     IUnit<?> getBaseUnit();
 
+    default String getClassName() { return this.getClass().getSimpleName();    }
+
     default boolean isCompatible(IDimension<?> other) {
         if (other == null) return false;
         E a = getBaseDimension();
@@ -18,21 +20,5 @@ public interface IDimension<E extends IDimension<E>> extends Clampable {
         E b = (E) other.getBaseDimension();
         return a != null && a.equals(b);
     }
-
-    /**
-     * Gets the minimum valid base value for this dimension.
-     *
-     * @return The minimum base value.
-     */
-    @Override
-    double getMinBaseValue();
-
-    /**
-     * Gets the maximum valid base value for this dimension.
-     *
-     * @return The maximum base value.
-     */
-    @Override
-    double getMaxBaseValue();
 
 }

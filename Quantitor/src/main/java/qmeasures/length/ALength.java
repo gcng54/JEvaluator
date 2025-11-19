@@ -1,39 +1,59 @@
 package qmeasures.length;
 
 import qmeasures.core.AQuantity;
+import qmeasures.core.Clampable;
 
 /**
  * Abstract length quantity.
  */
 public abstract class ALength<Q extends ALength<Q>> extends AQuantity<Q, ELengths, ELengthDims> {
 
-    protected ALength(double value, ELengths unit, ELengthDims dimension) {  super(value, unit, dimension);  }
 
-    protected ALength(double value, ELengthDims dimension) {  super(value, ELengths.METER, dimension);  }
+    protected ALength(Double value, ELengths unit, ELengthDims dimension) {  super(value, unit, dimension);  }
 
-    protected ALength(double value) {  super(value, ELengths.METER, ELengthDims.LENGTH);  }
+    protected ALength(Double value, ELengthDims dimension) {  super(value, ELengths.METER, dimension);  }
 
-    @Override public abstract Q of(double value, ELengths unit);
+    protected ALength(Double value) {  super(value, ELengths.METER, ELengthDims.LENGTH);  }
+
+    @Override public abstract Q of(Double value, ELengths unit);
 
     @Override public ELengths getUnit() { return (ELengths) super.getUnit(); }
     
     @Override public ELengthDims getDimension() { return (ELengthDims) super.getDimension(); }
 
-    @Override public Clampable.EClampMode getClampMode(){ return Clampable.EClampMode.BOUND; };
+    public Clampable.EClampMode getClampMode(){ return Clampable.EClampMode.BOUND; };
 
-    @Override public Q to(ELengths unit) {
-        double baseValue = this.getUnit().toBaseValue(this.getValue());
-        double newValue = unit.fromBaseValue(baseValue);
-        return of(newValue, unit);
-    }
-
-    public ALength<?> toQ(ELengthDims dimension) {
+    public ALength<?> toDimension(ELengthDims dimension) {
         return switch (dimension) {
             case ELengthDims.LENGTH ->  toQLength();
             case ELengthDims.DISTANCE ->  toQDistance();
             case ELengthDims.ALTITUDE ->  toQAltitude();
             default -> throw new IllegalStateException("Unexpected getBaseValue: " + dimension);
         };
+    }
+
+    public QArea toArea(Q length) {
+        if (length == null) {
+            throw new IllegalArgumentException("Cannot take the nullified length.");
+        }
+        double new_value = Math.pow(length.getValue(), 2);
+        return new QArea(new_value, this.getUnit());
+    }
+
+    public QVolume toVolume(Q length) {
+        if (length == null) {
+            throw new IllegalArgumentException("Cannot take the nullified length.");
+        }
+        double new_value = Math.pow(length.getValue(), 3);
+        return new QVolume(new_value, this.getUnit());
+    }
+
+    public QLength div (QLength divisor) {
+        if (divisor.getBaseValue() == 0 || divisor == null) {
+            throw new IllegalArgumentException("Division by zero or null is not allowed.");
+        }
+        double new_value = this.getUnit().fromBaseValue(this.getBaseValue() / divisor.getBaseValue());
+        return new QLength(new_value, this.getUnit());
     }
 
     // Dimension Conversions
@@ -44,50 +64,49 @@ public abstract class ALength<Q extends ALength<Q>> extends AQuantity<Q, ELength
 
     public QAltitude toQAltitude(){ return new QAltitude(this.getValue(), this.getUnit()); }
 
-    // convert to specific units
+    // convert of specific units
     
-	public Q toMeter() { return this.to(ELengths.METER);}
+	public Q ofMeter() { return this.of(ELengths.METER);}
 
-	public Q toKilometer() {return this.to(ELengths.KILOMETER);	}
+	public Q ofKilometer() {return this.of(ELengths.KILOMETER);	}
 
-	public Q toMillimeter() {return this.to(ELengths.MILLIMETER);	}
+	public Q ofMillimeter() {return this.of(ELengths.MILLIMETER);	}
 
-	public Q toFoot() {	return this.to(ELengths.FOOT);}
+	public Q ofFoot() {	return this.of(ELengths.FOOT);}
 
-	public Q toNauticalMile() {	return this.to(ELengths.NAUTMILE);}
+	public Q ofNauticalMile() {	return this.of(ELengths.NAUTMILE);}
 
-	public Q toDataMile() {	return this.to(ELengths.DATAMILE);	}
+	public Q ofDataMile() {	return this.of(ELengths.DATAMILE);	}
 
-	public Q toFlightLevel() {	return this.to(ELengths.FLIGHTLEVEL);}
+	public Q ofFlightLevel() {	return this.of(ELengths.FLIGHTLEVEL);}
 
-	public Q toYard() {	return this.to(ELengths.YARD);}
+	public Q ofYard() {	return this.of(ELengths.YARD);}
 
-	public Q toInch() {	return this.to(ELengths.INCH);	}
+	public Q ofInch() {	return this.of(ELengths.INCH);	}
 
-	public Q toMile() {	return this.to(ELengths.MILE);}
+	public Q ofMile() {	return this.of(ELengths.MILE);}
 
     // get value in specific units
 
-	public double inMeter() { return this.of(ELengths.METER);	}
+	public double inMeter() { return this.getValueInUnit(ELengths.METER);	}
 
-	public double inKilometer() { return this.of(ELengths.KILOMETER);	}
+	public double inKilometer() { return this.getValueInUnit(ELengths.KILOMETER);	}
 
-    public double inMillimeter() { return this.of(ELengths.MILLIMETER);	}
+    public double inMillimeter() { return this.getValueInUnit(ELengths.MILLIMETER);	}
 
-	public double inYard() { return this.of(ELengths.YARD);	}
+	public double inYard() { return this.getValueInUnit(ELengths.YARD);	}
 
-    public double inFoot() { return this.of(ELengths.FOOT);	}
+    public double inFoot() { return this.getValueInUnit(ELengths.FOOT);	}
 
-	public double inInch() { return this.of(ELengths.INCH);	}
+	public double inInch() { return this.getValueInUnit(ELengths.INCH);	}
 
-    public double inMile() { return this.of(ELengths.MILE);	}
+    public double inMile() { return this.getValueInUnit(ELengths.MILE);	}
 
-	public double inNautMile() { return this.of(ELengths.NAUTMILE);	}
+	public double inNautMile() { return this.getValueInUnit(ELengths.NAUTMILE);	}
 
-	public double inDataMile() { return this.of(ELengths.DATAMILE);	}
+	public double inDataMile() { return this.getValueInUnit(ELengths.DATAMILE);	}
 
-	public double inFlightLevel() { return this.of(ELengths.FLIGHTLEVEL);	}
-
+	public double inFlightLevel() { return this.getValueInUnit(ELengths.FLIGHTLEVEL);	}
 
 }
 

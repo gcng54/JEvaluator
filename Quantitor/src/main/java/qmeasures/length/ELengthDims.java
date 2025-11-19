@@ -31,17 +31,16 @@ public enum ELengthDims implements IDimension<ELengthDims> {
         this.symbol = symbol;
     }
 
-    public Clampable.EClampMode getClampMode(){ return Clampable.EClampMode.BOUND; };
+    @Override public Clampable.EClampMode getClampMode(){ return Clampable.EClampMode.BOUND; };
     
-    public String getSymbol(){ return symbol; }
+    @Override public String getSymbol(){ return symbol; }
 
-    public double getMinBaseValue(){ return minBaseValue; }
+    @Override public double getMinBase(){ return minBaseValue; }
     
-    public double getMaxBaseValue(){  return maxBaseValue; }
+    @Override public double getMaxBase(){  return maxBaseValue; }
 
-    public ELengthDims getBaseDimension(){  return ELengthDims.LENGTH; };
+    @Override public ELengthDims getBaseDimension(){  return ELengthDims.LENGTH; };
 
-    public ELengths getBaseUnit(){ return ELengths.METER; };
-
+    @Override public ELengths getBaseUnit(){ return ELengths.METER; };
 }
 

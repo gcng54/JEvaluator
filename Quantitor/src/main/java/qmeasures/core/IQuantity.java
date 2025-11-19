@@ -8,26 +8,32 @@ public interface IQuantity<Q extends IQuantity<Q, U, E>, U extends IUnit<?>, E e
 
     E getDimension() ;
 
-    Q of(double value, U unit);
-
-    Double getValue() { return getUnit().fromBaseValue(getBaseValue()); }
-
-    default double getClampedBaseValue() { return getDimension().getClampedBaseValue(getBaseValue());   }
-
-    default Double getClampedValue() { return getUnit().fromBaseValue(getClampedBaseValue());  }
-
-    default boolean isClamped() { return getBaseValue() != getClampedBaseValue(); }
-
-    default String getSymbol() { return getUnit().getSymbol(); }
-
-    default  boolean isEqualMaxBaseValue() { return getDimension().isEqualMaxBaseValue(getBaseValue());  }
-
-    default  boolean isEqualMinBaseValue() { return getDimension().isEqualMinBaseValue(getBaseValue());  }
+    Q of(Double value, U unit);
 
     default Q of(Double value){ return this.of(value, getUnit()); }
 
-	default Double of(U targetUnit) { return targetUnit.fromBaseValue(getBaseValue());	}
+	default Q of(U unit) {  return of(unit.fromBaseValue(getBaseValue()), unit);   }
 
+    default Double getValueInUnit(U unit) { return unit.fromBaseValue(getBaseValue()); }
+    
+    default Double getValue() { return getUnit().fromBaseValue(getBaseValue()); }
 
+    default double getBaseValueClamped() { return getDimension().getBaseValueClamped(getBaseValue());   }
+
+    default Double getValueClamped() { return getUnit().fromBaseValue(getBaseValueClamped());  }
+
+    default boolean isClamped() { return getBaseValue() != getBaseValueClamped(); }
+
+    default String getUnitName() { return getUnit().getClassName(); }
+
+    default String getUnitSymbol() { return getUnit().getSymbol(); }
+
+    default String getDimensionName() { return getDimension().getClassName(); }
+
+    default String getDimensionSymbol() { return getDimension().getSymbol(); }
+
+    default  boolean isMaxBaseValue() { return getDimension().isEqualToMaxBase(getBaseValue());  }
+
+    default  boolean isMinBaseValue() { return getDimension().isEqualToMinBase(getBaseValue());  }
 
 }

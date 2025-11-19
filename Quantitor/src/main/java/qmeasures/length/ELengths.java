@@ -31,12 +31,11 @@ public enum ELengths implements IUnit<ELengths> {
         this.symbol = symbol;
     }
 
-    public String getSymbol() { return symbol; }
+    @Override public String getSymbol() { return symbol; }
 
-    public double getFactor() { return factor; }
+    @Override public double getFactor() { return factor; }
 
-    @Override
-    public String toString() {
+    @Override public String toString() {
 		return switch (this) {
             case FOOT -> "Feet";
             case INCH -> "Inches";
@@ -50,9 +49,9 @@ public enum ELengths implements IUnit<ELengths> {
 		return ELengths.valueOf(name_.toUpperCase(Locale.ENGLISH));
 	}
 
-    public ELengthDims getBaseDimension() { return ELengthDims.LENGTH; }
+    @Override public ELengthDims getBaseDimension() { return ELengthDims.LENGTH; }
 
-    public ELengths getBaseUnit() { return ELengths.METER; }
+    @Override public ELengths getBaseUnit() { return ELengths.METER; }
 
 }
 

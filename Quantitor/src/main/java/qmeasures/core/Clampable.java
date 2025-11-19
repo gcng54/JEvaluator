@@ -2,9 +2,9 @@ package qmeasures.core;
 
 public interface Clampable {
     
-    double getMinBaseValue();
+    double getMinBase();
     
-    double getMaxBaseValue();
+    double getMaxBase();
 
     enum EClampMode {
         NONE,
@@ -29,7 +29,7 @@ public interface Clampable {
     }
 
     default double getClampRange() {
-        return getMaxBaseValue() - getMinBaseValue();
+        return getMaxBase() - getMinBase();
     }
 
     default boolean isClampingMode() {
@@ -41,31 +41,31 @@ public interface Clampable {
     }
 
     default boolean inClampRange(double baseValue) {
-        return isClampingRange() && baseValue >= getMinBaseValue() && baseValue <= getMaxBaseValue();
+        return isClampingRange() && baseValue >= getMinBase() && baseValue <= getMaxBase();
     }
 
-    default boolean isEqualMaxBaseValue(double baseValue) {
-        return isClampingRange() && baseValue == getMaxBaseValue();
+    default boolean isEqualToMaxBase(double baseValue) {
+        return isClampingRange() && baseValue == getMaxBase();
     }
 
-    default boolean isEqualMinBaseValue(double baseValue) {
-        return isClampingRange() && baseValue == getMinBaseValue();
+    default boolean isEqualToMinBase(double baseValue) {
+        return isClampingRange() && baseValue == getMinBase();
     }
     
-    default double getClampedBaseValue(double baseValue) {
+    default double getBaseValueClamped(double baseValue) {
         if (inClampRange(baseValue)) return baseValue;
         switch (getClampMode()) {
             case MIN:
-                return _clampAsMin(baseValue, getMinBaseValue());
+                return _clampAsMin(baseValue, getMinBase());
             case MAX:
-                return _clampAsMax(baseValue, getMaxBaseValue());
+                return _clampAsMax(baseValue, getMaxBase());
             case BOUND:
-                return _clampAsBound(baseValue, getMinBaseValue(), getMaxBaseValue());
+                return _clampAsBound(baseValue, getMinBase(), getMaxBase());
             case CYCLE:
             case WRAP:
-                return _clampAsCycleOrWrap(baseValue, getMinBaseValue(), getMaxBaseValue());
+                return _clampAsCycleOrWrap(baseValue, getMinBase(), getMaxBase());
             case BOUNCE:
-                return _clampAsBounce(baseValue, getMinBaseValue(), getMaxBaseValue());
+                return _clampAsBounce(baseValue, getMinBase(), getMaxBase());
             case LATITUDE:
                 return _clampAsLatitude(baseValue);
             case LONGITUDE:
