@@ -25,6 +25,15 @@ public abstract class AAngle<Q extends AAngle<Q>> extends AQuantity<Q, EAngles, 
     public AAngle<?> toDimension(EAngleDims dimension) {
         return switch (dimension) {
             case EAngleDims.ANGLE ->  toQAngle();
+			case EAngleDims.LATITUDE ->  toQAngle();
+			case EAngleDims.LONGITUDE ->  toQAngle();
+			case EAngleDims.BEARING ->  toQAngle();
+			case EAngleDims.AZIMUTH ->  toQAngle();
+			case EAngleDims.HEADING ->  toQAngle();
+			case EAngleDims.COURSE ->  toQAngle();
+			case EAngleDims.DIRECTION ->  toQAngle();
+			case EAngleDims.ROTATION ->  toQAngle();
+			case EAngleDims.ORIENTATION ->  toQAngle();
             default -> throw new IllegalStateException("Unexpected getBaseValue: " + dimension);
         };
     }
@@ -32,7 +41,17 @@ public abstract class AAngle<Q extends AAngle<Q>> extends AQuantity<Q, EAngles, 
     // Dimension Conversions
 
     public QAngle toQAngle(){ return new QAngle(this.getValue(), this.getUnit()); }
+	public QLatitude toQLatitude(){ return new QLatitude(this.getValue(), this.getUnit()); }
+	public QLongitude toQLongitude(){ return new QLongitude(this.getValue(), this.getUnit()); }
+	public QBearing toQBearing(){ return new QBearing(this.getValue(), this.getUnit()); }
+	public QAzimuth toQAzimuth(){ return new QAzimuth(this.getValue(), this.getUnit()); }
+	public QHeading toQHeading(){ return new QHeading(this.getValue(), this.getUnit()); }
+	public QCourse toQCourse(){ return new QCourse(this.getValue(), this.getUnit()); }
+	public QDirection toQDirection(){ return new QDirection(this.getValue(), this.getUnit()); }
+	public QRotation toQRotation(){ return new QRotation(this.getValue(), this.getUnit()); }
+	public QOrientation toQOrientation(){ return new QOrientation(this.getValue(), this.getUnit()); }
 
+	// TRIGONOMETRIC FUNCTIONS
 
 	public double sin() { return (Math.sin(this.inRadian()));  }
 
@@ -122,15 +141,25 @@ public abstract class AAngle<Q extends AAngle<Q>> extends AQuantity<Q, EAngles, 
     
 	public Q ofDegree() { return this.of(EAngles.DEGREE);}
 	public Q ofRadian() {return this.of(EAngles.RADIAN);	}
+	public Q ofTurn() {return this.of(EAngles.TURN);	}
     public Q ofGradian() {return this.of(EAngles.GRADIAN);	}
     public Q ofArcMinute() {return this.of(EAngles.ARC_MINUTE);	}
     public Q ofArcSecond() {return this.of(EAngles.ARC_SECOND);	}
 
-	
+	// convert of specific units with value
+
+	public Q ofDegree(Double value) { return this.of(value, EAngles.DEGREE);}
+	public Q ofRadian(Double value) {return this.of(value, EAngles.RADIAN);	}
+	public Q ofTurn(Double value) {return this.of(value, EAngles.TURN);	}
+	public Q ofGradian(Double value) {return this.of(value, EAngles.GRADIAN);	}
+	public Q ofArcMinute(Double value) {return this.of(value, EAngles.ARC_MINUTE);	}
+	public Q ofArcSecond(Double value) {return this.of(value, EAngles.ARC_SECOND);	}
+
     // get value in specific units
 
 	public Double inDegree() { return this.inUnit(EAngles.DEGREE);	}
 	public Double inRadian() { return this.inUnit(EAngles.RADIAN);	}
+    public Double inTurn() { return this.inUnit(EAngles.TURN);	}
     public Double inGradian() { return this.inUnit(EAngles.GRADIAN);	}
     public Double inArcMinute() { return this.inUnit(EAngles.ARC_MINUTE);	}
     public Double inArcSecond() { return this.inUnit(EAngles.ARC_SECOND);	}

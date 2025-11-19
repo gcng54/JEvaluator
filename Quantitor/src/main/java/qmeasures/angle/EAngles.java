@@ -10,12 +10,12 @@ import qmeasures.core.IUnit;
  * Common length units with meter as base.
  */
 public enum EAngles implements IUnit<EAngles> {
-    DEGREE("°", 1.0),
-    RADIAN("rad", 57.29577951308232), //
+    DEGREE("°", 1.0), // base unit
+    RADIAN("rad", 57.29577951308232), // 1 rad = 180/π degrees
+    TURN("turn", 360.0), // 1 turn = 360 degrees
     GRADIAN("gon", 0.9), // 1 grad = 0.9 degrees
     ARC_MINUTE("'", 1.0 / 60.0), // 1 arc minute = 1/60 degrees
     ARC_SECOND("\"", 1.0 / 3600.0); // 1 arc second = 1/3600 degrees
-
     
     private final String symbol;
 

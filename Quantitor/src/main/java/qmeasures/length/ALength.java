@@ -63,6 +63,18 @@ public abstract class ALength<Q extends ALength<Q>> extends AQuantity<Q, ELength
 
     public QAltitude toQAltitude(){ return new QAltitude(this.getValue(), this.getUnit()); }
 
+    public QEarthecric toQEarthecric(){ return new QEarthecric(this.getValue(), this.getUnit()); }
+
+    public QRange toQRange(){ return new QRange(this.getValue(), this.getUnit()); }
+
+    public QHeight toQHeight(){ return new QHeight(this.getValue(), this.getUnit()); }
+
+    public QElevation toQElevation(){ return new QElevation(this.getValue(), this.getUnit()); }
+
+    public QWaveLength toQWaveLength(){ return new QWaveLength(this.getValue(), this.getUnit()); }
+
+    
+
     // convert of specific units
     
 	public Q ofMeter() { return this.of(ELengths.METER);}
@@ -75,6 +87,18 @@ public abstract class ALength<Q extends ALength<Q>> extends AQuantity<Q, ELength
 	public Q ofYard() {	return this.of(ELengths.YARD);}
 	public Q ofInch() {	return this.of(ELengths.INCH);	}
 	public Q ofMile() {	return this.of(ELengths.MILE);}
+
+    // convert of specific units with value
+    public Q ofMeter(Double value) { return this.of(value, ELengths.METER);}
+    public Q ofKilometer(Double value) {return this.of(value, ELengths.KILOMETER);	}
+    public Q ofMillimeter(Double value) {return this.of(value, ELengths.MILLIMETER);	}
+    public Q ofFoot(Double value) {	return this.of(value, ELengths.FOOT);}
+    public Q ofNauticalMile(Double value) {	return this.of(value, ELengths.NAUTMILE);}
+    public Q ofDataMile(Double value) {	return this.of(value, ELengths.DATAMILE);	}
+    public Q ofFlightLevel(Double value) {	return this.of(value, ELengths.FLIGHTLEVEL);}
+    public Q ofYard(Double value) {	return this.of(value, ELengths.YARD);}
+    public Q ofInch(Double value) {	return this.of(value, ELengths.INCH);	}
+    public Q ofMile(Double value) {	return this.of(value, ELengths.MILE);}
 
     // get value in specific units
 

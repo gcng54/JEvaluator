@@ -21,6 +21,9 @@ public abstract class ATime<Q extends ATime<Q>> extends AQuantity<Q, ETimes, ETi
     public ATime<?> toDimension(ETimeDims dimension) {
         return switch (dimension) {
             case ETimeDims.TIME ->  toQTime();
+			case ETimeDims.DURATION ->  toQDuration();
+			case ETimeDims.PERIOD ->  toQPeriod();
+			case ETimeDims.FREQUENCY ->  toQFrequency();
             default -> throw new IllegalStateException("Unexpected getBaseValue: " + dimension);
         };
     }
@@ -28,6 +31,10 @@ public abstract class ATime<Q extends ATime<Q>> extends AQuantity<Q, ETimes, ETi
     // Dimension Conversions
 
     public QTime toQTime(){ return new QTime(this.getValue(), this.getUnit()); }
+    public QDuration toQDuration(){ return new QDuration(this.getValue(), this.getUnit()); }
+    public QPeriod toQPeriod(){ return new QPeriod(this.getValue(), this.getUnit()); }
+    public QFrequency toQFrequency(){ return new QFrequency(this.getValue(), this.getUnit()); }
+
 
 	// Get Quantity of this.value in Unit
 
@@ -40,6 +47,19 @@ public abstract class ATime<Q extends ATime<Q>> extends AQuantity<Q, ETimes, ETi
 	public Q ofYear() {	return this.of(ETimes.YEAR);	}
 	public Q ofDecade() { return this.of(ETimes.DECADE);	}
 	public Q ofCentury() { return this.of(ETimes.CENTURY);	}
+
+	// convert of specific units with value
+
+	public Q ofSecond(Double value) { return this.of(value, ETimes.SECOND);	}
+	public Q ofMinute(Double value) { return this.of(value, ETimes.MINUTE);	}
+	public Q ofHour(Double value) {	return this.of(value, ETimes.HOUR);	}
+	public Q ofDay(Double value) { return this.of(value, ETimes.DAY);	}
+	public Q ofWeek(Double value) {	return this.of(value, ETimes.WEEK);	}
+	public Q ofMonth(Double value) { return this.of(value, ETimes.MONTH);	}
+	public Q ofYear(Double value) {	return this.of(value, ETimes.YEAR);	}
+	public Q ofDecade(Double value) { return this.of(value, ETimes.DECADE);	}
+	public Q ofCentury(Double value) { return this.of(value, ETimes.CENTURY);	}
+
 
 	// Get Quantity of value in Unit
 
