@@ -1,4 +1,4 @@
-package dimensions.custom;
+package qmeasures.core;
 
 import java.util.Locale;
 import java.util.Objects;
@@ -42,21 +42,26 @@ public interface IUnit<E extends IUnit<E>> {
 
     // Common Default Methods
 
+    default void validateFactor(double factor) {
+            if (factor <= 0.0) {
+            throw new IllegalArgumentException("Factor must be positive: " + factor);
+        }
+    }
+
 	default boolean isBaseUnit() { return this.equals(this.getBaseUnit());}
 
     default String getClassName() { return this.getClass().getSimpleName();    }
 
-    default boolean isCompatible(IUnit<E> other) {
+    // E is compatable with E
+    default boolean isCompatible(IUnit<?> other) {
         return other != null && getBaseDimension().isCompatible(other.getBaseDimension());
     }
 
-    default boolean unitEquals(E other) {
-        return other != null
-                && Objects.equals(getSymbol(), other.getSymbol())
-                && Objects.equals(getBaseDimension(), other.getBaseDimension())
-                && Double.compare(getFactor(), other.getFactor()) == 0;
+    default boolean unitEquals(IUnit<?> other) {
+        return other != null && Objects.equals(getClassName(), other.getClassName());
     }
 
+    // Utility Functions
     public static String toSentenceCase(String input) {
 		if (input == null || input.isEmpty()) {
 			return input;

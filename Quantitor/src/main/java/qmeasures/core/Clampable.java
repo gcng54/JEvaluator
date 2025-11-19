@@ -1,13 +1,12 @@
-package measuredims;
+package qmeasures.core;
 
-/**
- * An interface for dimension enums that define valid operational ranges.
- */
-public interface IDimension {
+public interface Clampable {
+    
     double getMinBaseValue();
+    
     double getMaxBaseValue();
 
-    enum clampMode{
+    enum EClampMode {
         NONE,
         MIN, // clamps to min only
         MAX,  // clamps to max only
@@ -25,43 +24,54 @@ public interface IDimension {
         }
     }
 
-    default clampMode getClampMode() {
-        return clampMode.NONE;
+    default EClampMode getClampMode() {
+        return EClampMode.NONE;
     }
 
     default double getClampRange() {
         return getMaxBaseValue() - getMinBaseValue();
     }
 
-    default boolean isClamping() {
-        return getClampMode() != clampMode.NONE;
+    default boolean isClampingMode() {
+        return getClampMode() != EClampMode.NONE;
     }
 
     default boolean isClampingRange() {
-        return isClamping() && getClampRange() > 0;
+        return isClampingMode() && getClampRange() > 0;
     }
 
-    default double clamp(double value) {
-        if (!isClamping()) return value;
+    default boolean inClampRange(double baseValue) {
+        return isClampingRange() && baseValue >= getMinBaseValue() && baseValue <= getMaxBaseValue();
+    }
 
+    default boolean isEqualMaxBaseValue(double baseValue) {
+        return isClampingRange() && baseValue == getMaxBaseValue();
+    }
+
+    default boolean isEqualMinBaseValue(double baseValue) {
+        return isClampingRange() && baseValue == getMinBaseValue();
+    }
+    
+    default double getClampedBaseValue(double baseValue) {
+        if (inClampRange(baseValue)) return baseValue;
         switch (getClampMode()) {
             case MIN:
-                return _clampAsMin(value, getMinBaseValue());
+                return _clampAsMin(baseValue, getMinBaseValue());
             case MAX:
-                return _clampAsMax(value, getMaxBaseValue());
+                return _clampAsMax(baseValue, getMaxBaseValue());
             case BOUND:
-                return _clampAsBound(value, getMinBaseValue(), getMaxBaseValue());
+                return _clampAsBound(baseValue, getMinBaseValue(), getMaxBaseValue());
             case CYCLE:
             case WRAP:
-                return _clampAsCycleOrWrap(value, getMinBaseValue(), getMaxBaseValue());
+                return _clampAsCycleOrWrap(baseValue, getMinBaseValue(), getMaxBaseValue());
             case BOUNCE:
-                return _clampAsBounce(value, getMinBaseValue(), getMaxBaseValue());
+                return _clampAsBounce(baseValue, getMinBaseValue(), getMaxBaseValue());
             case LATITUDE:
-                return _clampAsLatitude(value);
+                return _clampAsLatitude(baseValue);
             case LONGITUDE:
-                return _clampAsLongitude(value);
+                return _clampAsLongitude(baseValue);
             default:
-                return value;
+                return baseValue;
         }
     }
 
@@ -137,7 +147,5 @@ public interface IDimension {
         }
         return remainder;
     }
-
-
 
 }

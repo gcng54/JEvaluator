@@ -1,2 +1,2 @@
 // This is a placeholder file.
-package qmeasures;
+package qmeasures.core;
