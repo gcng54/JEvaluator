@@ -18,6 +18,6 @@ public class QMeterPerSec extends ASpeed<QMeterPerSec> {
      * @param unit the speed unit (ignored, always m/s)
      * @return a new QMeterPerSec instance
      */
-    @Override  public QMeterPerSec of(Double value, ESpeeds unit) { return new QMeterPerSec(value);  }
+    @Override  public QMeterPerSec of(double value, ESpeeds unit) { return new QMeterPerSec(value);  }
 
 }

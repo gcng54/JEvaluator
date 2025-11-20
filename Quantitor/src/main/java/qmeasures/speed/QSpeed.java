@@ -17,7 +17,7 @@ public class QSpeed extends ASpeed<QSpeed> {
      * Constructs a speed in meters per second.
      * @param value the value in m/s
      */
-    public QSpeed(double value) { this(value, ESpeeds.METERS_PER_SECOND);  }
+    public QSpeed(double value) { super(value, ESpeeds.METERS_PER_SECOND, ESpeedDims.SPEED);  }
 
     /**
      * Creates a new QSpeed instance from a value and unit.
@@ -25,6 +25,6 @@ public class QSpeed extends ASpeed<QSpeed> {
      * @param unit the speed unit
      * @return a new QSpeed instance
      */
-    @Override public QSpeed of(Double value, ESpeeds unit) { return new QSpeed(value, unit); }
+    @Override public QSpeed of(double value, ESpeeds unit) { return new QSpeed(value, unit); }
 
 }

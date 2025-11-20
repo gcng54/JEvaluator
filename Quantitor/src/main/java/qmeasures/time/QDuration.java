@@ -25,6 +25,6 @@ public class QDuration extends ATime<QDuration> {
      * @param unit the time unit
      * @return a new QDuration instance
      */
-    @Override public QDuration of(Double value, ETimes unit) {  return new QDuration(value, unit);   }
+    @Override public QDuration of(double value, ETimes unit) {  return new QDuration(value, unit);   }
 
 }

@@ -10,7 +10,7 @@ import qmeasures.core.Clampable;
 public enum EAngleDims implements IDimension<EAngleDims> {
 
     /** Generic angle (degrees, unbounded) */
-    ANGLE("Ang", Double.MIN_VALUE, Double.MAX_VALUE),
+    ANGLE("Ang", -Double.MAX_VALUE, Double.MAX_VALUE),
     /** Latitude (degrees, -90 to 90) */
     LATITUDE("Lat", -90.0, 90.0),
     /** Longitude (degrees, -180 to 180) */

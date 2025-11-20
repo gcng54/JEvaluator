@@ -25,6 +25,6 @@ public class QFrequency extends ATime<QFrequency> {
      * @param unit the time unit
      * @return a new QFrequency instance
      */
-    @Override public QFrequency of(Double value, ETimes unit) {  return new QFrequency(value, unit);   }
+    @Override public QFrequency of(double value, ETimes unit) {  return new QFrequency(value, unit);   }
 
 }

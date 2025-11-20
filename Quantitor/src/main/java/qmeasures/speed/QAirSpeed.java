@@ -25,6 +25,6 @@ public class QAirSpeed extends ASpeed<QAirSpeed> {
      * @param unit the speed unit
      * @return a new QAirSpeed instance
      */
-    @Override public QAirSpeed of(Double value, ESpeeds unit) { return new QAirSpeed(value, unit); }
+    @Override public QAirSpeed of(double value, ESpeeds unit) { return new QAirSpeed(value, unit); }
 
 }

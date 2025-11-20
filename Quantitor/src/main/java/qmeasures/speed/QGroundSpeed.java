@@ -17,7 +17,7 @@ public class QGroundSpeed extends ASpeed<QGroundSpeed> {
      * Constructs a ground speed in kilometers per hour.
      * @param value the value in km/h
      */
-    public QGroundSpeed(double value) { this(value, ESpeeds.KILOMETERS_PER_HOUR);  }
+    public QGroundSpeed(double value) { super(value, ESpeeds.KILOMETERS_PER_HOUR, ESpeedDims.GROUND_SPEED);  }
 
     /**
      * Creates a new QGroundSpeed instance from a value and unit.
@@ -25,6 +25,6 @@ public class QGroundSpeed extends ASpeed<QGroundSpeed> {
      * @param unit the speed unit
      * @return a new QGroundSpeed instance
      */
-    @Override public QGroundSpeed of(Double value, ESpeeds unit) { return new QGroundSpeed(value, unit); }
+    @Override public QGroundSpeed of(double value, ESpeeds unit) { return new QGroundSpeed(value, unit); }
 
 }

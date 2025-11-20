@@ -6,7 +6,7 @@
 
     <groupId>io.github.gcng54</groupId>
     <artifactId>JEvaluator</artifactId>
-    <version>0.1.1</version>
+    <version>0.1.2</version>
     <packaging>pom</packaging>
 
     <name>JEvaluator</name>

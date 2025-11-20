@@ -5,15 +5,15 @@ package qmeasures.angle;
  */
 public final class QAngle extends AAngle<QAngle> {
 
-    public QAngle(Double value) {
+    public QAngle(double value) {
         super(value, EAngles.DEGREE, EAngleDims.ANGLE);
     }
 
-    public QAngle(Double value, EAngles unit) {
+    public QAngle(double value, EAngles unit) {
         super(value, unit, EAngleDims.ANGLE);
     }
 
-    @Override public QAngle of(Double value, EAngles unit) {
+    @Override public QAngle of(double value, EAngles unit) {
         return new QAngle(value, unit);
     }
 

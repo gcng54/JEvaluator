@@ -9,7 +9,7 @@ public class QCelcius extends ATemperature<QCelcius> {
      * Constructs a Celsius temperature quantity.
      * @param value the value in Celsius
      */
-    public QCelcius(Double value) {
+    public QCelcius(double value) {
         super(value, ETemperatures.CELCIUS, ETemperatureDims.CELCIUS);
     }
 
@@ -20,7 +20,7 @@ public class QCelcius extends ATemperature<QCelcius> {
      * @return a new QCelcius instance
      */
     @Override
-    public QCelcius of(Double value, ETemperatures unit) {
+    public QCelcius of(double value, ETemperatures unit) {
         return new QCelcius(unit.fromBaseValue(value));
     }
 }

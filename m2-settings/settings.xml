@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  WARNING: This file contains plaintext credentials.
+  Please copy/move this file to your user Maven settings location:
+    %USERPROFILE%\.m2\settings.xml
+  or open and paste the servers block into your existing settings.xml.
+
+  To encrypt the password, use:
+    mvn &#45;&#45;encrypt-password <plainPassword>
+  and then replace the <password> value with the encrypted value and add settings-security.xml.
+-->
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                              https://maven.apache.org/xsd/settings-1.0.0.xsd">
+  <servers>
+    <server>
+      <id>ossrh</id>
+      <username>YwFeGT</username>
+      <password>kh86zjlCrACOIIv2LonWHsY41C9uvc3Sg</password>
+    </server>
+  </servers>
+</settings>

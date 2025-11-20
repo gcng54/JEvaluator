@@ -17,20 +17,20 @@ public abstract class AAngle<Q extends AAngle<Q>> extends AQuantity<Q, EAngles, 
 	 * @param unit the angle unit
 	 * @param dimension the angle dimension
 	 */
-	protected AAngle(Double value, EAngles unit, EAngleDims dimension) {  super(value, unit, dimension);  }
+	protected AAngle(double value, EAngles unit, EAngleDims dimension) {  super(value, unit, dimension);  }
 
 	/**
 	 * Constructs an angle quantity with the specified value and dimension, using degrees as the unit.
 	 * @param value the value in degrees
 	 * @param dimension the angle dimension
 	 */
-	protected AAngle(Double value, EAngleDims dimension) {  super(value, EAngles.DEGREE, dimension);  }
+	protected AAngle(double value, EAngleDims dimension) {  super(value, EAngles.DEGREE, dimension);  }
 
 	/**
 	 * Constructs an angle quantity with the specified value, using degrees and ANGLE as defaults.
 	 * @param value the value in degrees
 	 */
-	protected AAngle(Double value) {  super(value, EAngles.DEGREE, EAngleDims.ANGLE);  }
+	protected AAngle(double value) {  super(value, EAngles.DEGREE, EAngleDims.ANGLE);  }
 
 	/**
 	 * Creates a new instance of this angle type with the given value and unit.
@@ -38,7 +38,7 @@ public abstract class AAngle<Q extends AAngle<Q>> extends AQuantity<Q, EAngles, 
 	 * @param unit the unit
 	 * @return a new instance of Q
 	 */
-	@Override public abstract Q of(Double value, EAngles unit);
+	@Override public abstract Q of(double value, EAngles unit);
 
 	/**
 	 * Gets the unit of this angle quantity.
@@ -87,7 +87,7 @@ public abstract class AAngle<Q extends AAngle<Q>> extends AQuantity<Q, EAngles, 
 	 */
 	public <T extends AAngle<T>> T to(Class<T> targetType) {
 		try {
-			return targetType.getConstructor(Double.class, EAngles.class)
+			return targetType.getConstructor(double.class, EAngles.class)
 							.newInstance(this.getValue(), this.getUnit());
 		} catch (Exception e) {
 			throw new IllegalArgumentException("Conversion to the specified type is not supported.", e);
@@ -193,7 +193,12 @@ public abstract class AAngle<Q extends AAngle<Q>> extends AQuantity<Q, EAngles, 
 		if (turnRatio < 0.0 || turnRatio > 1.0) {
 			throw new IllegalArgumentException("Value out of range for turn ratio. Valid range is [0, 1].");
 		}
-		return Math.abs((this.getBaseValue() / (2.0 * Math.PI * turnRatio)) % 360) < 1e-10;
+		// Compute the value in turns and compare the fractional part to the target ratio.
+		// Use modulo 1.0 to handle multiple full turns. Treat turnRatio==1.0 as 0.0 (full turn).
+		double turns = this.inTurn();
+		double frac = ((turns % 1.0) + 1.0) % 1.0; // normalized to [0,1)
+		double target = ((turnRatio % 1.0) + 1.0) % 1.0; // normalized to [0,1)
+		return Math.abs(frac - target) < 1e-10;
 	}
 
 	// convert of specific units
@@ -214,32 +219,32 @@ public abstract class AAngle<Q extends AAngle<Q>> extends AQuantity<Q, EAngles, 
 	// convert of specific units with value
 
 	/** @return a new angle in degrees */
-	public Q ofDegree(Double value) { return this.of(value, EAngles.DEGREE);}
+	public Q ofDegree(double value) { return this.of(value, EAngles.DEGREE);}    
 	/** @return a new angle in radians */
-	public Q ofRadian(Double value) {return this.of(value, EAngles.RADIAN);}
+	public Q ofRadian(double value) {return this.of(value, EAngles.RADIAN);}    
 	/** @return a new angle in turns */
-	public Q ofTurn(Double value) {return this.of(value, EAngles.TURN);}
+	public Q ofTurn(double value) {return this.of(value, EAngles.TURN);}    
 	/** @return a new angle in gradians */
-	public Q ofGradian(Double value) {return this.of(value, EAngles.GRADIAN);}
+	public Q ofGradian(double value) {return this.of(value, EAngles.GRADIAN);}    
 	/** @return a new angle in arcminutes */
-	public Q ofArcMinute(Double value) {return this.of(value, EAngles.ARC_MINUTE);}
+	public Q ofArcMinute(double value) {return this.of(value, EAngles.ARC_MINUTE);}    
 	/** @return a new angle in arcseconds */
-	public Q ofArcSecond(Double value) {return this.of(value, EAngles.ARC_SECOND);}
+	public Q ofArcSecond(double value) {return this.of(value, EAngles.ARC_SECOND);}    
 
 	// get value in specific units
 
 	/** @return the value in degrees */
-	public Double inDegree() { return this.inUnit(EAngles.DEGREE);}
+	public double inDegree() { return this.inUnit(EAngles.DEGREE);}    
 	/** @return the value in radians */
-	public Double inRadian() { return this.inUnit(EAngles.RADIAN);}
+	public double inRadian() { return this.inUnit(EAngles.RADIAN);}    
 	/** @return the value in turns */
-	public Double inTurn() { return this.inUnit(EAngles.TURN);}
+	public double inTurn() { return this.inUnit(EAngles.TURN);}    
 	/** @return the value in gradians */
-	public Double inGradian() { return this.inUnit(EAngles.GRADIAN);}
+	public double inGradian() { return this.inUnit(EAngles.GRADIAN);}    
 	/** @return the value in arcminutes */
-	public Double inArcMinute() { return this.inUnit(EAngles.ARC_MINUTE);}
+	public double inArcMinute() { return this.inUnit(EAngles.ARC_MINUTE);}    
 	/** @return the value in arcseconds */
-	public Double inArcSecond() { return this.inUnit(EAngles.ARC_SECOND);}
+	public double inArcSecond() { return this.inUnit(EAngles.ARC_SECOND);}    
 
 }
 

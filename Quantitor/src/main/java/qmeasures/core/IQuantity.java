@@ -35,14 +35,14 @@ public interface IQuantity<Q extends IQuantity<Q, U, E>, U extends IUnit<?>, E e
      * @param unit the unit
      * @return a new instance of Q
      */
-    Q of(Double value, U unit);
+    Q of(double value, U unit);
 
     /**
      * Creates a new instance of this quantity type with the given value and current unit.
      * @param value the value
      * @return a new instance of Q
      */
-    default Q of(Double value){ return this.of(value, getUnit()); }
+    default Q of(double value){ return this.of(value, getUnit()); }
 
     /**
      * Creates a new instance of this quantity type with the value converted from the given unit.
@@ -56,13 +56,13 @@ public interface IQuantity<Q extends IQuantity<Q, U, E>, U extends IUnit<?>, E e
      * @param unit the unit
      * @return the value in the unit
      */
-    default Double inUnit(U unit) { return unit.fromBaseValue(getBaseValue()); }
+    default double inUnit(U unit) { return unit.fromBaseValue(getBaseValue()); }
     
     /**
      * Gets the value in the current unit.
      * @return the value
      */
-    default Double getValue() { return getUnit().fromBaseValue(getBaseValue()); }
+    default double getValue() { return getUnit().fromBaseValue(getBaseValue()); }
 
     /**
      * Gets the name of the unit.

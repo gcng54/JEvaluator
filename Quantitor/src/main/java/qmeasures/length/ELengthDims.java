@@ -11,7 +11,10 @@ import qmeasures.core.Clampable;
 public enum ELengthDims implements IDimension<ELengthDims> {
 
     /** Generic length (meters) */
-    LENGTH("Length", Double.MIN_VALUE, Double.MAX_VALUE),
+    // Use a very large negative minimum instead of Double.MIN_VALUE (which is
+    // the smallest positive double). This avoids unintentionally clamping
+    // legitimate zero values up to a tiny positive number.
+    LENGTH("Length", -Double.MAX_VALUE, Double.MAX_VALUE),
     /** Area (square meters) */
     AREA("Area", 0.0, Double.MAX_VALUE),
     /** Volume (cubic meters) */

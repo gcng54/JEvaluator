@@ -2,15 +2,15 @@ package qmeasures.length;
 
 public class QVolume extends ALength<QVolume> {
 
-    public QVolume(Double value, ELengths unit) {
+    public QVolume(double value, ELengths unit) {
         super(value, unit, ELengthDims.VOLUME);
     }
 
-    public QVolume(Double value) {
+    public QVolume(double value) {
         super(value, ELengths.METER, ELengthDims.VOLUME);
     }
 
-    @Override public QVolume of(Double value, ELengths unit) {
+    @Override public QVolume of(double value, ELengths unit) {
         return new QVolume(value, unit);
     }
 

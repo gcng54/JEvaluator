@@ -2,15 +2,15 @@ package qmeasures.length;
 
 public class QArea extends ALength<QArea> {
 
-    public QArea(Double value, ELengths unit) {
+    public QArea(double value, ELengths unit) {
         super(value, unit, ELengthDims.AREA);
     }
 
-    public QArea(Double value) {
+    public QArea(double value) {
         super(value, ELengths.METER, ELengthDims.AREA);
     }
 
-    @Override public QArea of(Double value, ELengths unit) {
+    @Override public QArea of(double value, ELengths unit) {
         return new QArea(value, unit);
     }
 

@@ -17,7 +17,7 @@ public class QSeaSpeed extends ASpeed<QSeaSpeed> {
      * Constructs a sea speed in knots.
      * @param value the value in knots
      */
-    public QSeaSpeed(double value) { this(value, ESpeeds.KNOTS);  }
+    public QSeaSpeed(double value) { super(value, ESpeeds.KNOTS, ESpeedDims.SEA_SPEED);  }
 
     /**
      * Creates a new QSeaSpeed instance from a value and unit.
@@ -25,6 +25,6 @@ public class QSeaSpeed extends ASpeed<QSeaSpeed> {
      * @param unit the speed unit
      * @return a new QSeaSpeed instance
      */
-    @Override public QSeaSpeed of(Double value, ESpeeds unit) { return new QSeaSpeed(value, unit); }
+    @Override public QSeaSpeed of(double value, ESpeeds unit) { return new QSeaSpeed(value, unit); }
 
 }

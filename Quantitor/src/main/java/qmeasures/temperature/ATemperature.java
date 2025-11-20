@@ -18,20 +18,20 @@ public abstract class ATemperature<Q extends ATemperature<Q>> extends AQuantity<
      * @param unit the temperature unit
      * @param dimension the temperature dimension
      */
-    protected ATemperature(Double value, ETemperatures unit, ETemperatureDims dimension) {  super(value, unit, dimension);  }
+    protected ATemperature(double value, ETemperatures unit, ETemperatureDims dimension) {  super(value, unit, dimension);  }
 
     /**
      * Constructs a temperature quantity with the specified value and dimension, using Kelvin as the unit.
      * @param value the value in Kelvin
      * @param dimension the temperature dimension
      */
-    protected ATemperature(Double value, ETemperatureDims dimension) {  super(value, ETemperatures.KELVIN, dimension);  }
+    protected ATemperature(double value, ETemperatureDims dimension) {  super(value, ETemperatures.KELVIN, dimension);  }
 
     /**
      * Constructs a temperature quantity with the specified value, using Kelvin and KELVIN as defaults.
      * @param value the value in Kelvin
      */
-    protected ATemperature(Double value) {  super(value, ETemperatures.KELVIN, ETemperatureDims.KELVIN);  }
+    protected ATemperature(double value) {  super(value, ETemperatures.KELVIN, ETemperatureDims.KELVIN);  }
 
     /**
      * Creates a new instance of this temperature type with the given value and unit.
@@ -39,7 +39,7 @@ public abstract class ATemperature<Q extends ATemperature<Q>> extends AQuantity<
      * @param unit the unit
      * @return a new instance of Q
      */
-    @Override public abstract Q of(Double value, ETemperatures unit);
+    @Override public abstract Q of(double value, ETemperatures unit);
 
     /**
      * Gets the unit of this temperature quantity.
@@ -66,6 +66,7 @@ public abstract class ATemperature<Q extends ATemperature<Q>> extends AQuantity<
      */
     public ATemperature<?> toDimension(ETemperatureDims dimension) {
         return switch (dimension) {
+            case TEMPERATURE ->  to(QTemperature.class);
             case KELVIN ->  to(QKelvin.class);
             case CELCIUS ->  to(QCelcius.class);
             case FAHRENHEIT ->  to(QFahrenheit.class);
@@ -81,7 +82,7 @@ public abstract class ATemperature<Q extends ATemperature<Q>> extends AQuantity<
      */
     public <T extends ATemperature<T>> T to(Class<T> targetType) {
         try {
-            return targetType.getConstructor(Double.class, ETemperatures.class)
+            return targetType.getConstructor(double.class, ETemperatures.class)
                             .newInstance(this.getValue(), this.getUnit());
         } catch (Exception e) {
             throw new IllegalArgumentException("Conversion to the specified type is not supported.", e);
@@ -100,18 +101,18 @@ public abstract class ATemperature<Q extends ATemperature<Q>> extends AQuantity<
     // Unit conversion with value
 
     /** @return a new temperature in Kelvin */
-    public Q ofKelvin(Double value) { return this.of(value, ETemperatures.KELVIN); }
+    public Q ofKelvin(double value) { return this.of(value, ETemperatures.KELVIN); }
     /** @return a new temperature in Celsius */
-    public Q ofCelcius(Double value) { return this.of(value, ETemperatures.CELCIUS); }
+    public Q ofCelcius(double value) { return this.of(value, ETemperatures.CELCIUS); }
     /** @return a new temperature in Fahrenheit */
-    public Q ofFahrenheit(Double value) { return this.of(value, ETemperatures.FAHRENHEIT); }
+    public Q ofFahrenheit(double value) { return this.of(value, ETemperatures.FAHRENHEIT); }
 
     // Get value in specific units
 
     /** @return the value in Kelvin */
-    public Double inKelvin() { return this.inUnit(ETemperatures.KELVIN); }
+    public double inKelvin() { return this.inUnit(ETemperatures.KELVIN); }
     /** @return the value in Celsius */
-    public Double inCelcius() { return this.inUnit(ETemperatures.CELCIUS); }
+    public double inCelcius() { return this.inUnit(ETemperatures.CELCIUS); }
     /** @return the value in Fahrenheit */
-    public Double inFahrenheit() { return this.inUnit(ETemperatures.FAHRENHEIT); }
+    public double inFahrenheit() { return this.inUnit(ETemperatures.FAHRENHEIT); }
 }

@@ -6,6 +6,6 @@ public class QTime extends ATime<QTime> {
 
     public QTime(double value) { this(value, ETimes.SECOND);  }
 
-    @Override public QTime of(Double value, ETimes unit) { return new QTime(value, unit); }
+    @Override public QTime of(double value, ETimes unit) { return new QTime(value, unit); }
 
 }

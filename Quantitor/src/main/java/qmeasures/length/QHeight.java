@@ -5,11 +5,11 @@ package qmeasures.length;
  */
 public final class QHeight extends ALength<QHeight> {
 
-    public QHeight(Double value) { super(value, ELengths.METER, ELengthDims.HEIGHT);  }
+    public QHeight(double value) { super(value, ELengths.METER, ELengthDims.HEIGHT);  }
 
-    public QHeight(Double value, ELengths unit) { super(value, unit, ELengthDims.HEIGHT);  }
+    public QHeight(double value, ELengths unit) { super(value, unit, ELengthDims.HEIGHT);  }
 
-    @Override public QHeight of(Double value, ELengths unit) { return new QHeight(value, unit);  }
+    @Override public QHeight of(double value, ELengths unit) { return new QHeight(value, unit);  }
 
 }
 

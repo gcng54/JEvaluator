@@ -9,6 +9,6 @@ public class QPeriod extends ATime<QPeriod> {
 
     public QPeriod(double value) { this(value, ETimes.SECOND); }
     
-    @Override public QPeriod of(Double value, ETimes unit) {  return new QPeriod(value, unit);   }
+    @Override public QPeriod of(double value, ETimes unit) {  return new QPeriod(value, unit);   }
 
 }

@@ -8,6 +8,7 @@ import qmeasures.core.IDimension;
  * Each dimension defines its abbreviation and valid base value range.
  */
 public enum ETemperatureDims implements IDimension<ETemperatureDims> {
+    TEMPERATURE("T", Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY),
     /** Kelvin dimension (absolute temperature, >= 0) */
     KELVIN("K", 0, Double.POSITIVE_INFINITY),
     /** Celsius dimension (>= -273.15) */
@@ -43,7 +44,7 @@ public enum ETemperatureDims implements IDimension<ETemperatureDims> {
      * @return the base dimension
      */
     @Override
-    public ETemperatureDims getBaseDimension() { return KELVIN; }
+    public ETemperatureDims getBaseDimension() { return TEMPERATURE; }
 
     /**
      * Gets the base unit (always KELVIN).

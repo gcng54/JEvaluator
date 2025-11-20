@@ -9,7 +9,7 @@ public class QKelvin extends ATemperature<QKelvin> {
      * Constructs a Kelvin temperature quantity.
      * @param value the value in Kelvin
      */
-    public QKelvin(Double value) {
+    public QKelvin(double value) {
         super(value, ETemperatures.KELVIN, ETemperatureDims.KELVIN);
     }
 
@@ -20,7 +20,7 @@ public class QKelvin extends ATemperature<QKelvin> {
      * @return a new QKelvin instance
      */
     @Override
-    public QKelvin of(Double value, ETemperatures unit) {
+    public QKelvin of(double value, ETemperatures unit) {
         return new QKelvin(unit.toBaseValue(value));
     }
 }

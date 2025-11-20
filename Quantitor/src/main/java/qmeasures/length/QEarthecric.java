@@ -5,11 +5,11 @@ package qmeasures.length;
  */
 public final class QEarthecric extends ALength<QEarthecric> {
 
-    public QEarthecric(Double value) { super(value, ELengths.METER, ELengthDims.EARTHECTIC);  }
+    public QEarthecric(double value) { super(value, ELengths.METER, ELengthDims.EARTHECTIC);  }
 
-    public QEarthecric(Double value, ELengths unit) { super(value, unit, ELengthDims.EARTHECTIC);  }
+    public QEarthecric(double value, ELengths unit) { super(value, unit, ELengthDims.EARTHECTIC);  }
 
-    @Override public QEarthecric of(Double value, ELengths unit) { return new QEarthecric(value, unit);  }
+    @Override public QEarthecric of(double value, ELengths unit) { return new QEarthecric(value, unit);  }
 
 }
 

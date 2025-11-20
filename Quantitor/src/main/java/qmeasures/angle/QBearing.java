@@ -5,15 +5,15 @@ package qmeasures.angle;
  */
 public final class QBearing extends AAngle<QBearing> {
 
-    public QBearing(Double value) {
+    public QBearing(double value) {
         super(value, EAngles.DEGREE, EAngleDims.BEARING);
     }
 
-    public QBearing(Double value, EAngles unit) {
+    public QBearing(double value, EAngles unit) {
         super(value, unit, EAngleDims.BEARING);
     }
 
-    @Override public QBearing of(Double value, EAngles unit) {
+    @Override public QBearing of(double value, EAngles unit) {
         return new QBearing(value, unit);
     }
 }

@@ -5,11 +5,11 @@ package qmeasures.length;
  */
 public final class QRange extends ALength<QRange> {
 
-    public QRange(Double value) { super(value, ELengths.METER, ELengthDims.RANGE);  }
+    public QRange(double value) { super(value, ELengths.METER, ELengthDims.RANGE);  }
 
-    public QRange(Double value, ELengths unit) { super(value, unit, ELengthDims.RANGE);  }
+    public QRange(double value, ELengths unit) { super(value, unit, ELengthDims.RANGE);  }
 
-    @Override public QRange of(Double value, ELengths unit) { return new QRange(value, unit);  }
+    @Override public QRange of(double value, ELengths unit) { return new QRange(value, unit);  }
 
 }
 

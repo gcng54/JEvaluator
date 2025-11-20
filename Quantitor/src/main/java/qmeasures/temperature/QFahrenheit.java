@@ -9,7 +9,7 @@ public class QFahrenheit extends ATemperature<QFahrenheit> {
      * Constructs a Fahrenheit temperature quantity.
      * @param value the value in Fahrenheit
      */
-    public QFahrenheit(Double value) {
+    public QFahrenheit(double value) {
         super(value, ETemperatures.FAHRENHEIT, ETemperatureDims.FAHRENHEIT);
     }
 
@@ -20,7 +20,7 @@ public class QFahrenheit extends ATemperature<QFahrenheit> {
      * @return a new QFahrenheit instance
      */
     @Override
-    public QFahrenheit of(Double value, ETemperatures unit) {
+    public QFahrenheit of(double value, ETemperatures unit) {
         return new QFahrenheit(unit.fromBaseValue(value));
     }
 }

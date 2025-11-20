@@ -7,15 +7,15 @@ import qmeasures.core.Clampable;
  */
 public final class QDirection extends AAngle<QDirection> {
 
-    public QDirection(Double value) {
+    public QDirection(double value) {
         super(value, EAngles.DEGREE, EAngleDims.DIRECTION);
     }
 
-    public QDirection(Double value, EAngles unit) {
+    public QDirection(double value, EAngles unit) {
         super(value, unit, EAngleDims.DIRECTION);
     }
 
-    @Override public QDirection of(Double value, EAngles unit) {
+    @Override public QDirection of(double value, EAngles unit) {
         return new QDirection(value, unit);
     }
 

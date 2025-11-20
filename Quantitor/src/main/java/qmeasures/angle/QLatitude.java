@@ -7,15 +7,15 @@ import qmeasures.core.Clampable;
  */
 public final class QLatitude extends AAngle<QLatitude> {
 
-    public QLatitude(Double value) {
+    public QLatitude(double value) {
         super(value, EAngles.DEGREE, EAngleDims.LATITUDE);
     }
 
-    public QLatitude(Double value, EAngles unit) {
+    public QLatitude(double value, EAngles unit) {
         super(value, unit, EAngleDims.LATITUDE);
     }
 
-    @Override public QLatitude of(Double value, EAngles unit) {
+    @Override public QLatitude of(double value, EAngles unit) {
         return new QLatitude(value, unit);
     }
 

@@ -5,15 +5,15 @@ package qmeasures.length;
  */
 public class QLength extends ALength<QLength> {
 
-    public QLength(Double value) {
+    public QLength(double value) {
         super(value, ELengths.METER, ELengthDims.LENGTH);
     }
 
-    public QLength(Double value, ELengths unit) {
+    public QLength(double value, ELengths unit) {
         super(value, unit, ELengthDims.LENGTH);
     }
 
-    @Override public QLength of(Double value, ELengths unit) {
+    @Override public QLength of(double value, ELengths unit) {
         return new QLength(value, unit);
     }
 

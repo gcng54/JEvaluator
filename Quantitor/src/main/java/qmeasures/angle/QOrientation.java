@@ -5,15 +5,15 @@ package qmeasures.angle;
  */
 public final class QOrientation extends AAngle<QOrientation> {
 
-    public QOrientation(Double value) {
+    public QOrientation(double value) {
         super(value, EAngles.DEGREE, EAngleDims.ORIENTATION);
     }
 
-    public QOrientation(Double value, EAngles unit) {
+    public QOrientation(double value, EAngles unit) {
         super(value, unit, EAngleDims.ORIENTATION);
     }
 
-    @Override public QOrientation of(Double value, EAngles unit) {
+    @Override public QOrientation of(double value, EAngles unit) {
         return new QOrientation(value, unit);
     }
 }

@@ -45,7 +45,7 @@ public abstract class AQuantity<Q extends AQuantity<Q, U, E>, U extends IUnit<U>
      * @param unit the unit
      * @return a new instance of Q
      */
-    @Override public abstract Q of(Double value, U unit);
+    @Override public abstract Q of(double value, U unit);
 
     /**
      * Constructs a quantity with the specified value, unit, and dimension.
@@ -54,8 +54,8 @@ public abstract class AQuantity<Q extends AQuantity<Q, U, E>, U extends IUnit<U>
      * @param unit the unit
      * @param dimension the dimension
      */
-    protected AQuantity(Double value, U unit, E dimension) {
-        if (unit == null) throw new IllegalArgumentException("unit is null");
+    protected AQuantity(double value, U unit, E dimension) {
+                if (unit == null) throw new IllegalArgumentException("unit is null");
         if (dimension == null) throw new IllegalArgumentException("dimension is null");
         this.dimension = dimension;
         this.unit = unit;
@@ -70,7 +70,7 @@ public abstract class AQuantity<Q extends AQuantity<Q, U, E>, U extends IUnit<U>
      * Gets the value in the current unit.
      * @return the value
      */
-    @Override public Double getValue() { return unit.fromBaseValue(baseValue); }
+    @Override public double getValue() { return unit.fromBaseValue(baseValue); }
 
     /**
      * Returns true if the value was clamped.
@@ -82,7 +82,7 @@ public abstract class AQuantity<Q extends AQuantity<Q, U, E>, U extends IUnit<U>
      * Clones this quantity (same value and unit).
      * @return a new instance of Q
      */
-    public Q cloneQuantity() { return of(this.getValue(), this.getUnit());  }
+    public Q cloneQuantity() { return of(this.getValue());  }
 
     /**
      * Returns a string representation (value and unit symbol).
@@ -149,27 +149,29 @@ public abstract class AQuantity<Q extends AQuantity<Q, U, E>, U extends IUnit<U>
     // Arithmetic methods
 
     /** Adds a value to this quantity. */
-    public Q add(Double value) { return of(this.getValue() + value, this.getUnit());  }
+    public Q add(double value) { return of(this.getValue() + value);  }
     /** Subtracts a value from this quantity. */
-    public Q sub(Double value) {  return of(this.getValue() - value, this.getUnit());  }
+    public Q sub(double value) {  return of(this.getValue() - value);  }
     /** Reverse subtracts this value from another. */
-    public Q rsub(Double value) {  return of(value - this.getValue(), this.getUnit());  }
+    public Q rsub(double value) {  return of(value - this.getValue());  }
     /** Multiplies this quantity by a scalar. */
-    public Q mul(double k) { return of(this.getValue() * k, this.getUnit()); }
+    public Q mul(double k) { return of(this.getValue() * k); }
     /** Divides this quantity by a scalar. */
-    public Q div(double k) { return of(this.getValue() / k, this.getUnit()); }
+    public Q div(double k) { return of(this.getValue() / k); }
     /** Raises this quantity to a power. */
-    public Q pow(double exponent) { return of(Math.pow(this.getValue(), exponent), this.getUnit()); }
+    public Q pow(double exponent) { return of(Math.pow(this.getValue(), exponent)); }
     /** Takes the square root of this quantity. */
-    public Q sqrt() { return of(Math.sqrt(this.getValue()), this.getUnit()); }
+    public Q sqrt() { return of(Math.sqrt(this.getValue())); }
     /** Floors the value of this quantity. */
-    public Q floor() { return of(Math.floor(this.getValue()), this.getUnit()); }
+    public Q floor() { return of(Math.floor(this.getValue())); }
     /** Ceils the value of this quantity. */
-    public Q ceil() { return of(Math.ceil(this.getValue()), this.getUnit()); }
+    public Q ceil() { return of(Math.ceil(this.getValue())); }
     /** Returns the absolute value of this quantity. */
     public Q abs() { return of(Math.abs(this.getValue()));  }
     /** Inverts the sign of this quantity. */
-    public Q invert() { return of(-this.getValue()); }
+    public Q invert() { return of(1.0/this.getValue()); }
+    /** Negates this quantity. */
+    public Q negative() { return of(-this.getValue()); }
     /** Adds another quantity (same dimension). */
     public Q add(AQuantity<?, ?, E> other) {return of(this.getUnit().fromBaseValue(this.getBaseValue() + other.getBaseValue()));   }
     /** Subtracts another quantity (same dimension). */

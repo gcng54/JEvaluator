@@ -18,20 +18,20 @@ public abstract class ATime<Q extends ATime<Q>> extends AQuantity<Q, ETimes, ETi
 	 * @param unit the time unit
 	 * @param dimension the time dimension
 	 */
-	protected ATime(Double value, ETimes unit, ETimeDims dimension) {  super(value, unit, dimension);  }
+	protected ATime(double value, ETimes unit, ETimeDims dimension) {  super(value, unit, dimension);  }
 
 	/**
 	 * Constructs a time quantity with the specified value and dimension, using seconds as the unit.
 	 * @param value the value in seconds
 	 * @param dimension the time dimension
 	 */
-	protected ATime(Double value, ETimeDims dimension) {  super(value, ETimes.SECOND, dimension);  }
+	protected ATime(double value, ETimeDims dimension) {  super(value, ETimes.SECOND, dimension);  }
 
 	/**
 	 * Constructs a time quantity with the specified value, using seconds and TIME as defaults.
 	 * @param value the value in seconds
 	 */
-	protected ATime(Double value) {  super(value, ETimes.SECOND, ETimeDims.TIME);  }
+	protected ATime(double value) {  super(value, ETimes.SECOND, ETimeDims.TIME);  }
 
 	/**
 	 * Creates a new instance of this time type with the given value and unit.
@@ -39,7 +39,7 @@ public abstract class ATime<Q extends ATime<Q>> extends AQuantity<Q, ETimes, ETi
 	 * @param unit the unit
 	 * @return a new instance of Q
 	 */
-	@Override public abstract Q of(Double value, ETimes unit);
+	@Override public abstract Q of(double value, ETimes unit);
 
 	/**
 	 * Gets the unit of this time quantity.
@@ -82,7 +82,7 @@ public abstract class ATime<Q extends ATime<Q>> extends AQuantity<Q, ETimes, ETi
 	 */
 	public <T extends ATime<T>> T to(Class<T> targetType) {
 		try {
-			return targetType.getConstructor(Double.class, ETimes.class)
+			return targetType.getConstructor(double.class, ETimes.class)
 							.newInstance(this.getValue(), this.getUnit());
 		} catch (Exception e) {
 			throw new IllegalArgumentException("Conversion to the specified type is not supported.", e);
@@ -113,43 +113,43 @@ public abstract class ATime<Q extends ATime<Q>> extends AQuantity<Q, ETimes, ETi
 	// Unit conversion with value
 
 	/** @return a new time in seconds */
-	public Q ofSecond(Double value) { return this.of(value, ETimes.SECOND); }
+	public Q ofSecond(double value) { return this.of(value, ETimes.SECOND); }
 	/** @return a new time in minutes */
-	public Q ofMinute(Double value) { return this.of(value, ETimes.MINUTE); }
+	public Q ofMinute(double value) { return this.of(value, ETimes.MINUTE); }
 	/** @return a new time in hours */
-	public Q ofHour(Double value) { return this.of(value, ETimes.HOUR); }
+	public Q ofHour(double value) { return this.of(value, ETimes.HOUR); }
 	/** @return a new time in days */
-	public Q ofDay(Double value) { return this.of(value, ETimes.DAY); }
+	public Q ofDay(double value) { return this.of(value, ETimes.DAY); }
 	/** @return a new time in weeks */
-	public Q ofWeek(Double value) { return this.of(value, ETimes.WEEK); }
+	public Q ofWeek(double value) { return this.of(value, ETimes.WEEK); }
 	/** @return a new time in months */
-	public Q ofMonth(Double value) { return this.of(value, ETimes.MONTH); }
+	public Q ofMonth(double value) { return this.of(value, ETimes.MONTH); }
 	/** @return a new time in years */
-	public Q ofYear(Double value) { return this.of(value, ETimes.YEAR); }
+	public Q ofYear(double value) { return this.of(value, ETimes.YEAR); }
 	/** @return a new time in decades */
-	public Q ofDecade(Double value) { return this.of(value, ETimes.DECADE); }
+	public Q ofDecade(double value) { return this.of(value, ETimes.DECADE); }
 	/** @return a new time in centuries */
-	public Q ofCentury(Double value) { return this.of(value, ETimes.CENTURY); }
+	public Q ofCentury(double value) { return this.of(value, ETimes.CENTURY); }
 
 	// Get value in specific units
 
 	/** @return the value in seconds */
-	public Double inSecond() { return this.inUnit(ETimes.SECOND); }
+	public double inSecond() { return this.inUnit(ETimes.SECOND); }
 	/** @return the value in minutes */
-	public Double inMinute() { return this.inUnit(ETimes.MINUTE); }
+	public double inMinute() { return this.inUnit(ETimes.MINUTE); }
 	/** @return the value in hours */
-	public Double inHour() { return this.inUnit(ETimes.HOUR); }
+	public double inHour() { return this.inUnit(ETimes.HOUR); }
 	/** @return the value in days */
-	public Double inDay() { return this.inUnit(ETimes.DAY); }
+	public double inDay() { return this.inUnit(ETimes.DAY); }
 	/** @return the value in weeks */
-	public Double inWeek() { return this.inUnit(ETimes.WEEK); }
+	public double inWeek() { return this.inUnit(ETimes.WEEK); }
 	/** @return the value in months */
-	public Double inMonth() { return this.inUnit(ETimes.MONTH); }
+	public double inMonth() { return this.inUnit(ETimes.MONTH); }
 	/** @return the value in years */
-	public Double inYear() { return this.inUnit(ETimes.YEAR); }
+	public double inYear() { return this.inUnit(ETimes.YEAR); }
 	/** @return the value in decades */
-	public Double inDecade() { return this.inUnit(ETimes.DECADE); }
+	public double inDecade() { return this.inUnit(ETimes.DECADE); }
 	/** @return the value in centuries */
-	public Double inCentury() { return this.inUnit(ETimes.CENTURY); }
+	public double inCentury() { return this.inUnit(ETimes.CENTURY); }
 
 }

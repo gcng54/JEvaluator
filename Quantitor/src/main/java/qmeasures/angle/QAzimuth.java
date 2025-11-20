@@ -7,15 +7,15 @@ import qmeasures.core.Clampable;
  */
 public final class QAzimuth extends AAngle<QAzimuth> {
 
-    public QAzimuth(Double value) {
+    public QAzimuth(double value) {
         super(value, EAngles.DEGREE, EAngleDims.AZIMUTH);
     }
 
-    public QAzimuth(Double value, EAngles unit) {
+    public QAzimuth(double value, EAngles unit) {
         super(value, unit, EAngleDims.AZIMUTH);
     }
 
-    @Override public QAzimuth of(Double value, EAngles unit) {
+    @Override public QAzimuth of(double value, EAngles unit) {
         return new QAzimuth(value, unit);
     }
 

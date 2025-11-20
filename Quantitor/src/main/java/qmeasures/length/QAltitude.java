@@ -6,15 +6,15 @@ package qmeasures.length;
  */
 public final class QAltitude extends ALength<QAltitude> {
 
-    public QAltitude(Double value) {
+    public QAltitude(double value) {
         super(value, ELengths.METER, ELengthDims.ALTITUDE);
     }
 
-    public QAltitude(Double value, ELengths unit) {
+    public QAltitude(double value, ELengths unit) {
         super(value, unit, ELengthDims.ALTITUDE);
     }
 
-    @Override public QAltitude of(Double value, ELengths unit) {
+    @Override public QAltitude of(double value, ELengths unit) {
         return new QAltitude(value, unit);
     }
 

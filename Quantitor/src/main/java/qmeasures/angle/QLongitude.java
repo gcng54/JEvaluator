@@ -7,15 +7,15 @@ import qmeasures.core.Clampable;
  */
 public final class QLongitude extends AAngle<QLongitude> {
 
-    public QLongitude(Double value) {
+    public QLongitude(double value) {
         super(value, EAngles.DEGREE, EAngleDims.LONGITUDE);
     }
 
-    public QLongitude(Double value, EAngles unit) {
+    public QLongitude(double value, EAngles unit) {
         super(value, unit, EAngleDims.LONGITUDE);
     }
 
-    @Override public QLongitude of(Double value, EAngles unit) {
+    @Override public QLongitude of(double value, EAngles unit) {
         return new QLongitude(value, unit);
     }
 

@@ -7,15 +7,15 @@ import qmeasures.core.Clampable;
  */
 public final class QRotation extends AAngle<QRotation> {
 
-    public QRotation(Double value) {
+    public QRotation(double value) {
         super(value, EAngles.DEGREE, EAngleDims.ROTATION);
     }
 
-    public QRotation(Double value, EAngles unit) {
+    public QRotation(double value, EAngles unit) {
         super(value, unit, EAngleDims.ROTATION);
     }
 
-    @Override public QRotation of(Double value, EAngles unit) {
+    @Override public QRotation of(double value, EAngles unit) {
         return new QRotation(value, unit);
     }
 

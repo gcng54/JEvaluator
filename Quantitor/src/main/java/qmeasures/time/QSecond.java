@@ -18,6 +18,6 @@ public class QSecond extends ATime<QSecond> {
      * @param unit the time unit
      * @return a new QSecond instance
      */
-    @Override  public QSecond of(Double value, ETimes unit) { return new QSecond(value);  }
+    @Override  public QSecond of(double value, ETimes unit) { return new QSecond(value);  }
 
 }
