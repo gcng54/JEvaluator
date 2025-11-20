@@ -10,14 +10,14 @@ JEvaluator is a Java-based project that provides a comprehensive framework for w
 <dependency>
     <groupId>io.github.gcng54</groupId>
     <artifactId>Quantitor</artifactId>
-    <version>0.1.1</version>
+    <version>0.1.2</version>
 </dependency>
 ```
 
 ### Gradle
 
 ```groovy
-implementation 'io.github.gcng54:Quantitor:0.1.1'
+implementation 'io.github.gcng54:Quantitor:0.1.2'
 ```
 
 > **Note**: The package is configured for Maven Central publication. See [PUBLISHING.md](PUBLISHING.md) for publishing instructions.
