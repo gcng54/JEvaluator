@@ -45,19 +45,19 @@ public abstract class ATime<Q extends ATime<Q>> extends AQuantity<Q, ETimes, ETi
 	 * Gets the unit of this time quantity.
 	 * @return the time unit
 	 */
-	@Override public ETimes getUnit() { return (ETimes) super.getUnit(); }
+	@Override public ETimes getUnit() { return super.getUnit(); }
     
 	/**
 	 * Gets the dimension of this time quantity.
 	 * @return the time dimension
 	 */
-	@Override public ETimeDims getDimension() { return (ETimeDims) super.getDimension(); }
+	@Override public ETimeDims getDimension() { return  super.getDimension(); }
 
 	/**
 	 * Returns the clamping mode for time quantities (BOUND).
 	 * @return the clamp mode
 	 */
-	public Clampable.EClampMode getClampMode(){ return Clampable.EClampMode.BOUND; };
+	public Clampable.EClampMode getClampMode(){ return Clampable.EClampMode.BOUND; }
 
 	/**
 	 * Converts this time to another dimension (e.g., duration, period, frequency).
@@ -70,8 +70,7 @@ public abstract class ATime<Q extends ATime<Q>> extends AQuantity<Q, ETimes, ETi
 			case DURATION ->  to(QDuration.class);
 			case PERIOD ->  to(QPeriod.class);
 			case FREQUENCY ->  to(QFrequency.class);
-			default -> throw new IllegalStateException("Unexpected getBaseValue: " + dimension);
-		};
+        };
 	}
 
 	/**

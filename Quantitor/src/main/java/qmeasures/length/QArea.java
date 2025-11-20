@@ -35,7 +35,7 @@ public class QArea extends ALength<QArea> {
     }
 
     public QLength div (ALength<?> divisor) {
-        if (divisor.getBaseValue() == 0 || divisor == null) {
+        if (divisor.getBaseValue() == 0 ) {
             throw new IllegalArgumentException("Division by zero or null is not allowed.");
         }
         double new_value = this.getUnit().fromBaseValue(this.getBaseValue() / divisor.getBaseValue());

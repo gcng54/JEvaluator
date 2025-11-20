@@ -6,8 +6,7 @@ public class QDegree extends AAngle<QDegree> {
         super(value, EAngles.DEGREE, EAngleDims.ANGLE);
     }
 
-    @Override
-    public QDegree of(double value, EAngles dummy) {
+    @Override public QDegree of(double value, EAngles dummy) {
         return new QDegree(value);
     }
 

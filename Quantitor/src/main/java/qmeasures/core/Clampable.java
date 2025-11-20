@@ -26,7 +26,7 @@ public interface Clampable {
         MAX,       // Clamps to max only
         BOUND,     // Clamps to min/max
         CYCLE,     // Wraps around from max to min
-        BOUNCE,    // Like cycle but reverses direction at min and max
+        BOUNCE,    // Like cycle but reverses a direction at min and max
         WRAP,      // Like cycle but offset by min value
         LATITUDE,  // Special for Latitude (-90 to 90)
         LONGITUDE  // Special for Longitude (-180 to 180)
@@ -109,25 +109,16 @@ public interface Clampable {
      */
     default double clampBaseValue(double baseValue) {
         if (inClampRange(baseValue)) return baseValue;
-        switch (getClampMode()) {
-            case MIN:
-                return _clampAsMin(baseValue, getMinBase());
-            case MAX:
-                return _clampAsMax(baseValue, getMaxBase());
-            case BOUND:
-                return _clampAsBound(baseValue, getMinBase(), getMaxBase());
-            case CYCLE:
-            case WRAP:
-                return _clampAsCycleOrWrap(baseValue, getMinBase(), getMaxBase());
-            case BOUNCE:
-                return _clampAsBounce(baseValue, getMinBase(), getMaxBase());
-            case LATITUDE:
-                return _clampAsLatitude(baseValue);
-            case LONGITUDE:
-                return _clampAsLongitude(baseValue);
-            default:
-                return baseValue;
-        }
+        return switch (getClampMode()) {
+            case MIN -> _clampAsMin(baseValue, getMinBase());
+            case MAX -> _clampAsMax(baseValue, getMaxBase());
+            case BOUND -> _clampAsBound(baseValue, getMinBase(), getMaxBase());
+            case CYCLE, WRAP -> _clampAsCycleOrWrap(baseValue, getMinBase(), getMaxBase());
+            case BOUNCE -> _clampAsBounce(baseValue, getMinBase(), getMaxBase());
+            case LATITUDE -> _clampAsLatitude(baseValue);
+            case LONGITUDE -> _clampAsLongitude(baseValue);
+            default -> baseValue;
+        };
     }
 
     /** Clamps the value to a minimum. */

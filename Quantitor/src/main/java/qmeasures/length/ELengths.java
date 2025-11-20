@@ -24,7 +24,7 @@ public enum ELengths implements IUnit<ELengths> {
   /** Inch */
   INCH("in", 0.0254),
   /** Nautical Mile */
-  NAUTMILE("NM", 1852.0),
+  NAUTICALMILE("NM", 1852.0),
   /** Data Mile (6000 feet) */
   DATAMILE("DM", 1828.8),
   /** Flight Level (100 feet) */

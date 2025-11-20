@@ -92,7 +92,7 @@ public interface IQuantity<Q extends IQuantity<Q, U, E>, U extends IUnit<?>, E e
      * Gets the abbreviation of the dimension.
      * @return the dimension abbreviation
      */
-    default String getDimAbbreviation() { return getDimension().getAbbrevation(); }
+    default String getDimAbbreviation() { return getDimension().getAbbreviation(); }
 
     /**
      * Returns true if the value is the maximum for the dimension.

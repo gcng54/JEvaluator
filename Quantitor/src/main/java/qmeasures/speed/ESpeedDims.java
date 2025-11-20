@@ -38,13 +38,13 @@ public enum ESpeedDims implements IDimension<ESpeedDims> {
      * Gets the clamping mode for this dimension (WRAP).
      * @return the clamp mode
      */
-    @Override public Clampable.EClampMode getClampMode(){ return Clampable.EClampMode.WRAP; };
+    @Override public Clampable.EClampMode getClampMode(){ return Clampable.EClampMode.WRAP; }
 
     /**
      * Gets the abbreviation for this dimension.
      * @return the abbreviation
      */
-    @Override public String getAbbrevation(){ return abbreviation; }
+    @Override public String getAbbreviation(){ return abbreviation; }
 
     /**
      * Gets the minimum base value (m/s).
@@ -62,7 +62,7 @@ public enum ESpeedDims implements IDimension<ESpeedDims> {
      * Gets the base dimension (always SPEED).
      * @return the base dimension
      */
-    @Override public ESpeedDims getBaseDimension(){  return ESpeedDims.SPEED; };
+    @Override public ESpeedDims getBaseDimension(){  return ESpeedDims.SPEED; }
 
     /**
      * Gets the base unit (always METERS_PER_SECOND).

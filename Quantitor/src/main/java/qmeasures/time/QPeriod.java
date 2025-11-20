@@ -1,7 +1,7 @@
 package qmeasures.time;
 
 // Time for one full cycle of a repeating event
-// Use period when dealing with repetitive or cyclic motion, like waves, oscillations, or rotating systems.
+// Uses period when dealing with repetitive or cyclic motion, like waves, oscillations, or rotating systems.
 // Speed = Wavelength / Period
 public class QPeriod extends ATime<QPeriod> {
 

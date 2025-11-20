@@ -13,7 +13,7 @@ public interface IDimension<E extends IDimension<E>> extends Clampable {
      * Gets the abbreviation for this dimension (e.g., "L", "T").
      * @return the abbreviation
      */
-    String getAbbrevation();
+    String getAbbreviation();
 
     /**
      * Gets the base dimension for this dimension.

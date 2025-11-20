@@ -10,7 +10,7 @@ import qmeasures.core.Clampable;
 public enum EAngleDims implements IDimension<EAngleDims> {
 
     /** Generic angle (degrees, unbounded) */
-    ANGLE("Ang", -Double.MAX_VALUE, Double.MAX_VALUE),
+    ANGLE("Ang", Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY),
     /** Latitude (degrees, -90 to 90) */
     LATITUDE("Lat", -90.0, 90.0),
     /** Longitude (degrees, -180 to 180) */
@@ -51,13 +51,13 @@ public enum EAngleDims implements IDimension<EAngleDims> {
      * Gets the clamping mode for this dimension (WRAP).
      * @return the clamp mode
      */
-    @Override public Clampable.EClampMode getClampMode(){ return Clampable.EClampMode.WRAP; };
+    @Override public Clampable.EClampMode getClampMode(){ return Clampable.EClampMode.WRAP; }
 
     /**
      * Gets the abbreviation for this dimension.
      * @return the abbreviation
      */
-    @Override public String getAbbrevation(){ return symbol; }
+    @Override public String getAbbreviation(){ return symbol; }
 
     /**
      * Gets the minimum base value (degrees).
@@ -75,12 +75,12 @@ public enum EAngleDims implements IDimension<EAngleDims> {
      * Gets the base dimension (always ANGLE).
      * @return the base dimension
      */
-    @Override public EAngleDims getBaseDimension(){  return EAngleDims.ANGLE; };
+    @Override public EAngleDims getBaseDimension(){  return EAngleDims.ANGLE; }
 
     /**
      * Gets the base unit (always DEGREE).
      * @return the base unit
      */
-    @Override public EAngles getBaseUnit(){ return EAngles.DEGREE; };
+    @Override public EAngles getBaseUnit(){ return EAngles.DEGREE; }
 }
 

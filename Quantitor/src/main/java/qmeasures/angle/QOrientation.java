@@ -16,4 +16,8 @@ public final class QOrientation extends AAngle<QOrientation> {
     @Override public QOrientation of(double value, EAngles unit) {
         return new QOrientation(value, unit);
     }
+
+    public enum EOrientation {
+        N, S, E, W
+    }
 }

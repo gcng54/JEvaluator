@@ -45,19 +45,19 @@ public abstract class ASpeed<Q extends ASpeed<Q>> extends AQuantity<Q, ESpeeds, 
      * Gets the unit of this speed quantity.
      * @return the speed unit
      */
-    @Override public ESpeeds getUnit() { return (ESpeeds) super.getUnit(); }
+    @Override public ESpeeds getUnit() { return super.getUnit(); }
     
     /**
      * Gets the dimension of this speed quantity.
      * @return the speed dimension
      */
-    @Override public ESpeedDims getDimension() { return (ESpeedDims) super.getDimension(); }
+    @Override public ESpeedDims getDimension() { return super.getDimension(); }
 
     /**
      * Returns the clamping mode for speed quantities (BOUND).
      * @return the clamp mode
      */
-    public Clampable.EClampMode getClampMode(){ return Clampable.EClampMode.BOUND; };
+    public Clampable.EClampMode getClampMode(){ return Clampable.EClampMode.BOUND; }
 
     /**
      * Converts this speed to another dimension (e.g., airspeed, ground speed, sea speed).
@@ -70,8 +70,7 @@ public abstract class ASpeed<Q extends ASpeed<Q>> extends AQuantity<Q, ESpeeds, 
             case GROUND_SPEED ->  to(QGroundSpeed.class);
             case SEA_SPEED ->  to(QSeaSpeed.class);
             case AIR_SPEED ->  to(QAirSpeed.class);
-            default -> throw new IllegalStateException("Unexpected getBaseValue: " + dimension);
-        };
+            };
     }
 
     /**

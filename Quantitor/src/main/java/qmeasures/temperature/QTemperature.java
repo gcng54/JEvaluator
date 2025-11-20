@@ -6,7 +6,7 @@ package qmeasures.temperature;
 public class QTemperature extends ATemperature<QTemperature> {
 
     public QTemperature(double value) {
-        super(value, ETemperatures.CELCIUS, ETemperatureDims.TEMPERATURE);
+        super(value, ETemperatures.CELSIUS, ETemperatureDims.TEMPERATURE);
     }
 
     public QTemperature(double value, ETemperatures unit) {

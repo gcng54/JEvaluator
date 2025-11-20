@@ -1,7 +1,5 @@
 package qmeasures.angle;
 
-import qmeasures.core.Clampable;
-
 /**
  * Concrete angle quantity representing direction.
  */
@@ -19,6 +17,4 @@ public final class QDirection extends AAngle<QDirection> {
         return new QDirection(value, unit);
     }
 
-    @Override
-    public Clampable.EClampMode getClampMode(){ return Clampable.EClampMode.WRAP; };
 }

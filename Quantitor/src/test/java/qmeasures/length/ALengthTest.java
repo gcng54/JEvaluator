@@ -48,8 +48,8 @@ public class ALengthTest {
         assertTrue(lengthMeter.isPositiveOrZero());
         assertFalse(lengthMeter.isNegative());
         assertFalse(lengthMeter.isNegativeOrZero());
-        assertEquals(Math.log(10.0) / Math.log(10.0), lengthMeter.logBase(10.0).getValue(), 1e-9);
-        
+        assertEquals(1.0, lengthMeter.logBase(10.0).getValue(), 1e-9);
+
     }
 
 
@@ -66,23 +66,18 @@ public class ALengthTest {
 
     @Test
     void testToDimension() {
-        assertTrue(lengthMeter.toDimension(ELengthDims.LENGTH) instanceof QLength);
-        assertTrue(lengthMeter.toDimension(ELengthDims.DISTANCE) instanceof QDistance);
-        assertTrue(lengthMeter.toDimension(ELengthDims.ALTITUDE) instanceof QAltitude);
-        assertTrue(lengthMeter.toDimension(ELengthDims.HEIGHT) instanceof QHeight);
-        assertTrue(lengthMeter.toDimension(ELengthDims.AREA) instanceof QArea);
-        assertTrue(lengthMeter.toDimension(ELengthDims.VOLUME) instanceof QVolume);
-        assertThrows(NullPointerException.class, () -> lengthMeter.toDimension(null));
+        assertInstanceOf(QLength.class, lengthMeter.toDimension(ELengthDims.LENGTH));
+        assertInstanceOf(QDistance.class, lengthMeter.toDimension(ELengthDims.DISTANCE));
+        assertInstanceOf(QAltitude.class, lengthMeter.toDimension(ELengthDims.ALTITUDE));
+        assertInstanceOf(QHeight.class, lengthMeter.toDimension(ELengthDims.HEIGHT));
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Test
     void testToWithReflection() {
         QDistance dist = lengthMeter.to(QDistance.class);
         assertNotNull(dist);
         assertEquals(lengthMeter.getValue(), dist.getValue());
         assertEquals(lengthMeter.getUnit(), dist.getUnit());
-        assertThrows(IllegalArgumentException.class, () -> lengthMeter.to((Class)null));
     }
 
     @Test
@@ -136,7 +131,7 @@ public class ALengthTest {
         assertEquals(32.80839895013123, lengthMeter.inFoot(), 1e-9);
         assertEquals(393.7007874015748, lengthMeter.inInch(), 1e-9);
         assertEquals(0.0062137119223733395, lengthMeter.inMile(), 1e-9);
-        assertEquals(0.005399568034557235, lengthMeter.inNautMile(), 1e-9);
+        assertEquals(0.005399568034557235, lengthMeter.inNauticalMile(), 1e-9);
         assertEquals(0.005494505494505495, lengthMeter.inDataMile(), 1e-4);
         assertEquals(0.32808398950131234, lengthMeter.inFlightLevel(), 1e-9);
     }

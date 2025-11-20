@@ -1,5 +1,6 @@
 package qmeasures.angle;
 
+import org.jetbrains.annotations.NotNull;
 import qmeasures.core.AQuantity;
 import qmeasures.core.Clampable;
 
@@ -44,26 +45,26 @@ public abstract class AAngle<Q extends AAngle<Q>> extends AQuantity<Q, EAngles, 
 	 * Gets the unit of this angle quantity.
 	 * @return the angle unit
 	 */
-	@Override public EAngles getUnit() { return (EAngles) super.getUnit(); }
+	@Override public EAngles getUnit() { return super.getUnit(); }
     
 	/**
 	 * Gets the dimension of this angle quantity.
 	 * @return the angle dimension
 	 */
-	@Override public EAngleDims getDimension() { return (EAngleDims) super.getDimension(); }
+	@Override public EAngleDims getDimension() { return super.getDimension(); }
 
 	/**
 	 * Returns the clamping mode for angle quantities (WRAP).
 	 * @return the clamp mode
 	 */
-	public Clampable.EClampMode getClampMode(){ return Clampable.EClampMode.WRAP; };
+	public Clampable.EClampMode getClampMode(){ return Clampable.EClampMode.WRAP; }
 
 	/**
 	 * Converts this angle to another dimension (e.g., latitude, longitude, bearing, etc.).
 	 * @param dimension the target dimension
 	 * @return a new angle quantity of the target dimension
 	 */
-	public AAngle<?> toDimension(EAngleDims dimension) {
+	public AAngle<?> toDimension(@NotNull EAngleDims dimension) {
 		return switch (dimension) {
 			case ANGLE ->  to(QAngle.class);
 			case LATITUDE ->  to(QLatitude.class);
@@ -75,7 +76,6 @@ public abstract class AAngle<Q extends AAngle<Q>> extends AQuantity<Q, EAngles, 
 			case DIRECTION ->  to(QDirection.class);
 			case ROTATION ->  to(QRotation.class);
 			case ORIENTATION ->  to(QOrientation.class);
-			default -> throw new IllegalStateException("Unexpected getBaseValue: " + dimension);
 		};
 	}
 
@@ -93,6 +93,14 @@ public abstract class AAngle<Q extends AAngle<Q>> extends AQuantity<Q, EAngles, 
 			throw new IllegalArgumentException("Conversion to the specified type is not supported.", e);
 		}
 	}
+
+    public RDegMinSec getDegMinSec(){
+        return new RDegMinSec(this.getBaseValue());
+    }
+
+    public String toStringDMS(){
+        return this.getDegMinSec().toString();
+    }
 
 	// TRIGONOMETRIC FUNCTIONS
 
@@ -149,7 +157,7 @@ public abstract class AAngle<Q extends AAngle<Q>> extends AQuantity<Q, EAngles, 
 	/**
 	 * Compute azimuth in radians from x (east) and y (north) components.
 	 * Convention: 0..2π, 0 = north, π/2 = east, π = south, 3π/2 = west.
-	 * Returns 0.0 for the zero vector by convention.
+	 * Returns 0.0 for the zero vectors by convention.
 	 *
 	 * @param x east component
 	 * @param y north component
@@ -167,7 +175,7 @@ public abstract class AAngle<Q extends AAngle<Q>> extends AQuantity<Q, EAngles, 
 		// atan2 returns 0 for (0, 1) (north), which is correct for azimuth
 		double ang = Math.atan2(x, y); // returns [-PI, PI], 0 = north, PI/2 = east
 		if (ang < 0.0) ang += 2.0 * Math.PI; // normalize to [0, 2PI)
-		// If angle is extremely close to 0 or 2*PI, snap to 0.0 to avoid -0.0 or floating-point noise
+		// If an angle is extremely close to 0 or 2*PI, snap to 0.0 to avoid -0.0 or floating-point noise
 		if (Math.abs(ang) < 1e-12 || Math.abs(ang - 2.0 * Math.PI) < 1e-12) ang = 0.0;
 		return this.of(ang, EAngles.RADIAN);
 	}
@@ -186,7 +194,7 @@ public abstract class AAngle<Q extends AAngle<Q>> extends AQuantity<Q, EAngles, 
 	/**
 	 * Checks if the angle represents a specific ratio of a full turn (tolerance is 1e-10).
 	 *
-	 * @param turnRatio The ratio of a full turn to check against (e.g., 0.5 for half turn).
+	 * @param turnRatio The ratio of a full turn to check against (e.g., 0.5 for half_turn).
 	 * @return true if the angle corresponds to the specified turn ratio, false otherwise.
 	 */
 	public boolean isTurnRatio(double turnRatio) {

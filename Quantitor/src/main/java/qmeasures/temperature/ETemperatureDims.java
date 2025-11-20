@@ -12,7 +12,7 @@ public enum ETemperatureDims implements IDimension<ETemperatureDims> {
     /** Kelvin dimension (absolute temperature, >= 0) */
     KELVIN("K", 0, Double.POSITIVE_INFINITY),
     /** Celsius dimension (>= -273.15) */
-    CELCIUS("°C", -273.15, Double.POSITIVE_INFINITY),
+    CELSIUS("°C", -273.15, Double.POSITIVE_INFINITY),
     /** Fahrenheit dimension (>= -459.67) */
     FAHRENHEIT("°F", -459.67, Double.POSITIVE_INFINITY);
 
@@ -37,7 +37,7 @@ public enum ETemperatureDims implements IDimension<ETemperatureDims> {
      * @return the abbreviation
      */
     @Override
-    public String getAbbrevation() { return abbrev; }
+    public String getAbbreviation() { return abbrev; }
 
     /**
      * Gets the base dimension (always KELVIN).

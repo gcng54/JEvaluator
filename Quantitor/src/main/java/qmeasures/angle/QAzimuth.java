@@ -19,8 +19,4 @@ public final class QAzimuth extends AAngle<QAzimuth> {
         return new QAzimuth(value, unit);
     }
 
-    @Override
-    public Clampable.EClampMode getClampMode(){ return Clampable.EClampMode.WRAP; };
-
-
 }

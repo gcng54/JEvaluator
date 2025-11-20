@@ -16,7 +16,7 @@ public enum ETemperatures implements IUnit<ETemperatures> {
         public double fromBaseValue(double baseValue) { return baseValue; }
     },
     /** Celsius unit */
-    CELCIUS("°C", 1.0) {
+    CELSIUS("°C", 1.0) {
         @Override
         public double toBaseValue(double value) { return value + 273.15; }
         @Override

@@ -117,7 +117,7 @@ public abstract class AQuantity<Q extends AQuantity<Q, U, E>, U extends IUnit<U>
      * @param other the other quantity
      * @return comparison result
      */
-    @Override public int compareTo(@SuppressWarnings("rawtypes") AQuantity other) {
+    @Override public int compareTo( AQuantity other) {
         double thisBaseValue = this.getUnit().toBaseValue(this.getValue());
         double otherBaseValue = other.getUnit().toBaseValue(other.getValue());
         return Double.compare(thisBaseValue, otherBaseValue);

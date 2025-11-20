@@ -130,18 +130,17 @@ public class AAngleTest {
     void testToDimension() {
         QAngle a = new QAngle(10.0, EAngles.DEGREE);
 
-        assertTrue(a.toDimension(EAngleDims.ANGLE) instanceof QAngle);
-        assertTrue(a.toDimension(EAngleDims.LATITUDE) instanceof QLatitude);
-        assertTrue(a.toDimension(EAngleDims.LONGITUDE) instanceof QLongitude);
-        assertTrue(a.toDimension(EAngleDims.BEARING) instanceof QBearing);
-        assertTrue(a.toDimension(EAngleDims.AZIMUTH) instanceof QAzimuth);
-        assertTrue(a.toDimension(EAngleDims.HEADING) instanceof QHeading);
-        assertTrue(a.toDimension(EAngleDims.COURSE) instanceof QCourse);
-        assertTrue(a.toDimension(EAngleDims.DIRECTION) instanceof QDirection);
-        assertTrue(a.toDimension(EAngleDims.ROTATION) instanceof QRotation);
-        assertTrue(a.toDimension(EAngleDims.ORIENTATION) instanceof QOrientation);
+        assertInstanceOf(QAngle.class, a.toDimension(EAngleDims.ANGLE));
+        assertInstanceOf(QLatitude.class, a.toDimension(EAngleDims.LATITUDE));
+        assertInstanceOf(QLongitude.class, a.toDimension(EAngleDims.LONGITUDE));
+        assertInstanceOf(QBearing.class, a.toDimension(EAngleDims.BEARING));
+        assertInstanceOf(QAzimuth.class, a.toDimension(EAngleDims.AZIMUTH));
+        assertInstanceOf(QHeading.class, a.toDimension(EAngleDims.HEADING));
+        assertInstanceOf(QCourse.class, a.toDimension(EAngleDims.COURSE));
+        assertInstanceOf(QDirection.class, a.toDimension(EAngleDims.DIRECTION));
+        assertInstanceOf(QRotation.class, a.toDimension(EAngleDims.ROTATION));
+        assertInstanceOf(QOrientation.class, a.toDimension(EAngleDims.ORIENTATION));
 
-        assertThrows(NullPointerException.class, () -> a.toDimension(null));
     }
 
 

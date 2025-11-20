@@ -8,25 +8,25 @@ class ATemperatureTest {
 
     @Test
     void testConstructorAndGetters() {
-        QTemperature temp = new QTemperature(100.0, ETemperatures.CELCIUS);
+        QTemperature temp = new QTemperature(100.0, ETemperatures.CELSIUS);
         assertEquals(100.0, temp.getValue());
-        assertEquals(ETemperatures.CELCIUS, temp.getUnit());
+        assertEquals(ETemperatures.CELSIUS, temp.getUnit());
         assertEquals(ETemperatureDims.TEMPERATURE, temp.getDimension());
     }
 
     @Test
     void testOfMethod() {
         QTemperature temp = new QTemperature(0.0, ETemperatures.KELVIN);
-        QTemperature temp2 = temp.of(25.0, ETemperatures.CELCIUS);
+        QTemperature temp2 = temp.of(25.0, ETemperatures.CELSIUS);
         assertEquals(25.0, temp2.getValue());
-        assertEquals(ETemperatures.CELCIUS, temp2.getUnit());
+        assertEquals(ETemperatures.CELSIUS, temp2.getUnit());
     }
 
     @Test
     void testUnitConversionMethods() {
         QTemperature temp = new QTemperature(10.0, ETemperatures.KELVIN);
         assertEquals(ETemperatures.KELVIN, temp.ofKelvin().getUnit());
-        assertEquals(ETemperatures.CELCIUS, temp.ofCelcius().getUnit());
+        assertEquals(ETemperatures.CELSIUS, temp.ofCelsius().getUnit());
         assertEquals(ETemperatures.FAHRENHEIT, temp.ofFahrenheit().getUnit());
     }
 
@@ -34,7 +34,7 @@ class ATemperatureTest {
     void testUnitConversionWithValue() {
         QTemperature temp = new QTemperature(0.0, ETemperatures.KELVIN);
         assertEquals(50.0, temp.ofKelvin(50.0).getValue());
-        assertEquals(20.0, temp.ofCelcius(20.0).getValue());
+        assertEquals(20.0, temp.ofCelsius(20.0).getValue());
         assertEquals(32.0, temp.ofFahrenheit(32.0).getValue());
     }
 
@@ -45,7 +45,7 @@ class ATemperatureTest {
         // so we expect the default implementation (likely from AQuantity) to be called.
         // Here, just check that the methods return a double (no exception).
         assertDoesNotThrow(() -> temp.inKelvin());
-        assertDoesNotThrow(() -> temp.inCelcius());
+        assertDoesNotThrow(() -> temp.inCelsius());
         assertDoesNotThrow(() -> temp.inFahrenheit());
     }
 
@@ -58,7 +58,7 @@ class ATemperatureTest {
     @Test
     void testToDimension() {
         QTemperature temp = new QTemperature(0.0, ETemperatures.KELVIN);
-        // Since QKelvin, QCelcius, QFahrenheit are not available, just check for IllegalStateException for unknown dim
+        // Since QKelvin, QCelsius, QFahrenheit are not available, just check for IllegalStateException for unknown dim
        //  assertThrows(IllegalStateException.class, () -> temp.toDimension(null));
     }
 

@@ -14,18 +14,18 @@ public enum ELengthDims implements IDimension<ELengthDims> {
     // Use a very large negative minimum instead of Double.MIN_VALUE (which is
     // the smallest positive double). This avoids unintentionally clamping
     // legitimate zero values up to a tiny positive number.
-    LENGTH("Length", -Double.MAX_VALUE, Double.MAX_VALUE),
+    LENGTH("Length", Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY),
     /** Area (square meters) */
-    AREA("Area", 0.0, Double.MAX_VALUE),
+    AREA("Area", 0.0, Double.POSITIVE_INFINITY),
     /** Volume (cubic meters) */
-    VOLUME("Volume", 0.0, Double.MAX_VALUE),
+    VOLUME("Volume", 0.0, Double.POSITIVE_INFINITY),
     /** Distance (meters, up to Earth's circumference) */
     DISTANCE("Dst", 0.0, 40_074_000.0),
-    /** Altitude (meters, Dead Sea to 100km) */
+    /** Altitude (meters, Dead Sea to 100 km) */
     ALTITUDE("Alt", -430.0, 100_000.0),
     /** Elevation (meters, Dead Sea to Everest) */
     ELEVATION("Elev", -430.0, 8850.0),
-    /** Height (meters, deep ocean to 1,000,000m) */
+    /** Height (meters, deep ocean to 1,000,000 m) */
     HEIGHT("Hgt", -11_000.0, 1_000_000.0),
     /** Depth (meters, deep ocean to surface) */
     DEPTH("Dpt", -11_000.0, 0.0),
@@ -33,8 +33,8 @@ public enum ELengthDims implements IDimension<ELengthDims> {
 	RANGE( "Rng", 0.0, 10_000_000.0),
     /** Wavelength (meters, positive only) */
 	WAVE_LENGTH("Wave", 0.0, Double.POSITIVE_INFINITY),
-    /** Earth ectic radius (meters) */
-    EARTHECTIC("Earth", 6_300_000.0, 6_400_000.0);
+    /** Earth radius (meters) */
+    EARTH_RADIUS("Earth", 6_300_000.0, 6_400_000.0);
 
     private final String abbreviation;
     private final double minBaseValue;
@@ -57,13 +57,13 @@ public enum ELengthDims implements IDimension<ELengthDims> {
      * Gets the clamping mode for this dimension (BOUND).
      * @return the clamp mode
      */
-    @Override public Clampable.EClampMode getClampMode(){ return Clampable.EClampMode.BOUND; };
+    @Override public Clampable.EClampMode getClampMode(){ return Clampable.EClampMode.BOUND; }
     
     /**
      * Gets the abbreviation for this dimension.
      * @return the abbreviation
      */
-    @Override public String getAbbrevation(){ return abbreviation; }
+    @Override public String getAbbreviation(){ return abbreviation; }
 
     /**
      * Gets the minimum base value (meters).
@@ -81,7 +81,7 @@ public enum ELengthDims implements IDimension<ELengthDims> {
      * Gets the base dimension (always LENGTH).
      * @return the base dimension
      */
-    @Override public ELengthDims getBaseDimension(){  return ELengthDims.LENGTH; };
+    @Override public ELengthDims getBaseDimension(){  return ELengthDims.LENGTH; }
 
     /**
      * Gets the base unit (always METER).

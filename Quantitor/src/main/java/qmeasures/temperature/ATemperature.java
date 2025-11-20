@@ -45,19 +45,19 @@ public abstract class ATemperature<Q extends ATemperature<Q>> extends AQuantity<
      * Gets the unit of this temperature quantity.
      * @return the temperature unit
      */
-    @Override public ETemperatures getUnit() { return (ETemperatures) super.getUnit(); }
+    @Override public ETemperatures getUnit() { return  super.getUnit(); }
     
     /**
      * Gets the dimension of this temperature quantity.
      * @return the temperature dimension
      */
-    @Override public ETemperatureDims getDimension() { return (ETemperatureDims) super.getDimension(); }
+    @Override public ETemperatureDims getDimension() { return  super.getDimension(); }
 
     /**
      * Returns the clamping mode for temperature quantities (BOUND).
      * @return the clamp mode
      */
-    public Clampable.EClampMode getClampMode(){ return Clampable.EClampMode.BOUND; };
+    public Clampable.EClampMode getClampMode(){ return Clampable.EClampMode.BOUND; }
 
     /**
      * Converts this temperature to another dimension (e.g., Kelvin, Celsius, Fahrenheit).
@@ -68,9 +68,8 @@ public abstract class ATemperature<Q extends ATemperature<Q>> extends AQuantity<
         return switch (dimension) {
             case TEMPERATURE ->  to(QTemperature.class);
             case KELVIN ->  to(QKelvin.class);
-            case CELCIUS ->  to(QCelcius.class);
+            case CELSIUS ->  to(QCelsius.class);
             case FAHRENHEIT ->  to(QFahrenheit.class);
-            default -> throw new IllegalStateException("Unexpected getBaseValue: " + dimension);
         };
     }
 
@@ -94,7 +93,7 @@ public abstract class ATemperature<Q extends ATemperature<Q>> extends AQuantity<
     /** @return this temperature in Kelvin */
     public Q ofKelvin() { return this.of(ETemperatures.KELVIN); }
     /** @return this temperature in Celsius */
-    public Q ofCelcius() { return this.of(ETemperatures.CELCIUS); }
+    public Q ofCelsius() { return this.of(ETemperatures.CELSIUS); }
     /** @return this temperature in Fahrenheit */
     public Q ofFahrenheit() { return this.of(ETemperatures.FAHRENHEIT); }
 
@@ -103,7 +102,7 @@ public abstract class ATemperature<Q extends ATemperature<Q>> extends AQuantity<
     /** @return a new temperature in Kelvin */
     public Q ofKelvin(double value) { return this.of(value, ETemperatures.KELVIN); }
     /** @return a new temperature in Celsius */
-    public Q ofCelcius(double value) { return this.of(value, ETemperatures.CELCIUS); }
+    public Q ofCelsius(double value) { return this.of(value, ETemperatures.CELSIUS); }
     /** @return a new temperature in Fahrenheit */
     public Q ofFahrenheit(double value) { return this.of(value, ETemperatures.FAHRENHEIT); }
 
@@ -112,7 +111,7 @@ public abstract class ATemperature<Q extends ATemperature<Q>> extends AQuantity<
     /** @return the value in Kelvin */
     public double inKelvin() { return this.inUnit(ETemperatures.KELVIN); }
     /** @return the value in Celsius */
-    public double inCelcius() { return this.inUnit(ETemperatures.CELCIUS); }
+    public double inCelsius() { return this.inUnit(ETemperatures.CELSIUS); }
     /** @return the value in Fahrenheit */
     public double inFahrenheit() { return this.inUnit(ETemperatures.FAHRENHEIT); }
 }

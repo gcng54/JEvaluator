@@ -41,13 +41,13 @@ public enum ETimeDims implements IDimension<ETimeDims> {
      * Gets the clamping mode for this dimension (WRAP).
      * @return the clamp mode
      */
-    @Override public Clampable.EClampMode getClampMode(){ return Clampable.EClampMode.WRAP; };
+    @Override public Clampable.EClampMode getClampMode(){ return Clampable.EClampMode.WRAP; }
     
     /**
      * Gets the abbreviation for this dimension.
      * @return the abbreviation
      */
-    @Override public String getAbbrevation(){ return abbreviation; }
+    @Override public String getAbbreviation(){ return abbreviation; }
 
     /**
      * Gets the minimum base value (seconds).
@@ -65,7 +65,7 @@ public enum ETimeDims implements IDimension<ETimeDims> {
      * Gets the base dimension (always TIME).
      * @return the base dimension
      */
-    @Override public ETimeDims getBaseDimension(){  return ETimeDims.TIME; };
+    @Override public ETimeDims getBaseDimension(){  return ETimeDims.TIME; }
 
     /**
      * Gets the base unit (always SECOND).

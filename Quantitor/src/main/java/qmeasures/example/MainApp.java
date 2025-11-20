@@ -10,6 +10,7 @@ import qmeasures.temperature.*;
  * Example application demonstrating usage of quantity classes.
  */
 public class MainApp {
+
     public static void main(String[] args) {
         // Angle examples
         QAngle angle = new QAngle(90.0, EAngles.DEGREE);
@@ -41,6 +42,8 @@ public class MainApp {
         QSpeed speed2 = new QSpeed(10.0, ESpeeds.METERS_PER_SECOND);
         QSpeed sumSpeed = speed.of(speed.inMeterPerSecond() + speed2.inMeterPerSecond(), ESpeeds.METERS_PER_SECOND);
         System.out.println("Sum of 36km/h and 10m/s in m/s: " + sumSpeed.inMeterPerSecond());
+        System.out.println("Sum of 36km/h and 10m/s in km/h: " + speed.add(speed2));
+        System.out.println("Sum of 36km/h and 10m/s in m/s: " + speed2.add(speed));
 
         // Time examples
         QDuration duration = new QDuration(2.0, ETimes.HOUR);
@@ -51,7 +54,7 @@ public class MainApp {
         System.out.println("Total duration (2h + 30min) in hours: " + totalDuration.inHour());
 
         // Temperature examples
-        QCelcius tempC = new QCelcius(25.0);
+        QCelsius tempC = new QCelsius(25.0);
         QFahrenheit tempF = new QFahrenheit(77.0);
         QKelvin tempK = new QKelvin(298.15);
         System.out.println("Temperature in Celsius: " + tempC.getValue());
@@ -62,7 +65,7 @@ public class MainApp {
         System.out.println("25°C in Kelvin: " + tempCtoK.getValue());
 
         // Edge case: negative temperature
-        QCelcius belowZero = new QCelcius(-10.0);
+        QCelsius belowZero = new QCelsius(-10.0);
         System.out.println("Below zero in Celsius: " + belowZero.getValue());
 
         // Example: Calculate distance = speed * time

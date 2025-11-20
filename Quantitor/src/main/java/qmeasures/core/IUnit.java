@@ -126,11 +126,11 @@ public interface IUnit<E extends IUnit<E>> {
     }
 
     /**
-     * Utility function to convert a string to sentence case.
+     * Utility function to convert a string to a sentence case.
      * @param input the input string
      * @return the string in sentence case
      */
-    public static String toSentenceCase(String input) {
+    static String toSentenceCase(String input) {
         if (input == null || input.isEmpty()) {
             return input;
         }

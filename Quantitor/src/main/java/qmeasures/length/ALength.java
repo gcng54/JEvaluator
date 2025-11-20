@@ -45,19 +45,19 @@ public abstract class ALength<Q extends ALength<Q>> extends AQuantity<Q, ELength
      * Gets the unit of this length quantity.
      * @return the length unit
      */
-    @Override public ELengths getUnit() { return (ELengths) super.getUnit(); }
+    @Override public ELengths getUnit() { return super.getUnit(); }
     
     /**
      * Gets the dimension of this length quantity.
      * @return the length dimension
      */
-    @Override public ELengthDims getDimension() { return (ELengthDims) super.getDimension(); }
+    @Override public ELengthDims getDimension() { return super.getDimension(); }
 
     /**
      * Returns the clamping mode for length quantities (BOUND).
      * @return the clamp mode
      */
-    public Clampable.EClampMode getClampMode(){ return Clampable.EClampMode.BOUND; };
+    public Clampable.EClampMode getClampMode(){ return Clampable.EClampMode.BOUND; }
 
     /**
      * Converts this length to another dimension (e.g., area, volume).
@@ -69,9 +69,11 @@ public abstract class ALength<Q extends ALength<Q>> extends AQuantity<Q, ELength
             case LENGTH ->  to(QLength.class);
             case DISTANCE ->  to(QDistance.class);
             case ALTITUDE ->  to(QAltitude.class);
+            case EARTH_RADIUS ->  to(QEarthRadius.class);
+            case ELEVATION ->  to(QElevation.class);
+            case RANGE ->  to(QRange.class);
             case HEIGHT ->  to(QHeight.class);
-            case AREA ->  to(QArea.class);
-            case VOLUME ->  to(QVolume.class);
+            case WAVE_LENGTH ->  to(QWaveLength.class);
             default -> throw new IllegalStateException("Unexpected getBaseValue: " + dimension);
         };
     }
@@ -143,7 +145,7 @@ public abstract class ALength<Q extends ALength<Q>> extends AQuantity<Q, ELength
 	/** @return this length in feet */
 	public Q ofFoot() {return this.of(ELengths.FOOT);}
 	/** @return this length in nautical miles */
-	public Q ofNauticalMile() {return this.of(ELengths.NAUTMILE);}
+	public Q ofNauticalMile() {return this.of(ELengths.NAUTICALMILE);}
 	/** @return this length in data miles */
 	public Q ofDataMile() {return this.of(ELengths.DATAMILE);}
 	/** @return this length in flight levels */
@@ -166,7 +168,7 @@ public abstract class ALength<Q extends ALength<Q>> extends AQuantity<Q, ELength
     /** @return a new length in feet */
     public Q ofFoot(double value) {return this.of(value, ELengths.FOOT);}    
     /** @return a new length in nautical miles */
-    public Q ofNauticalMile(double value) {return this.of(value, ELengths.NAUTMILE);}    
+    public Q ofNauticalMile(double value) {return this.of(value, ELengths.NAUTICALMILE);}
     /** @return a new length in data miles */
     public Q ofDataMile(double value) {return this.of(value, ELengths.DATAMILE);}    
     /** @return a new length in flight levels */
@@ -195,7 +197,7 @@ public abstract class ALength<Q extends ALength<Q>> extends AQuantity<Q, ELength
     /** @return the value in miles */
     public double inMile() { return this.inUnit(ELengths.MILE);}    
     /** @return the value in nautical miles */
-    public double inNautMile() { return this.inUnit(ELengths.NAUTMILE);}    
+    public double inNauticalMile() { return this.inUnit(ELengths.NAUTICALMILE);}
     /** @return the value in data miles */
     public double inDataMile() { return this.inUnit(ELengths.DATAMILE);}    
     /** @return the value in flight levels */
