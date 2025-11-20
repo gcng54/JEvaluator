@@ -12,18 +12,14 @@ public class AAngleTest {
 
     static final double EPS = 1e-9;
 
-    QAngle angle(double value, EAngles unit) {
-        return new QAngle(value, unit);
-    }
-
     @Test
     void testSinCosTan() {
-        QAngle a = angle(90.0, EAngles.DEGREE);
+        QAngle a = new QAngle(90.0, EAngles.DEGREE);
         assertEquals(1.0, a.sin(), EPS);
         assertEquals(0.0, a.cos(), EPS);
         assertTrue(Math.abs(a.tan() - Double.POSITIVE_INFINITY) > 1e6 || Math.abs(a.tan()) > 1e6); // tan(90°) is large
 
-        QAngle b = angle(0.0, EAngles.DEGREE);
+        QAngle b = new QAngle(0.0, EAngles.DEGREE);
         assertEquals(0.0, b.sin(), EPS);
         assertEquals(1.0, b.cos(), EPS);
         assertEquals(0.0, b.tan(), EPS);
@@ -31,7 +27,7 @@ public class AAngleTest {
 
     @Test
     void testOfArcSinArcCosArcTan() {
-        QAngle a = angle(0.0, EAngles.RADIAN);
+        QAngle a = new QAngle(0.0, EAngles.RADIAN);
         QAngle asin = a.ofArcSin(1.0);
         assertEquals(Math.PI / 2, asin.getValue(), EPS);
         assertEquals(EAngles.RADIAN, asin.getUnit());
@@ -48,14 +44,14 @@ public class AAngleTest {
 
     @Test
     void testOfArcTan2() {
-        QAngle a = angle(0.0, EAngles.RADIAN);
+        QAngle a = new QAngle(0.0, EAngles.RADIAN);
         QAngle atan2 = a.ofArcTan2(1.0, 1.0);
         assertEquals(Math.atan2(1.0, 1.0), atan2.getValue(), EPS);
     }
 
     @Test
     void testOfArcTanXY() {
-        QAngle a = angle(0.0, EAngles.RADIAN);
+        QAngle a = new QAngle(0.0, EAngles.RADIAN);
 
         // North (0, 1)
         QAngle north = a.ofArcTanXY(0.0, 1.0);
@@ -84,17 +80,17 @@ public class AAngleTest {
 
     @Test
     void testIsTurnRatio() {
-        QAngle a = angle(360.0, EAngles.DEGREE);
+        QAngle a = new QAngle(360.0, EAngles.DEGREE);
         assertTrue(a.isTurnFull());
         assertFalse(a.isTurnHalf());
         assertFalse(a.isTurnQuarter());
 
-        QAngle b = angle(180.0, EAngles.DEGREE);
+        QAngle b = new QAngle(180.0, EAngles.DEGREE);
         assertFalse(b.isTurnFull());
         assertTrue(b.isTurnHalf());
         assertFalse(b.isTurnQuarter());
 
-        QAngle c = angle(90.0, EAngles.DEGREE);
+        QAngle c = new QAngle(90.0, EAngles.DEGREE);
         assertFalse(c.isTurnFull());
         assertFalse(c.isTurnHalf());
         assertTrue(c.isTurnQuarter());
@@ -105,20 +101,20 @@ public class AAngleTest {
 
     @Test
     void testUnitConversions() {
-        QAngle a = angle(180.0, EAngles.DEGREE);
+        QAngle a = new QAngle(180.0, EAngles.DEGREE);
         assertEquals(Math.PI, a.inRadian(), EPS);
         assertEquals(0.5, a.inTurn(), EPS);
         assertEquals(200.0, a.inGradian(), EPS);
         assertEquals(10800.0, a.inArcMinute(), EPS);
         assertEquals(648000.0, a.inArcSecond(), EPS);
 
-        QAngle b = angle(Math.PI, EAngles.RADIAN);
+        QAngle b = new QAngle(Math.PI, EAngles.RADIAN);
         assertEquals(180.0, b.inDegree(), EPS);
     }
 
     @Test
     void testOfUnitMethods() {
-        QAngle a = angle(90.0, EAngles.DEGREE);
+        QAngle a = new QAngle(90.0, EAngles.DEGREE);
         assertEquals(EAngles.DEGREE, a.ofDegree().getUnit());
         assertEquals(EAngles.RADIAN, a.ofRadian().getUnit());
         assertEquals(EAngles.TURN, a.ofTurn().getUnit());
@@ -132,7 +128,7 @@ public class AAngleTest {
 
     @Test
     void testToDimension() {
-        QAngle a = angle(10.0, EAngles.DEGREE);
+        QAngle a = new QAngle(10.0, EAngles.DEGREE);
 
         assertTrue(a.toDimension(EAngleDims.ANGLE) instanceof QAngle);
         assertTrue(a.toDimension(EAngleDims.LATITUDE) instanceof QLatitude);
@@ -145,13 +141,13 @@ public class AAngleTest {
         assertTrue(a.toDimension(EAngleDims.ROTATION) instanceof QRotation);
         assertTrue(a.toDimension(EAngleDims.ORIENTATION) instanceof QOrientation);
 
-        assertThrows(IllegalStateException.class, () -> a.toDimension(null));
+        assertThrows(NullPointerException.class, () -> a.toDimension(null));
     }
 
 
     @Test
     void testGetClampMode() {
-        QAngle a = angle(0.0, EAngles.DEGREE);
+        QAngle a = new QAngle(0.0, EAngles.DEGREE);
         assertEquals(Clampable.EClampMode.WRAP, a.getClampMode());
     }
 }

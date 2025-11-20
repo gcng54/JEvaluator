@@ -4,27 +4,68 @@ import qmeasures.core.AQuantity;
 import qmeasures.core.Clampable;
 
 /**
- * Abstract angle quantity.
+ * Abstract base class for all angle quantities (e.g., latitude, longitude, bearing, azimuth).
+ * Provides unit conversion, dimension conversion, trigonometric functions, and turn checks for angles.
+ *
+ * @param <Q> the concrete type of the angle quantity
  */
 public abstract class AAngle<Q extends AAngle<Q>> extends AQuantity<Q, EAngles, EAngleDims> {
 
-    protected AAngle(Double value, EAngles unit, EAngleDims dimension) {  super(value, unit, dimension);  }
+	/**
+	 * Constructs an angle quantity with the specified value, unit, and dimension.
+	 * @param value the value in the given unit
+	 * @param unit the angle unit
+	 * @param dimension the angle dimension
+	 */
+	protected AAngle(Double value, EAngles unit, EAngleDims dimension) {  super(value, unit, dimension);  }
 
-    protected AAngle(Double value, EAngleDims dimension) {  super(value, EAngles.DEGREE, dimension);  }
+	/**
+	 * Constructs an angle quantity with the specified value and dimension, using degrees as the unit.
+	 * @param value the value in degrees
+	 * @param dimension the angle dimension
+	 */
+	protected AAngle(Double value, EAngleDims dimension) {  super(value, EAngles.DEGREE, dimension);  }
 
-    protected AAngle(Double value) {  super(value, EAngles.DEGREE, EAngleDims.ANGLE);  }
+	/**
+	 * Constructs an angle quantity with the specified value, using degrees and ANGLE as defaults.
+	 * @param value the value in degrees
+	 */
+	protected AAngle(Double value) {  super(value, EAngles.DEGREE, EAngleDims.ANGLE);  }
 
-    @Override public abstract Q of(Double value, EAngles unit);
+	/**
+	 * Creates a new instance of this angle type with the given value and unit.
+	 * @param value the value
+	 * @param unit the unit
+	 * @return a new instance of Q
+	 */
+	@Override public abstract Q of(Double value, EAngles unit);
 
-    @Override public EAngles getUnit() { return (EAngles) super.getUnit(); }
+	/**
+	 * Gets the unit of this angle quantity.
+	 * @return the angle unit
+	 */
+	@Override public EAngles getUnit() { return (EAngles) super.getUnit(); }
     
-    @Override public EAngleDims getDimension() { return (EAngleDims) super.getDimension(); }
+	/**
+	 * Gets the dimension of this angle quantity.
+	 * @return the angle dimension
+	 */
+	@Override public EAngleDims getDimension() { return (EAngleDims) super.getDimension(); }
 
-    public Clampable.EClampMode getClampMode(){ return Clampable.EClampMode.WRAP; };
+	/**
+	 * Returns the clamping mode for angle quantities (WRAP).
+	 * @return the clamp mode
+	 */
+	public Clampable.EClampMode getClampMode(){ return Clampable.EClampMode.WRAP; };
 
-    public AAngle<?> toDimension(EAngleDims dimension) {
-        return switch (dimension) {
-            case ANGLE ->  to(QAngle.class);
+	/**
+	 * Converts this angle to another dimension (e.g., latitude, longitude, bearing, etc.).
+	 * @param dimension the target dimension
+	 * @return a new angle quantity of the target dimension
+	 */
+	public AAngle<?> toDimension(EAngleDims dimension) {
+		return switch (dimension) {
+			case ANGLE ->  to(QAngle.class);
 			case LATITUDE ->  to(QLatitude.class);
 			case LONGITUDE ->  to(QLongitude.class);
 			case BEARING ->  to(QBearing.class);
@@ -34,35 +75,55 @@ public abstract class AAngle<Q extends AAngle<Q>> extends AQuantity<Q, EAngles, 
 			case DIRECTION ->  to(QDirection.class);
 			case ROTATION ->  to(QRotation.class);
 			case ORIENTATION ->  to(QOrientation.class);
-            default -> throw new IllegalStateException("Unexpected getBaseValue: " + dimension);
-        };
-    }
+			default -> throw new IllegalStateException("Unexpected getBaseValue: " + dimension);
+		};
+	}
 
-    public <T extends AAngle<T>> T to(Class<T> targetType) {
-    // Use reflection or a factory to create the target type
-        try {
-            return targetType.getConstructor(Double.class, EAngles.class)
-                            .newInstance(this.getValue(), this.getUnit());
-        } catch (Exception e) {
-            throw new IllegalArgumentException("Conversion to the specified type is not supported.", e);
-        }
-    }
+	/**
+	 * Converts this angle to a specific type using reflection.
+	 * @param targetType the target class
+	 * @return a new instance of the target type
+	 * @param <T> the type of angle
+	 */
+	public <T extends AAngle<T>> T to(Class<T> targetType) {
+		try {
+			return targetType.getConstructor(Double.class, EAngles.class)
+							.newInstance(this.getValue(), this.getUnit());
+		} catch (Exception e) {
+			throw new IllegalArgumentException("Conversion to the specified type is not supported.", e);
+		}
+	}
 
 	// TRIGONOMETRIC FUNCTIONS
 
+	/** @return the sine of this angle (in radians) */
 	public double sin() { return (Math.sin(this.inRadian()));  }
 
+	/** @return the cosine of this angle (in radians) */
 	public double cos() { return (Math.cos(this.inRadian()));  }
 
+	/** @return the tangent of this angle (in radians) */
 	public double tan() {return (Math.tan(this.inRadian()));}
 
+	/**
+	 * Returns an angle whose sine is the specified value.
+	 * @param value the value (must be in [-1, 1])
+	 * @return a new angle in radians
+	 * @throws IllegalArgumentException if value is out of range
+	 */
 	public Q ofArcSin(double value) {
 		if (value < -1.0 || value > 1.0) {
-            throw new IllegalArgumentException("Value out of range for arcsine. Valid range is [-1, 1].");
-        }
+			throw new IllegalArgumentException("Value out of range for arcsine. Valid range is [-1, 1].");
+		}
 		return this.of(Math.asin(value), EAngles.RADIAN);
 	}
 
+	/**
+	 * Returns an angle whose cosine is the specified value.
+	 * @param value the value (must be in [-1, 1])
+	 * @return a new angle in radians
+	 * @throws IllegalArgumentException if value is out of range
+	 */
 	public Q ofArcCos(double value) {
 		if (value < -1.0 || value > 1.0) {
 			throw new IllegalArgumentException("Value out of range for arccosine. Valid range is [-1, 1].");
@@ -70,10 +131,21 @@ public abstract class AAngle<Q extends AAngle<Q>> extends AQuantity<Q, EAngles, 
 		return this.of(Math.acos(value), EAngles.RADIAN);
 	}
 
-	public Q ofArcTan(double value) {return this.of(Math.atan(value), EAngles.RADIAN);	}
+	/**
+	 * Returns an angle whose tangent is the specified value.
+	 * @param value the value
+	 * @return a new angle in radians
+	 */
+	public Q ofArcTan(double value) {return this.of(Math.atan(value), EAngles.RADIAN);}
 
-	public Q ofArcTan2(double value, double value2) {return this.of(Math.atan2(value, value2), EAngles.RADIAN);	}
-	
+	/**
+	 * Returns an angle whose tangent is the quotient of the specified values.
+	 * @param value the numerator
+	 * @param value2 the denominator
+	 * @return a new angle in radians
+	 */
+	public Q ofArcTan2(double value, double value2) {return this.of(Math.atan2(value, value2), EAngles.RADIAN);}
+
 	/**
 	 * Compute azimuth in radians from x (east) and y (north) components.
 	 * Convention: 0..2π, 0 = north, π/2 = east, π = south, 3π/2 = west.
@@ -92,74 +164,82 @@ public abstract class AAngle<Q extends AAngle<Q>> extends AQuantity<Q, EAngles, 
 		if (x == 0.0 && y == 0.0) {
 			return this.of(0.0);
 		}
-		// Use atan2(x, y) so north corresponds to 0 and positive x (east) gives positive clockwise angle
-		double ang = Math.atan2(x, y); // returns [-PI, PI]
+		// atan2 returns 0 for (0, 1) (north), which is correct for azimuth
+		double ang = Math.atan2(x, y); // returns [-PI, PI], 0 = north, PI/2 = east
 		if (ang < 0.0) ang += 2.0 * Math.PI; // normalize to [0, 2PI)
+		// If angle is extremely close to 0 or 2*PI, snap to 0.0 to avoid -0.0 or floating-point noise
+		if (Math.abs(ang) < 1e-12 || Math.abs(ang - 2.0 * Math.PI) < 1e-12) ang = 0.0;
 		return this.of(ang, EAngles.RADIAN);
 	}
 
-	/**
-    void cardinalDirectionsDegrees() {
-        // north
-        assertEquals(0.0, AAngle.azimuthDegreesFromXY(0.0, 1.0), 1e-9);
-        // east
-        assertEquals(90.0, AAngle.azimuthDegreesFromXY(1.0, 0.0), 1e-9);
-        // south
-        assertEquals(180.0, AAngle.azimuthDegreesFromXY(0.0, -1.0), 1e-9);
-        // west
-        assertEquals(270.0, AAngle.azimuthDegreesFromXY(-1.0, 0.0), 1e-9);
-    }
-	*/
-
 	// TURN CHECKS
-    public boolean isTurnFull() { return isTurnRatio(1.0);  }
 
-    public boolean isTurnHalf() { return isTurnRatio(0.5);  }
+	/** @return true if the angle is a full turn (360°) */
+	public boolean isTurnFull() { return isTurnRatio(1.0);  }
 
-    public boolean isTurnQuarter() { return isTurnRatio(0.25);  }
+	/** @return true if the angle is a half turn (180°) */
+	public boolean isTurnHalf() { return isTurnRatio(0.5);  }
+
+	/** @return true if the angle is a quarter turn (90°) */
+	public boolean isTurnQuarter() { return isTurnRatio(0.25);  }
+
 	/**
-	 * Checks if the angle represents a specific ratio of a full turn tolerance is (1e-10).
+	 * Checks if the angle represents a specific ratio of a full turn (tolerance is 1e-10).
 	 *
-	 * @see #isQurnFull()
-	 * @see #isQurnHalf()
-	 * @see #isQurnQuarter()
-	 *
-	 * @param turnRatio Qhe ratio of a full turn to check against (e.g., 0.5 for half turn).
+	 * @param turnRatio The ratio of a full turn to check against (e.g., 0.5 for half turn).
 	 * @return true if the angle corresponds to the specified turn ratio, false otherwise.
 	 */
-    public boolean isTurnRatio(double turnRatio) {
+	public boolean isTurnRatio(double turnRatio) {
 		if (turnRatio < 0.0 || turnRatio > 1.0) {
 			throw new IllegalArgumentException("Value out of range for turn ratio. Valid range is [0, 1].");
 		}
-        return Math.abs((this.getBaseValue() / (2.0 * Math.PI * turnRatio)) % 360) < 1e-10;
-    }
+		return Math.abs((this.getBaseValue() / (2.0 * Math.PI * turnRatio)) % 360) < 1e-10;
+	}
 
-    // convert of specific units
-    
+	// convert of specific units
+
+	/** @return this angle in degrees */
 	public Q ofDegree() { return this.of(EAngles.DEGREE);}
-	public Q ofRadian() {return this.of(EAngles.RADIAN);	}
-	public Q ofTurn() {return this.of(EAngles.TURN);	}
-    public Q ofGradian() {return this.of(EAngles.GRADIAN);	}
-    public Q ofArcMinute() {return this.of(EAngles.ARC_MINUTE);	}
-    public Q ofArcSecond() {return this.of(EAngles.ARC_SECOND);	}
+	/** @return this angle in radians */
+	public Q ofRadian() {return this.of(EAngles.RADIAN);}
+	/** @return this angle in turns */
+	public Q ofTurn() {return this.of(EAngles.TURN);}
+	/** @return this angle in gradians */
+	public Q ofGradian() {return this.of(EAngles.GRADIAN);}
+	/** @return this angle in arcminutes */
+	public Q ofArcMinute() {return this.of(EAngles.ARC_MINUTE);}
+	/** @return this angle in arcseconds */
+	public Q ofArcSecond() {return this.of(EAngles.ARC_SECOND);}
 
 	// convert of specific units with value
 
+	/** @return a new angle in degrees */
 	public Q ofDegree(Double value) { return this.of(value, EAngles.DEGREE);}
-	public Q ofRadian(Double value) {return this.of(value, EAngles.RADIAN);	}
-	public Q ofTurn(Double value) {return this.of(value, EAngles.TURN);	}
-	public Q ofGradian(Double value) {return this.of(value, EAngles.GRADIAN);	}
-	public Q ofArcMinute(Double value) {return this.of(value, EAngles.ARC_MINUTE);	}
-	public Q ofArcSecond(Double value) {return this.of(value, EAngles.ARC_SECOND);	}
+	/** @return a new angle in radians */
+	public Q ofRadian(Double value) {return this.of(value, EAngles.RADIAN);}
+	/** @return a new angle in turns */
+	public Q ofTurn(Double value) {return this.of(value, EAngles.TURN);}
+	/** @return a new angle in gradians */
+	public Q ofGradian(Double value) {return this.of(value, EAngles.GRADIAN);}
+	/** @return a new angle in arcminutes */
+	public Q ofArcMinute(Double value) {return this.of(value, EAngles.ARC_MINUTE);}
+	/** @return a new angle in arcseconds */
+	public Q ofArcSecond(Double value) {return this.of(value, EAngles.ARC_SECOND);}
 
-    // get value in specific units
+	// get value in specific units
 
-	public Double inDegree() { return this.inUnit(EAngles.DEGREE);	}
-	public Double inRadian() { return this.inUnit(EAngles.RADIAN);	}
-    public Double inTurn() { return this.inUnit(EAngles.TURN);	}
-    public Double inGradian() { return this.inUnit(EAngles.GRADIAN);	}
-    public Double inArcMinute() { return this.inUnit(EAngles.ARC_MINUTE);	}
-    public Double inArcSecond() { return this.inUnit(EAngles.ARC_SECOND);	}
-	
+	/** @return the value in degrees */
+	public Double inDegree() { return this.inUnit(EAngles.DEGREE);}
+	/** @return the value in radians */
+	public Double inRadian() { return this.inUnit(EAngles.RADIAN);}
+	/** @return the value in turns */
+	public Double inTurn() { return this.inUnit(EAngles.TURN);}
+	/** @return the value in gradians */
+	public Double inGradian() { return this.inUnit(EAngles.GRADIAN);}
+	/** @return the value in arcminutes */
+	public Double inArcMinute() { return this.inUnit(EAngles.ARC_MINUTE);}
+	/** @return the value in arcseconds */
+	public Double inArcSecond() { return this.inUnit(EAngles.ARC_SECOND);}
+
 }
 

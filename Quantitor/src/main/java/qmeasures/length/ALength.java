@@ -1,27 +1,69 @@
+
 package qmeasures.length;
 
 import qmeasures.core.AQuantity;
 import qmeasures.core.Clampable;
 
 /**
- * Abstract length quantity.
+ * Abstract base class for all length quantities (e.g., distance, altitude, height).
+ * Provides unit conversion, dimension conversion, and arithmetic operations for lengths.
+ *
+ * @param <Q> the concrete type of the length quantity
  */
 public abstract class ALength<Q extends ALength<Q>> extends AQuantity<Q, ELengths, ELengthDims> {
 
+    /**
+     * Constructs a length quantity with the specified value, unit, and dimension.
+     * @param value the value in the given unit
+     * @param unit the length unit
+     * @param dimension the length dimension
+     */
     protected ALength(Double value, ELengths unit, ELengthDims dimension) {  super(value, unit, dimension);  }
 
+    /**
+     * Constructs a length quantity with the specified value and dimension, using meters as the unit.
+     * @param value the value in meters
+     * @param dimension the length dimension
+     */
     protected ALength(Double value, ELengthDims dimension) {  super(value, ELengths.METER, dimension);  }
 
+    /**
+     * Constructs a length quantity with the specified value, using meters and LENGTH as defaults.
+     * @param value the value in meters
+     */
     protected ALength(Double value) {  super(value, ELengths.METER, ELengthDims.LENGTH);  }
 
+    /**
+     * Creates a new instance of this length type with the given value and unit.
+     * @param value the value
+     * @param unit the unit
+     * @return a new instance of Q
+     */
     @Override public abstract Q of(Double value, ELengths unit);
 
+    /**
+     * Gets the unit of this length quantity.
+     * @return the length unit
+     */
     @Override public ELengths getUnit() { return (ELengths) super.getUnit(); }
     
+    /**
+     * Gets the dimension of this length quantity.
+     * @return the length dimension
+     */
     @Override public ELengthDims getDimension() { return (ELengthDims) super.getDimension(); }
 
+    /**
+     * Returns the clamping mode for length quantities (BOUND).
+     * @return the clamp mode
+     */
     public Clampable.EClampMode getClampMode(){ return Clampable.EClampMode.BOUND; };
 
+    /**
+     * Converts this length to another dimension (e.g., area, volume).
+     * @param dimension the target dimension
+     * @return a new length quantity of the target dimension
+     */
     public ALength<?> toDimension(ELengthDims dimension) {
         return switch (dimension) {
             case LENGTH ->  to(QLength.class);
@@ -34,8 +76,13 @@ public abstract class ALength<Q extends ALength<Q>> extends AQuantity<Q, ELength
         };
     }
 
+    /**
+     * Converts this length to a specific type using reflection.
+     * @param targetType the target class
+     * @return a new instance of the target type
+     * @param <T> the type of length
+     */
     public <T extends ALength<T>> T to(Class<T> targetType) {
-    // Use reflection or a factory to create the target type
         try {
             return targetType.getConstructor(Double.class, ELengths.class)
                             .newInstance(this.getValue(), this.getUnit());
@@ -46,6 +93,11 @@ public abstract class ALength<Q extends ALength<Q>> extends AQuantity<Q, ELength
 
     // Dimension Conversions
 
+    /**
+     * Returns the area (square) of the given length.
+     * @param length the length
+     * @return a QArea instance
+     */
     public QArea toArea(Q length) {
         if (length == null) {
             throw new IllegalArgumentException("Cannot take the nullified length.");
@@ -54,6 +106,11 @@ public abstract class ALength<Q extends ALength<Q>> extends AQuantity<Q, ELength
         return new QArea(new_value, this.getUnit());
     }
 
+    /**
+     * Returns the volume (cube) of the given length.
+     * @param length the length
+     * @return a QVolume instance
+     */
     public QVolume toVolume(Q length) {
         if (length == null) {
             throw new IllegalArgumentException("Cannot take the nullified length.");
@@ -62,55 +119,87 @@ public abstract class ALength<Q extends ALength<Q>> extends AQuantity<Q, ELength
         return new QVolume(new_value, this.getUnit());
     }
 
+    /**
+     * Divides this length by another length, returning a QLength.
+     * @param divisor the divisor length
+     * @return a QLength instance
+     */
     public QLength div (QLength divisor) {
-        if (divisor.getBaseValue() == 0 || divisor == null) {
+        if (divisor == null || divisor.getBaseValue() == 0) {
             throw new IllegalArgumentException("Division by zero or null is not allowed.");
         }
         double new_value = this.getUnit().fromBaseValue(this.getBaseValue() / divisor.getBaseValue());
         return new QLength(new_value, this.getUnit());
     }
 
+    // Unit conversion methods
 
-
-    
-
-    // convert of specific units
-    
+	/** @return this length in meters */
 	public Q ofMeter() { return this.of(ELengths.METER);}
-	public Q ofKilometer() {return this.of(ELengths.KILOMETER);	}
-	public Q ofMillimeter() {return this.of(ELengths.MILLIMETER);	}
-	public Q ofFoot() {	return this.of(ELengths.FOOT);}
-	public Q ofNauticalMile() {	return this.of(ELengths.NAUTMILE);}
-	public Q ofDataMile() {	return this.of(ELengths.DATAMILE);	}
-	public Q ofFlightLevel() {	return this.of(ELengths.FLIGHTLEVEL);}
-	public Q ofYard() {	return this.of(ELengths.YARD);}
-	public Q ofInch() {	return this.of(ELengths.INCH);	}
-	public Q ofMile() {	return this.of(ELengths.MILE);}
+	/** @return this length in kilometers */
+	public Q ofKilometer() {return this.of(ELengths.KILOMETER);}
+	/** @return this length in millimeters */
+	public Q ofMillimeter() {return this.of(ELengths.MILLIMETER);}
+	/** @return this length in feet */
+	public Q ofFoot() {return this.of(ELengths.FOOT);}
+	/** @return this length in nautical miles */
+	public Q ofNauticalMile() {return this.of(ELengths.NAUTMILE);}
+	/** @return this length in data miles */
+	public Q ofDataMile() {return this.of(ELengths.DATAMILE);}
+	/** @return this length in flight levels */
+	public Q ofFlightLevel() {return this.of(ELengths.FLIGHTLEVEL);}
+	/** @return this length in yards */
+	public Q ofYard() {return this.of(ELengths.YARD);}
+	/** @return this length in inches */
+	public Q ofInch() {return this.of(ELengths.INCH);}
+	/** @return this length in miles */
+	public Q ofMile() {return this.of(ELengths.MILE);}
 
-    // convert of specific units with value
+    // Unit conversion with value
+
+    /** @return a new length in meters */
     public Q ofMeter(Double value) { return this.of(value, ELengths.METER);}
-    public Q ofKilometer(Double value) {return this.of(value, ELengths.KILOMETER);	}
-    public Q ofMillimeter(Double value) {return this.of(value, ELengths.MILLIMETER);	}
-    public Q ofFoot(Double value) {	return this.of(value, ELengths.FOOT);}
-    public Q ofNauticalMile(Double value) {	return this.of(value, ELengths.NAUTMILE);}
-    public Q ofDataMile(Double value) {	return this.of(value, ELengths.DATAMILE);	}
-    public Q ofFlightLevel(Double value) {	return this.of(value, ELengths.FLIGHTLEVEL);}
-    public Q ofYard(Double value) {	return this.of(value, ELengths.YARD);}
-    public Q ofInch(Double value) {	return this.of(value, ELengths.INCH);	}
-    public Q ofMile(Double value) {	return this.of(value, ELengths.MILE);}
+    /** @return a new length in kilometers */
+    public Q ofKilometer(Double value) {return this.of(value, ELengths.KILOMETER);}
+    /** @return a new length in millimeters */
+    public Q ofMillimeter(Double value) {return this.of(value, ELengths.MILLIMETER);}
+    /** @return a new length in feet */
+    public Q ofFoot(Double value) {return this.of(value, ELengths.FOOT);}
+    /** @return a new length in nautical miles */
+    public Q ofNauticalMile(Double value) {return this.of(value, ELengths.NAUTMILE);}
+    /** @return a new length in data miles */
+    public Q ofDataMile(Double value) {return this.of(value, ELengths.DATAMILE);}
+    /** @return a new length in flight levels */
+    public Q ofFlightLevel(Double value) {return this.of(value, ELengths.FLIGHTLEVEL);}
+    /** @return a new length in yards */
+    public Q ofYard(Double value) {return this.of(value, ELengths.YARD);}
+    /** @return a new length in inches */
+    public Q ofInch(Double value) {return this.of(value, ELengths.INCH);}
+    /** @return a new length in miles */
+    public Q ofMile(Double value) {return this.of(value, ELengths.MILE);}
 
-    // get value in specific units
+    // Get value in specific units
 
-	public Double inMeter() { return this.inUnit(ELengths.METER);	}
-	public Double inKilometer() { return this.inUnit(ELengths.KILOMETER);	}
-    public Double inMillimeter() { return this.inUnit(ELengths.MILLIMETER);	}
-	public Double inYard() { return this.inUnit(ELengths.YARD);	}
-    public Double inFoot() { return this.inUnit(ELengths.FOOT);	}
-	public Double inInch() { return this.inUnit(ELengths.INCH);	}
-    public Double inMile() { return this.inUnit(ELengths.MILE);	}
-	public Double inNautMile() { return this.inUnit(ELengths.NAUTMILE);	}
-	public Double inDataMile() { return this.inUnit(ELengths.DATAMILE);	}
-	public Double inFlightLevel() { return this.inUnit(ELengths.FLIGHTLEVEL);	}
+	/** @return the value in meters */
+	public Double inMeter() { return this.inUnit(ELengths.METER);}
+	/** @return the value in kilometers */
+	public Double inKilometer() { return this.inUnit(ELengths.KILOMETER);}
+    /** @return the value in millimeters */
+    public Double inMillimeter() { return this.inUnit(ELengths.MILLIMETER);}
+	/** @return the value in yards */
+	public Double inYard() { return this.inUnit(ELengths.YARD);}
+    /** @return the value in feet */
+    public Double inFoot() { return this.inUnit(ELengths.FOOT);}
+	/** @return the value in inches */
+	public Double inInch() { return this.inUnit(ELengths.INCH);}
+    /** @return the value in miles */
+    public Double inMile() { return this.inUnit(ELengths.MILE);}
+	/** @return the value in nautical miles */
+	public Double inNautMile() { return this.inUnit(ELengths.NAUTMILE);}
+	/** @return the value in data miles */
+	public Double inDataMile() { return this.inUnit(ELengths.DATAMILE);}
+	/** @return the value in flight levels */
+	public Double inFlightLevel() { return this.inUnit(ELengths.FLIGHTLEVEL);}
 
 }
 

@@ -1,57 +1,112 @@
+
 package qmeasures.core;
 
+/**
+ * Interface for types that support clamping of values to a valid range.
+ * Used by dimensions to enforce min/max bounds and special clamping logic.
+ */
 public interface Clampable {
-    
+    /**
+     * Gets the minimum valid base value.
+     * @return the minimum value
+     */
     double getMinBase();
-    
+    /**
+     * Gets the maximum valid base value.
+     * @return the maximum value
+     */
     double getMaxBase();
 
+    /**
+     * Enumeration of clamping modes for value handling.
+     */
     enum EClampMode {
-        NONE,
-        MIN, // clamps to min only
-        MAX,  // clamps to max only
-        BOUND, // clamps to min/max
-        CYCLE, // wraps around from max to min
-        BOUNCE, // like cycle but reverses direction at min and max
-        WRAP, // like cycle but offset by min value
-        LATITUDE,   // like cycle  for Latitude (0 to 90, 90 to 0, 0 to -90, -90 to 0)
-        LONGITUDE  // like cycle  for Longitude (-180 to 0, 0 to 180, -180 to 0, wrapping around)
+        NONE,      // No clamping
+        MIN,       // Clamps to min only
+        MAX,       // Clamps to max only
+        BOUND,     // Clamps to min/max
+        CYCLE,     // Wraps around from max to min
+        BOUNCE,    // Like cycle but reverses direction at min and max
+        WRAP,      // Like cycle but offset by min value
+        LATITUDE,  // Special for Latitude (-90 to 90)
+        LONGITUDE  // Special for Longitude (-180 to 180)
     }
 
+    /**
+     * Validates that min is not greater than max.
+     * @param min the minimum value
+     * @param max the maximum value
+     */
     default void validateMinMaxValues(double min, double max) {
         if (min > max) {
             throw new IllegalArgumentException("Minimum value cannot be greater than maximum value.");
         }
     }
 
+    /**
+     * Gets the clamping mode for this type.
+     * @return the clamp mode
+     */
     default EClampMode getClampMode() {
         return EClampMode.NONE;
     }
 
+    /**
+     * Gets the range between min and max.
+     * @return the clamp range
+     */
     default double getClampRange() {
         return getMaxBase() - getMinBase();
     }
 
+    /**
+     * Returns true if clamping is enabled.
+     * @return true if clamping
+     */
     default boolean isClampingMode() {
         return getClampMode() != EClampMode.NONE;
     }
 
+    /**
+     * Returns true if the clamp range is positive and clamping is enabled.
+     * @return true if clamping range is valid
+     */
     default boolean isClampingRange() {
         return isClampingMode() && getClampRange() > 0;
     }
 
+    /**
+     * Returns true if the value is within the clamp range.
+     * @param baseValue the value
+     * @return true if in range
+     */
     default boolean inClampRange(double baseValue) {
         return isClampingRange() && baseValue >= getMinBase() && baseValue <= getMaxBase();
     }
 
+    /**
+     * Returns true if the value is exactly the max base value.
+     * @param baseValue the value
+     * @return true if equal to max
+     */
     default boolean isEqualToMaxBase(double baseValue) {
         return isClampingRange() && baseValue == getMaxBase();
     }
 
+    /**
+     * Returns true if the value is exactly the min base value.
+     * @param baseValue the value
+     * @return true if equal to min
+     */
     default boolean isEqualToMinBase(double baseValue) {
         return isClampingRange() && baseValue == getMinBase();
     }
     
+    /**
+     * Clamps the value according to the clamp mode and min/max.
+     * @param baseValue the value
+     * @return the clamped value
+     */
     default double clampBaseValue(double baseValue) {
         if (inClampRange(baseValue)) return baseValue;
         switch (getClampMode()) {

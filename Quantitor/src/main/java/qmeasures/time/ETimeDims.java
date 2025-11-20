@@ -1,42 +1,75 @@
+
 package qmeasures.time;
 
 import qmeasures.core.Clampable;
 import qmeasures.core.IDimension;
 
 /**
- * Time-related quantity types with bounds expressed in seconds by convention.
- * Use duration when you're measuring how long something moves or operates. Speed = Distance / Duration
- * Use period when dealing with repetitive or cyclic motion, like waves, oscillations, or rotating systems. Speed = Wavelength / Period
+ * Enumeration of time dimensions (e.g., TIME, DURATION, PERIOD, FREQUENCY).
+ * Each dimension defines its abbreviation and valid base value range (in seconds).
+ * Use DURATION for elapsed time, PERIOD for cycles, FREQUENCY for rates.
  */
 public enum ETimeDims implements IDimension<ETimeDims> {
 
-    TIME("s", Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY), // +/- 100 years
+    /** Generic time (seconds, unbounded) */
+    TIME("s", Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY),
+    /** Duration (seconds, >= 0) */
     DURATION("s", 0.0, Double.POSITIVE_INFINITY),
+    /** Period (seconds, >= 0) */
     PERIOD("s", 0.0, Double.POSITIVE_INFINITY),
-    FREQUENCY("Hz", 0.0, Double.POSITIVE_INFINITY); // 1/second
+    /** Frequency (Hz, >= 0) */
+    FREQUENCY("Hz", 0.0, Double.POSITIVE_INFINITY);
 
-    private final String symbol;
-    
+    private final String abbreviation;
     private final double minBaseValue;
-
     private final double maxBaseValue;
 
-    ETimeDims(String symbol, double minBaseValue, double maxBaseValue) {
+    /**
+     * Constructs a time dimension with abbreviation and min/max base values (in seconds).
+     * @param abbreviation the abbreviation
+     * @param minBaseValue minimum base value (seconds)
+     * @param maxBaseValue maximum base value (seconds)
+     */
+    ETimeDims(String abbreviation, double minBaseValue, double maxBaseValue) {
         validateMinMaxValues(minBaseValue, maxBaseValue);
-        this.symbol = symbol;
+        this.abbreviation = abbreviation;
         this.minBaseValue = minBaseValue;
         this.maxBaseValue = maxBaseValue;
     }
 
+    /**
+     * Gets the clamping mode for this dimension (WRAP).
+     * @return the clamp mode
+     */
     @Override public Clampable.EClampMode getClampMode(){ return Clampable.EClampMode.WRAP; };
     
-    @Override public String getSymbol(){ return symbol; }
+    /**
+     * Gets the abbreviation for this dimension.
+     * @return the abbreviation
+     */
+    @Override public String getAbbrevation(){ return abbreviation; }
 
+    /**
+     * Gets the minimum base value (seconds).
+     * @return the minimum value
+     */
     @Override public double getMinBase(){ return minBaseValue; }
     
+    /**
+     * Gets the maximum base value (seconds).
+     * @return the maximum value
+     */
     @Override public double getMaxBase(){  return maxBaseValue; }
 
+    /**
+     * Gets the base dimension (always TIME).
+     * @return the base dimension
+     */
     @Override public ETimeDims getBaseDimension(){  return ETimeDims.TIME; };
 
+    /**
+     * Gets the base unit (always SECOND).
+     * @return the base unit
+     */
     @Override public ETimes getBaseUnit(){ return ETimes.SECOND; }
 }
