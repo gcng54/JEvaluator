@@ -18,11 +18,11 @@ public interface IQuantity<Q extends IQuantity<Q, U, E>, U extends IUnit<?>, E e
     
     default Double getValue() { return getUnit().fromBaseValue(getBaseValue()); }
 
-    default double getBaseValueClamped() { return getDimension().getBaseValueClamped(getBaseValue());   }
+    default double getClampedBaseValue() { return getDimension().clampBaseValue(getBaseValue());   }
 
-    default Double getValueClamped() { return getUnit().fromBaseValue(getBaseValueClamped());  }
+    default Double getClampedValue() { return getUnit().fromBaseValue(getClampedBaseValue());  }
 
-    default boolean isClamped() { return getBaseValue() != getBaseValueClamped(); }
+    default boolean isClamped() { return getBaseValue() != getClampedBaseValue(); }
 
     default String getUnitName() { return getUnit().getClassName(); }
 

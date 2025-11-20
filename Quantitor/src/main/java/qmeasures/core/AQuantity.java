@@ -26,7 +26,7 @@ public abstract class AQuantity<Q extends AQuantity<Q, U, E>, U extends IUnit<U>
         if (dimension == null) throw new IllegalArgumentException("dimension is null");
         this.dimension = dimension;
         this.unit = unit;
-        this.baseValue = dimension.getBaseValueClamped(unit.toBaseValue(value));
+        this.baseValue = unit.toBaseValue(value);
     }
 
     @Override public Double getValue() { return unit.fromBaseValue(baseValue); }

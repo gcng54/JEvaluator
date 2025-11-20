@@ -52,7 +52,7 @@ public interface Clampable {
         return isClampingRange() && baseValue == getMinBase();
     }
     
-    default double getBaseValueClamped(double baseValue) {
+    default double clampBaseValue(double baseValue) {
         if (inClampRange(baseValue)) return baseValue;
         switch (getClampMode()) {
             case MIN:
