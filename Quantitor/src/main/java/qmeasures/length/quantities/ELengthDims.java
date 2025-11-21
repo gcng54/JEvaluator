@@ -25,7 +25,7 @@ public enum ELengthDims implements IDimension<ELengthDims> {
     /** Altitude (meters, Dead Sea to 100 km) */
     ALTITUDE("Alt", -430.0, 100_000.0),
     /** Elevation (meters, Dead Sea to Everest) */
-    ELEVATION("Elev", -430.0, 8850.0),
+    RAKIM("Elev", -430.0, 8850.0),
     /** Height (meters, deep ocean to 1,000,000 m) */
     HEIGHT("Hgt", -11_000.0, 1_000_000.0),
     /** Depth (meters, deep ocean to surface) */

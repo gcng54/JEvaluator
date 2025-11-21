@@ -6,7 +6,7 @@ import qmeasures.time.ETimes;
 /**
  * Time quantity representing a duration (elapsed time, always >= 0).
  */
-public class QDuration extends ATime<QDuration> {
+public class QDuration extends ATimeDim<QDuration> {
 
     /**
      * Constructs a duration with the specified value and unit.

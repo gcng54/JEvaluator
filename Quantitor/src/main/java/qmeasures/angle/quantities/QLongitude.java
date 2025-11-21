@@ -2,7 +2,6 @@ package qmeasures.angle.quantities;
 
 import qmeasures.angle.EAngles;
 import qmeasures.angle.RDegMinSec;
-import qmeasures.angle.units.QDegree;
 import qmeasures.core.Clampable;
 
 import java.util.Locale;
@@ -11,10 +10,10 @@ import java.util.Locale;
  * Concrete angle quantity representing longitude.
  * Format is a "%03d:%02d:%05.2f%.c"
  */
-public final class QLongitude extends AAngle<QLongitude> {
+public final class QLongitude extends AAngleDim<QLongitude> {
 
-    public QLongitude(QDegree Degree) {
-        super(Degree.getValue(), EAngles.DEGREE, EAngleDims.LONGITUDE);
+    public QLongitude(AAngle<?> Angle) {
+        super(Angle, EAngleDims.LONGITUDE);
     }
 
     protected QLongitude(double degree) {

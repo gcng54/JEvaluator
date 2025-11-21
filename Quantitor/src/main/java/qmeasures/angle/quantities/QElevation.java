@@ -6,10 +6,10 @@ import qmeasures.angle.units.QDegree;
 /**
  * Concrete angle quantity representing course.
  */
-public final class QElevation extends AAngle<QElevation> {
+public final class QElevation extends AAngleDim<QElevation> {
 
-    public QElevation(QDegree Degree) {
-        super(Degree.getValue(), EAngles.DEGREE, EAngleDims.ELEVATION);
+    public QElevation(AAngle<?> Angle) {
+        super(Angle, EAngleDims.ELEVATION);
     }
 
     protected QElevation(double degree) {

@@ -5,7 +5,11 @@ import qmeasures.length.ELengths;
 /**
  * Concrete length quantity representing a distance.
  */
-public final class QHeight extends ALength<QHeight> {
+public final class QHeight extends ALengthDim<QHeight> {
+
+    public QHeight(ALength<?> length) {
+        super(length, ELengthDims.HEIGHT);
+    }
 
     public QHeight(double value) { super(value, ELengths.METER, ELengthDims.HEIGHT);  }
 
@@ -14,4 +18,3 @@ public final class QHeight extends ALength<QHeight> {
     @Override public QHeight of(double value, ELengths unit) { return new QHeight(value, unit);  }
 
 }
-

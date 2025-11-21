@@ -1,21 +1,11 @@
 package qmeasures.angle.quantities;
 
 import qmeasures.angle.EAngles;
-import qmeasures.angle.units.QDegree;
 
-public final class QBearing extends AAngle<QBearing> {
+public final class QBearing extends AAngleDim<QBearing> {
 
-    /**
-     * Constructs a QBearing instance with the specified value in degrees.
-     * <p>
-     * This constructor initializes the bearing quantity using the given value,
-     * setting the unit to degrees and the dimension to bearing.
-     * </p>
-     *
-     * @param value the bearing value in degrees
-     */
-    public QBearing(QDegree Degree) {
-        super(Degree.getValue(), EAngles.DEGREE, EAngleDims.BEARING);
+    public QBearing(AAngle<?> Angle) {
+        super(Angle, EAngleDims.BEARING);
     }
 
     protected QBearing(double degree) {

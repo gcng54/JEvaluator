@@ -23,10 +23,10 @@ import qmeasures.angle.units.QDegree;
  * @see EAngleDims
  */
 
-public final class QRotation extends AAngle<QRotation> {
+public final class QRotation extends AAngleDim<QRotation> {
 
-    public QRotation(QDegree Degree) {
-        super(Degree.getValue(), EAngles.DEGREE, EAngleDims.ROTATION);
+    public QRotation(AAngle<?> Angle) {
+        super(Angle, EAngleDims.ROTATION);
     }
 
     protected QRotation(double degree) {

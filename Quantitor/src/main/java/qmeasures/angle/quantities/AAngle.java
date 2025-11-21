@@ -5,7 +5,6 @@ import org.jetbrains.annotations.NotNull;
 import qmeasures.angle.EAngles;
 import qmeasures.angle.QAngle;
 import qmeasures.angle.RDegMinSec;
-import qmeasures.angle.units.QDegree;
 import qmeasures.core.AQuantity;
 import qmeasures.core.Clampable;
 
@@ -30,12 +29,6 @@ public abstract class AAngle<Q extends AAngle<Q>> extends AQuantity<Q, EAngles, 
 	 * @param value the value in degrees
 	 */
 	protected AAngle(double degree) {  super(degree, EAngles.DEGREE, EAngleDims.ANGLE);  }
-
-	/**
-	 * Constructs an angle quantity with the specified value, using degrees and ANGLE as defaults.
-	 * @param value the value in degrees
-	 */
-	protected AAngle(QDegree Degree) {  super(Degree.getValue(), EAngles.DEGREE, EAngleDims.ANGLE);  }
 
 	/**
 	 * Creates a new instance of this angle type with the given value and unit.
@@ -80,6 +73,7 @@ public abstract class AAngle<Q extends AAngle<Q>> extends AQuantity<Q, EAngles, 
 			case DIRECTION ->  to(QDirection.class);
 			case ROTATION ->  to(QRotation.class);
 			case ORIENTATION ->  to(QOrientation.class);
+			case ALTITUDE -> to(QAltitude.class);
 			default -> throw new IllegalArgumentException("Unexpected value: " + dimension);
 		};
 	}
@@ -260,4 +254,3 @@ public abstract class AAngle<Q extends AAngle<Q>> extends AQuantity<Q, EAngles, 
 	public double inArcSecond() { return this.inUnit(EAngles.ARCSECOND);}    
 
 }
-

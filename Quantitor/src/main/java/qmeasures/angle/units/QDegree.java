@@ -3,6 +3,7 @@ package qmeasures.angle.units;
 import qmeasures.angle.EAngles;
 import qmeasures.angle.quantities.AAngle;
 import qmeasures.angle.quantities.EAngleDims;
+import qmeasures.angle.QAngle;
 
 /**
  * Represents an angle measured in degrees.

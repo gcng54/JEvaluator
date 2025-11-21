@@ -6,7 +6,7 @@ import qmeasures.time.ETimes;
 /**
  * Time quantity representing a frequency (cycles per second, Hz).
  */
-public class QFrequency extends ATime<QFrequency> {
+public class QFrequency extends ATimeDim<QFrequency> {
 
     /**
      * Constructs a frequency with the specified value and unit.

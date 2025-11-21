@@ -1,6 +1,7 @@
 package qmeasures.angle;
 
 import qmeasures.angle.quantities.AAngle;
+import qmeasures.angle.quantities.AAngleDim;
 import qmeasures.angle.quantities.EAngleDims;
 import qmeasures.angle.units.QDegree;
 
@@ -24,11 +25,11 @@ import qmeasures.angle.units.QDegree;
  * @see EAngles
  * @see EAngleDims
  */
-public final class QAngle extends AAngle<QAngle> {
+public class QAngle extends AAngleDim<QAngle> {
 
-    public QAngle(QDegree Degree) {
-        super(Degree.getValue(), EAngles.DEGREE, EAngleDims.ANGLE);
-    }
+    public QAngle(AAngle<?> Angle) {
+        super(Angle);  }
+
 
     protected QAngle(double degree) {
         super(degree, EAngles.DEGREE, EAngleDims.ANGLE);

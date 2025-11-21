@@ -1,17 +1,16 @@
 package qmeasures.angle.quantities;
 
 import qmeasures.angle.EAngles;
-import qmeasures.angle.units.QDegree;
+
 
 /**
  * Concrete angle quantity representing direction.
  */
-public final class QDirection extends AAngle<QDirection> {
+public final class QDirection extends AAngleDim<QDirection> {
 
-    public QDirection(QDegree Degree) {
-        super(Degree.getValue(), EAngles.DEGREE, EAngleDims.DIRECTION);
+    public QDirection(AAngle<?> Angle) {
+        super(Angle, EAngleDims.DIRECTION);
     }
-
     protected QDirection(double degree) {
         super(degree, EAngles.DEGREE, EAngleDims.DIRECTION);
     }

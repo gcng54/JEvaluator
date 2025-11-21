@@ -3,6 +3,7 @@ package qmeasures.angle.quantities;
 import qmeasures.angle.EAngles;
 import qmeasures.angle.RDegMinSec;
 import qmeasures.angle.units.QDegree;
+import qmeasures.angle.units.QRadian;
 import qmeasures.core.Clampable;
 
 import java.util.Locale;
@@ -11,10 +12,10 @@ import java.util.Locale;
  * Concrete angle quantity representing latitude.
  * Format is a "%02d:%02d:%05.2f.%c"
  */
-public final class QLatitude extends AAngle<QLatitude> {
+public final class QLatitude extends AAngleDim<QLatitude> {
 
-    public QLatitude(QDegree Degree) {
-        super(Degree.getValue(), EAngles.DEGREE, EAngleDims.LATITUDE);
+    public QLatitude(AAngle<?> Angle) {
+        super(Angle, EAngleDims.LATITUDE);
     }
 
     protected QLatitude(double degree) {
@@ -23,6 +24,24 @@ public final class QLatitude extends AAngle<QLatitude> {
 
     public QLatitude(double value, EAngles unit) {
         super(value, unit, EAngleDims.LATITUDE);
+    }
+
+    /**
+     * Creates a Latitude from a Degree quantity.
+     * @param degree the degree quantity
+     * @return new QLatitude
+     */
+    public static QLatitude of(QDegree degree) {
+        return new QLatitude(degree.getValue(), EAngles.DEGREE);
+    }
+
+    /**
+     * Creates a Latitude from a Radian quantity.
+     * @param radian the radian quantity
+     * @return new QLatitude
+     */
+    public static QLatitude of(QRadian radian) {
+        return new QLatitude(radian.getValue(), EAngles.RADIAN);
     }
 
     @Override public QLatitude of(double value, EAngles unit) {
@@ -39,7 +58,7 @@ public final class QLatitude extends AAngle<QLatitude> {
         char orientation = getBaseValue() >= 0 ? 'N' : 'S';
 
         return String.format(Locale.ENGLISH,"%02d:%02d:%05.2f.%c",
-                             degMinSec.absDegree(), degMinSec.Minute(), degMinSec.Second(), orientation);
+                            degMinSec.absDegree(), degMinSec.Minute(), degMinSec.Second(), orientation);
     }
 
 }

@@ -5,7 +5,11 @@ import qmeasures.length.ELengths;
 /**
  * Concrete length quantity representing a distance.
  */
-public final class QEarthRadius extends ALength<QEarthRadius> {
+public final class QEarthRadius extends ALengthDim<QEarthRadius> {
+
+    public QEarthRadius(ALength<?> length) {
+        super(length, ELengthDims.EARTH_RADIUS);
+    }
 
     public QEarthRadius(double value) { super(value, ELengths.METER, ELengthDims.EARTH_RADIUS);  }
 
@@ -14,4 +18,3 @@ public final class QEarthRadius extends ALength<QEarthRadius> {
     @Override public QEarthRadius of(double value, ELengths unit) { return new QEarthRadius(value, unit);  }
 
 }
-

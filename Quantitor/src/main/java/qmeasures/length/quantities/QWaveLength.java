@@ -5,13 +5,16 @@ import qmeasures.length.ELengths;
 /**
  * Concrete length quantity representing a distance.
  */
-public final class QWaveLength extends ALength<QWaveLength> {
+public final class QWaveLength extends ALengthDim<QWaveLength> {
 
-    public QWaveLength(double value) { super(value, ELengths.METER, ELengthDims.DISTANCE);  }
+    public QWaveLength(ALength<?> length) {
+        super(length, ELengthDims.WAVE_LENGTH);
+    }
 
-    public QWaveLength(double value, ELengths unit) { super(value, unit, ELengthDims.DISTANCE);  }
+    public QWaveLength(double value) { super(value, ELengths.METER, ELengthDims.WAVE_LENGTH);  }
+
+    public QWaveLength(double value, ELengths unit) { super(value, unit, ELengthDims.WAVE_LENGTH);  }
 
     @Override public QWaveLength of(double value, ELengths unit) { return new QWaveLength(value, unit);  }
 
 }
-

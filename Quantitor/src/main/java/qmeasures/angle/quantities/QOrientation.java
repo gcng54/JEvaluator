@@ -1,15 +1,14 @@
 package qmeasures.angle.quantities;
 
 import qmeasures.angle.EAngles;
-import qmeasures.angle.units.QDegree;
 
 /**
  * Concrete angle quantity representing orientation.
  */
-public final class QOrientation extends AAngle<QOrientation> {
+public final class QOrientation extends AAngleDim<QOrientation> {
 
-    public QOrientation(QDegree Degree) {
-        super(Degree.getValue(), EAngles.DEGREE, EAngleDims.ORIENTATION);
+    public QOrientation(AAngle<?> Angle) {
+        super(Angle, EAngleDims.ORIENTATION);
     }
 
     protected QOrientation(double degree) {

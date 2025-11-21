@@ -1,15 +1,14 @@
 package qmeasures.angle.quantities;
 
 import qmeasures.angle.EAngles;
-import qmeasures.angle.units.QDegree;
 
 /**
  * Concrete angle quantity representing heading.
  */
-public final class QHeading extends AAngle<QHeading> {
+public final class QHeading extends AAngleDim<QHeading> {
 
-    public QHeading(QDegree Degree) {
-        super(Degree.getValue(), EAngles.DEGREE, EAngleDims.HEADING);
+    public QHeading(AAngle<?> Angle) {
+        super(Angle, EAngleDims.HEADING);
     }
 
     protected QHeading(double degree) {

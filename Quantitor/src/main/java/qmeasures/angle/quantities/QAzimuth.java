@@ -1,14 +1,14 @@
 package qmeasures.angle.quantities;
 
 import qmeasures.angle.EAngles;
-import qmeasures.angle.units.QDegree;
+
 
 /**
  * Concrete angle quantity representing azimuth.
  */
-public final class QAzimuth extends AAngle<QAzimuth> {
-    public QAzimuth(QDegree Degree) {
-        super(Degree.getValue(), EAngles.DEGREE, EAngleDims.AZIMUTH);
+public final class QAzimuth extends AAngleDim<QAzimuth> {
+    public QAzimuth(AAngle<?> Angle) {
+        super(Angle, EAngleDims.AZIMUTH);
     }
 
     protected QAzimuth(double degree) {

@@ -74,7 +74,7 @@ public abstract class ALength<Q extends ALength<Q>> extends AQuantity<Q, ELength
             case DISTANCE ->  to(QDistance.class);
             case ALTITUDE ->  to(QAltitude.class);
             case EARTH_RADIUS ->  to(QEarthRadius.class);
-            case ELEVATION ->  to(QElevation.class);
+            case RAKIM ->  to(QRakim.class);
             case RANGE ->  to(QRange.class);
             case HEIGHT ->  to(QHeight.class);
             case WAVE_LENGTH ->  to(QWaveLength.class);

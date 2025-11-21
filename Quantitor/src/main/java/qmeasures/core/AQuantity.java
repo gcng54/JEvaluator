@@ -80,7 +80,6 @@ public abstract class AQuantity<Q extends AQuantity<Q, U, E>, U extends IUnit<U>
 
     public Q getMaxQ() { return of(unit.fromBaseValue(dimension.getMaxBase()), unit);  }
 
-
     /**
      * Returns true if the value was clamped.
      * @return true if clamped

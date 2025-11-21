@@ -1,13 +1,13 @@
 package qmeasures.time.quantities;
 
+
 import qmeasures.time.ETimes;
 
-// Time for one full cycle of a repeating event
-// Uses period when dealing with repetitive or cyclic motion, like waves, oscillations, or rotating systems.
-// Speed = Wavelength / Period
-public class QPeriod extends ATime<QPeriod> {
+public class QPeriod extends ATimeDim<QPeriod> {
 
-	public QPeriod(double value, ETimes unit) { super(value, unit, ETimeDims.DURATION); }
+    public QPeriod(ATime<?> time) { super(time, ETimeDims.PERIOD);  }
+
+	public QPeriod(double value, ETimes unit) { super(value, unit, ETimeDims.PERIOD); }
 
     public QPeriod(double value) { this(value, ETimes.SECOND); }
     
