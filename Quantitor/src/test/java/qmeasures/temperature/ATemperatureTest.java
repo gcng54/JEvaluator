@@ -1,6 +1,9 @@
 package qmeasures.temperature;
 
 import org.junit.jupiter.api.Test;
+
+import qmeasures.temperature.quantities.ETemperatureDims;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ATemperatureTest {
@@ -57,7 +60,7 @@ class ATemperatureTest {
 
     @Test
     void testToDimension() {
-        QTemperature temp = new QTemperature(0.0, ETemperatures.KELVIN);
+       // QTemperature temp = new QTemperature(0.0, ETemperatures.KELVIN);
         // Since QKelvin, QCelsius, QFahrenheit are not available, just check for IllegalStateException for unknown dim
        //  assertThrows(IllegalStateException.class, () -> temp.toDimension(null));
     }

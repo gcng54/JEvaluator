@@ -3,6 +3,11 @@ package qmeasures.length;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import qmeasures.core.Clampable;
+import qmeasures.length.quantities.ELengthDims;
+import qmeasures.length.quantities.QAltitude;
+import qmeasures.length.quantities.QDistance;
+import qmeasures.length.quantities.QHeight;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 // Test class

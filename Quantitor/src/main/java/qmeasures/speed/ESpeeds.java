@@ -3,6 +3,7 @@ package qmeasures.speed;
 import java.util.Locale;
 
 import qmeasures.core.IUnit;
+import qmeasures.speed.quantities.ESpeedDims;
 
 /**
  * Enumeration of speed units (e.g., meters per second, kilometers per hour, knots).

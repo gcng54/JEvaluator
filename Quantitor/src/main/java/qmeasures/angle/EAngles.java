@@ -4,6 +4,7 @@ package qmeasures.angle;
 import java.util.Locale;
 import java.util.Objects;
 
+import qmeasures.angle.quantities.EAngleDims;
 import qmeasures.core.IUnit;
 
 
@@ -21,9 +22,9 @@ public enum EAngles implements IUnit<EAngles> {
     /** Gradian (1 grad = 0.9 degrees) */
     GRADIAN("gon", 0.9),
     /** Arc minute (1 arc min = 1/60 degrees) */
-    ARC_MINUTE("'", 1.0 / 60.0),
+    ARCMINUTE("'", 1.0 / 60.0),
     /** Arc second (1 arcsec = 1/3600 degrees) */
-    ARC_SECOND("\"", 1.0 / 3600.0);
+    ARCSECOND("\"", 1.0 / 3600.0);
     
     private final String symbol;
     private final double factor;

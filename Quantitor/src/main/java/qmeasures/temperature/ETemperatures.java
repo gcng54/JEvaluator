@@ -2,6 +2,7 @@
 package qmeasures.temperature;
 
 import qmeasures.core.IUnit;
+import qmeasures.temperature.quantities.ETemperatureDims;
 
 /**
  * Enumeration of temperature units (Kelvin, Celsius, Fahrenheit).

@@ -3,6 +3,10 @@ package qmeasures.speed;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import qmeasures.core.Clampable;
+import qmeasures.speed.quantities.ESpeedDims;
+import qmeasures.speed.quantities.QAirSpeed;
+import qmeasures.speed.quantities.QGroundSpeed;
+import qmeasures.speed.quantities.QSeaSpeed;
 
 
 public class ASpeedTest {

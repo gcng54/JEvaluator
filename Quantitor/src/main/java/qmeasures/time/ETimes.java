@@ -3,6 +3,7 @@ package qmeasures.time;
 
 import java.util.Locale;
 import qmeasures.core.IUnit;
+import qmeasures.time.quantities.ETimeDims;
 
 /**
  * Enumeration of time units (e.g., SECOND, MINUTE, HOUR, DAY).

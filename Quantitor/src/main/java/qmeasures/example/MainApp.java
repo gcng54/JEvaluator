@@ -1,10 +1,15 @@
 package qmeasures.example;
 
 import qmeasures.angle.*;
+import qmeasures.angle.quantities.QAzimuth;
+import qmeasures.angle.units.QDegree;
 import qmeasures.length.*;
 import qmeasures.speed.*;
 import qmeasures.time.*;
-import qmeasures.temperature.*;
+import qmeasures.time.quantities.QDuration;
+import qmeasures.temperature.units.QCelsius;
+import qmeasures.temperature.units.QFahrenheit;
+import qmeasures.temperature.units.QKelvin;
 
 /**
  * Example application demonstrating usage of quantity classes.
@@ -22,7 +27,7 @@ public class MainApp {
         QAngle angleRad = angle.ofRadian(Math.PI / 2);
         System.out.println("Angle from radians (should be 90°): " + angleRad.inDegree());
         System.out.println("Is angle a quarter turn? " + angle.isTurnQuarter());
-        QAzimuth azimuth = new QAzimuth(45.0);
+        QAzimuth azimuth = new QAzimuth(new QDegree(45.0));
         System.out.println("Azimuth in degrees: " + azimuth.inDegree());
         System.out.println("Azimuth as QAngle: " + azimuth.to(QAngle.class).inDegree());
 

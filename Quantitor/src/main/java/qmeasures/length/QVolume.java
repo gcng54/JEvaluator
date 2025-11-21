@@ -1,5 +1,8 @@
 package qmeasures.length;
 
+import qmeasures.length.quantities.ALength;
+import qmeasures.length.quantities.ELengthDims;
+
 public class QVolume extends ALength<QVolume> {
 
     public QVolume(double value, ELengths unit) {

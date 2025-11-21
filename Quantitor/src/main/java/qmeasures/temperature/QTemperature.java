@@ -1,5 +1,8 @@
 package qmeasures.temperature;
 
+import qmeasures.temperature.quantities.ATemperature;
+import qmeasures.temperature.quantities.ETemperatureDims;
+
 /**
  * Concrete length quantity representing a distance.
  */

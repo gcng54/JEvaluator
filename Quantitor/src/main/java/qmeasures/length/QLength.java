@@ -1,5 +1,8 @@
 package qmeasures.length;
 
+import qmeasures.length.quantities.ALength;
+import qmeasures.length.quantities.ELengthDims;
+
 /**
  * Concrete length quantity representing a distance.
  */

@@ -1,6 +1,9 @@
 
 package qmeasures.speed;
 
+import qmeasures.speed.quantities.ASpeed;
+import qmeasures.speed.quantities.ESpeedDims;
+
 /**
  * Speed quantity representing generic speed (default unit: meters per second).
  */

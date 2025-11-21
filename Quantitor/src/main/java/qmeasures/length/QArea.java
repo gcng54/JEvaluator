@@ -1,5 +1,8 @@
 package qmeasures.length;
 
+import qmeasures.length.quantities.ALength;
+import qmeasures.length.quantities.ELengthDims;
+
 public class QArea extends ALength<QArea> {
 
     public QArea(double value, ELengths unit) {

@@ -3,6 +3,16 @@ package qmeasures.angle;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import qmeasures.angle.quantities.EAngleDims;
+import qmeasures.angle.quantities.QAzimuth;
+import qmeasures.angle.quantities.QBearing;
+import qmeasures.angle.quantities.QElevation;
+import qmeasures.angle.quantities.QDirection;
+import qmeasures.angle.quantities.QHeading;
+import qmeasures.angle.quantities.QLatitude;
+import qmeasures.angle.quantities.QLongitude;
+import qmeasures.angle.quantities.QOrientation;
+import qmeasures.angle.quantities.QRotation;
 import qmeasures.core.Clampable;
 
 /**
@@ -119,8 +129,8 @@ public class AAngleTest {
         assertEquals(EAngles.RADIAN, a.ofRadian().getUnit());
         assertEquals(EAngles.TURN, a.ofTurn().getUnit());
         assertEquals(EAngles.GRADIAN, a.ofGradian().getUnit());
-        assertEquals(EAngles.ARC_MINUTE, a.ofArcMinute().getUnit());
-        assertEquals(EAngles.ARC_SECOND, a.ofArcSecond().getUnit());
+        assertEquals(EAngles.ARCMINUTE, a.ofArcMinute().getUnit());
+        assertEquals(EAngles.ARCSECOND, a.ofArcSecond().getUnit());
 
         assertEquals(45.0, a.ofDegree(45.0).getValue(), EPS);
         assertEquals(Math.PI, a.ofRadian(Math.PI).getValue(), EPS);
@@ -136,7 +146,7 @@ public class AAngleTest {
         assertInstanceOf(QBearing.class, a.toDimension(EAngleDims.BEARING));
         assertInstanceOf(QAzimuth.class, a.toDimension(EAngleDims.AZIMUTH));
         assertInstanceOf(QHeading.class, a.toDimension(EAngleDims.HEADING));
-        assertInstanceOf(QCourse.class, a.toDimension(EAngleDims.COURSE));
+        assertInstanceOf(QElevation.class, a.toDimension(EAngleDims.ELEVATION));
         assertInstanceOf(QDirection.class, a.toDimension(EAngleDims.DIRECTION));
         assertInstanceOf(QRotation.class, a.toDimension(EAngleDims.ROTATION));
         assertInstanceOf(QOrientation.class, a.toDimension(EAngleDims.ORIENTATION));

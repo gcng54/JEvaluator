@@ -3,6 +3,7 @@ package qmeasures.length;
 
 import java.util.Locale;
 import qmeasures.core.IUnit;
+import qmeasures.length.quantities.ELengthDims;
 
 /**
  * Enumeration of common length units, with meter as the base unit.

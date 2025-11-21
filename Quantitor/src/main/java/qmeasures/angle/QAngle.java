@@ -1,12 +1,37 @@
 package qmeasures.angle;
 
+import qmeasures.angle.quantities.AAngle;
+import qmeasures.angle.quantities.EAngleDims;
+import qmeasures.angle.units.QDegree;
+
 /**
- * Concrete base angle quantity representing a angle dimension.
+ * Represents an angle quantity with a specific value and unit.
+ * <p>
+ * QAngle extends {@link AAngle} and provides constructors for creating angle instances
+ * in degrees or with a specified {@link EAngles} unit. This class is immutable and final.
+ * It clamps by {@link EAngleDims#ANGLE} within {@link QAngle#getMinQ()} and {@link QAngle#getMaxQ()}.
+ * </p>
+ *
+ * <p>
+ * Example usage:
+ * <pre>
+ *     QAngle angleInDegrees = new QAngle(90.0);
+ *     QAngle angleInRadians = new QAngle(Math.PI, EAngles.RADIAN);
+ * </pre>
+ * </p>
+ *
+ * @see AAngle
+ * @see EAngles
+ * @see EAngleDims
  */
 public final class QAngle extends AAngle<QAngle> {
 
-    public QAngle(double value) {
-        super(value, EAngles.DEGREE, EAngleDims.ANGLE);
+    public QAngle(QDegree Degree) {
+        super(Degree.getValue(), EAngles.DEGREE, EAngleDims.ANGLE);
+    }
+
+    protected QAngle(double degree) {
+        super(degree, EAngles.DEGREE, EAngleDims.ANGLE);
     }
 
     public QAngle(double value, EAngles unit) {

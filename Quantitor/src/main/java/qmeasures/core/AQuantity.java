@@ -72,6 +72,15 @@ public abstract class AQuantity<Q extends AQuantity<Q, U, E>, U extends IUnit<U>
      */
     @Override public double getValue() { return unit.fromBaseValue(baseValue); }
 
+    public double getMinValue() { return unit.fromBaseValue(dimension.getMinBase()); }
+
+    public double getMaxValue() { return unit.fromBaseValue(dimension.getMaxBase());  }
+
+    public Q getMinQ() { return of(unit.fromBaseValue(dimension.getMinBase()), unit); }
+
+    public Q getMaxQ() { return of(unit.fromBaseValue(dimension.getMaxBase()), unit);  }
+
+
     /**
      * Returns true if the value was clamped.
      * @return true if clamped
@@ -117,7 +126,7 @@ public abstract class AQuantity<Q extends AQuantity<Q, U, E>, U extends IUnit<U>
      * @param other the other quantity
      * @return comparison result
      */
-    @Override public int compareTo( AQuantity other) {
+    @Override public int compareTo(@SuppressWarnings("rawtypes") AQuantity other) {
         double thisBaseValue = this.getUnit().toBaseValue(this.getValue());
         double otherBaseValue = other.getUnit().toBaseValue(other.getValue());
         return Double.compare(thisBaseValue, otherBaseValue);

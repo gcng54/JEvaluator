@@ -1,6 +1,9 @@
 
 package qmeasures.time;
 
+import qmeasures.time.quantities.ATime;
+import qmeasures.time.quantities.ETimeDims;
+
 /**
  * Time quantity representing a value in seconds.
  */
