@@ -3,9 +3,9 @@ package qmeasures.angle.quantities;
 import org.jetbrains.annotations.NotNull;
 
 import qmeasures.angle.units.EAngles;
-import qmeasures.common.RDegMinSec;
 import qmeasures.core.AQuantity;
 import qmeasures.core.Clampable;
+import qmeasures.qgeodetics.RDegMinSec;
 
 /**
  * Abstract base class for all angle quantities (e.g., latitude, longitude, bearing, azimuth).
@@ -29,6 +29,15 @@ public abstract class AAngle<Q extends AAngle<Q>> extends AQuantity<Q, EAngles, 
 	 */
 	protected AAngle(double degree) {  super(degree, EAngles.DEGREE, EAngleDims.ANGLE);  }
 
+
+	/**
+	 * Constructs an angle quantity with the specified value, using degrees and ANGLE as defaults.
+	 * @param degree the value in degrees
+	 */
+	protected AAngle(int Degree, int Minute, double Second) {
+		super(new RDegMinSec(Degree, Minute, Second).toDegrees(), EAngles.DEGREE, EAngleDims.ANGLE);  }
+
+
 	/**
 	 * Creates a new instance of this angle type with the given value and unit.
 	 * @param value the value
@@ -36,6 +45,17 @@ public abstract class AAngle<Q extends AAngle<Q>> extends AQuantity<Q, EAngles, 
 	 * @return a new instance of Q
 	 */
 	@Override public abstract Q of(double value, EAngles unit);
+
+
+	/** @return a new angle in unit from degrees */
+	public Q ofDegMinSec(int Degree, int Minute, double Second) {
+		return this.ofDegMinSec(new RDegMinSec(Degree, Minute, Second));
+	}
+
+	/** @return a new angle in unit from degrees */
+	public Q ofDegMinSec(RDegMinSec dms) {
+		return this.of(getUnit().fromBaseValue(dms.toDegrees()));
+	}
 
 	/**
 	 * Gets the unit of this angle quantity.
@@ -224,31 +244,31 @@ public abstract class AAngle<Q extends AAngle<Q>> extends AQuantity<Q, EAngles, 
 	// convert of specific units with value
 
 	/** @return a new angle in degrees */
-	public Q ofDegree(double value) { return this.of(value, EAngles.DEGREE);}    
+	public Q ofDegree(double value) { return this.of(value, EAngles.DEGREE);}
 	/** @return a new angle in radians */
-	public Q ofRadian(double value) {return this.of(value, EAngles.RADIAN);}    
+	public Q ofRadian(double value) {return this.of(value, EAngles.RADIAN);}
 	/** @return a new angle in turns */
-	public Q ofTurn(double value) {return this.of(value, EAngles.TURN);}    
+	public Q ofTurn(double value) {return this.of(value, EAngles.TURN);}
 	/** @return a new angle in gradians */
-	public Q ofGradian(double value) {return this.of(value, EAngles.GRADIAN);}    
+	public Q ofGradian(double value) {return this.of(value, EAngles.GRADIAN);}
 	/** @return a new angle in arcminutes */
-	public Q ofArcMinute(double value) {return this.of(value, EAngles.ARCMINUTE);}    
+	public Q ofArcMinute(double value) {return this.of(value, EAngles.ARCMINUTE);}
 	/** @return a new angle in arcseconds */
-	public Q ofArcSecond(double value) {return this.of(value, EAngles.ARCSECOND);}    
+	public Q ofArcSecond(double value) {return this.of(value, EAngles.ARCSECOND);}
 
 	// get value in specific units
 
 	/** @return the value in degrees */
-	public double inDegree() { return this.inUnit(EAngles.DEGREE);}    
+	public double inDegree() { return this.inUnit(EAngles.DEGREE);}
 	/** @return the value in radians */
-	public double inRadian() { return this.inUnit(EAngles.RADIAN);}    
+	public double inRadian() { return this.inUnit(EAngles.RADIAN);}
 	/** @return the value in turns */
-	public double inTurn() { return this.inUnit(EAngles.TURN);}    
+	public double inTurn() { return this.inUnit(EAngles.TURN);}
 	/** @return the value in gradians */
-	public double inGradian() { return this.inUnit(EAngles.GRADIAN);}    
+	public double inGradian() { return this.inUnit(EAngles.GRADIAN);}
 	/** @return the value in arcminutes */
-	public double inArcMinute() { return this.inUnit(EAngles.ARCMINUTE);}    
+	public double inArcMinute() { return this.inUnit(EAngles.ARCMINUTE);}
 	/** @return the value in arcseconds */
-	public double inArcSecond() { return this.inUnit(EAngles.ARCSECOND);}    
+	public double inArcSecond() { return this.inUnit(EAngles.ARCSECOND);}
 
 }

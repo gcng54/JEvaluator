@@ -1,6 +1,6 @@
 package qmeasures.time.quantities;
 
-import qmeasures.time.units.ETimes;
+import qmeasures.time.units.ETimeUnit;
 
 /**
  * Abstract base class for specific time dimensions.
@@ -10,7 +10,7 @@ import qmeasures.time.units.ETimes;
  */
 public abstract class ATimeDim<Q extends ATimeDim<Q>> extends ATime<Q> {
 
-    protected ATimeDim(double value, ETimes unit, ETimeDims dimension) {
+    protected ATimeDim(double value, ETimeUnit unit, ETimeDims dimension) {
         super(value, unit, dimension);
     }
 

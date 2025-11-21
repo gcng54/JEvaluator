@@ -3,7 +3,7 @@ package qmeasures.time.quantities;
 
 import qmeasures.core.Clampable;
 import qmeasures.core.IDimension;
-import qmeasures.time.units.ETimes;
+import qmeasures.time.units.ETimeUnit;
 
 /**
  * Enumeration of time dimensions (e.g., TIME, DURATION, PERIOD, FREQUENCY).
@@ -72,5 +72,5 @@ public enum ETimeDims implements IDimension<ETimeDims> {
      * Gets the base unit (always SECOND).
      * @return the base unit
      */
-    @Override public ETimes getBaseUnit(){ return ETimes.SECOND; }
+    @Override public ETimeUnit getBaseUnit(){ return ETimeUnit.SECOND; }
 }

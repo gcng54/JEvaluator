@@ -3,8 +3,8 @@ package qmeasures.angle.quantities;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import qmeasures.angle.units.EAngles;
-import qmeasures.common.RDegMinSec;
 import qmeasures.core.Clampable;
+import qmeasures.qgeodetics.RDegMinSec;
 
 import java.util.Locale;
 

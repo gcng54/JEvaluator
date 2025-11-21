@@ -3,10 +3,10 @@ package qmeasures.angle.quantities;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import qmeasures.angle.units.EAngles;
-import qmeasures.angle.units.QDegree;
-import qmeasures.angle.units.QRadian;
-import qmeasures.common.RDegMinSec;
+import qmeasures.angle.units.TDegree;
+import qmeasures.angle.units.TRadian;
 import qmeasures.core.Clampable;
+import qmeasures.qgeodetics.RDegMinSec;
 
 import java.util.Locale;
 
@@ -34,7 +34,7 @@ public final class QLatitude extends AAngleDim<QLatitude> {
      * @return new QLatitude
      */
     @Contract("_ -> new")
-    public static @NotNull QLatitude of(@NotNull QDegree degree) {
+    public static @NotNull QLatitude of(@NotNull TDegree degree) {
         return new QLatitude(degree.getValue(), EAngles.DEGREE);
     }
 
@@ -44,7 +44,7 @@ public final class QLatitude extends AAngleDim<QLatitude> {
      * @return new QLatitude
      */
     @Contract("_ -> new")
-    public static @NotNull QLatitude of(@NotNull QRadian radian) {
+    public static @NotNull QLatitude of(@NotNull TRadian radian) {
         return new QLatitude(radian.getValue(), EAngles.RADIAN);
     }
 

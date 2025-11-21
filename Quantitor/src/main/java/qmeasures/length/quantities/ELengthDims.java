@@ -2,7 +2,7 @@
 package qmeasures.length.quantities;
 
 import qmeasures.core.IDimension;
-import qmeasures.length.units.ELengths;
+import qmeasures.length.units.ELengthUnit;
 import qmeasures.core.Clampable;
 
 /**
@@ -35,7 +35,9 @@ public enum ELengthDims implements IDimension<ELengthDims> {
     /** Wavelength (meters, positive only) */
 	WAVE_LENGTH("Wave", 0.0, Double.POSITIVE_INFINITY),
     /** Earth radius (meters) */
-    EARTH_RADIUS("Earth", 6_300_000.0, 6_400_000.0);
+    EARTH_RADIUS("Earth", 6_300_000.0, 6_400_000.0),
+    /** Earth distance for geocentric distance calculations (meters) */
+    GEOC_DISTANCE("Geoc", 0.0, 6_500_000.0);
 
     private final String abbreviation;
     private final double minBaseValue;
@@ -88,7 +90,7 @@ public enum ELengthDims implements IDimension<ELengthDims> {
      * Gets the base unit (always METER).
      * @return the base unit
      */
-    @Override public ELengths getBaseUnit(){ return ELengths.METER; }
+    @Override public ELengthUnit getBaseUnit(){ return ELengthUnit.METER; }
 
 }
 

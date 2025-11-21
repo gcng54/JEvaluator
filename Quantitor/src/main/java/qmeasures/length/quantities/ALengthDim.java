@@ -1,6 +1,6 @@
 package qmeasures.length.quantities;
 
-import qmeasures.length.units.ELengths;
+import qmeasures.length.units.ELengthUnit;
 
 /**
  * Abstract base class for specific length dimensions.
@@ -10,7 +10,7 @@ import qmeasures.length.units.ELengths;
  */
 public abstract class ALengthDim<Q extends ALengthDim<Q>> extends ALength<Q> {
 
-    protected ALengthDim(double value, ELengths unit, ELengthDims dimension) {
+    protected ALengthDim(double value, ELengthUnit unit, ELengthDims dimension) {
         super(value, unit, dimension);
     }
 

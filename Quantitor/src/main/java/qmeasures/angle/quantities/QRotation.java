@@ -3,7 +3,7 @@ package qmeasures.angle.quantities;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import qmeasures.angle.units.EAngles;
-import qmeasures.angle.units.QDegree;
+import qmeasures.angle.units.TDegree;
 
 /**
  * Represents a rotation angle quantity.
@@ -20,7 +20,7 @@ import qmeasures.angle.units.QDegree;
  * </p>
  *
  * @see AAngle
- * @see QDegree
+ * @see TDegree
  * @see EAngles
  * @see EAngleDims
  */

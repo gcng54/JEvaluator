@@ -1,17 +1,17 @@
 package qmeasures.length.quantities;
 
 import org.jetbrains.annotations.NotNull;
-import qmeasures.length.units.ELengths;
+import qmeasures.length.units.ELengthUnit;
 
 public class QArea extends ALengthDim<QArea> {
 
     public QArea(ALength<?> length) { super(length, ELengthDims.AREA); }
 
-    protected QArea(double value) { super(value, ELengths.METER, ELengthDims.AREA); }
+    protected QArea(double value) { super(value, ELengthUnit.METER, ELengthDims.AREA); }
     
-    public QArea(double value, ELengths unit) { super(value, unit, ELengthDims.AREA);  }
+    public QArea(double value, ELengthUnit unit) { super(value, unit, ELengthDims.AREA);  }
 
-    @Override public QArea of(double value, ELengths unit) {
+    @Override public QArea of(double value, ELengthUnit unit) {
         return new QArea(value, unit);
     }
 

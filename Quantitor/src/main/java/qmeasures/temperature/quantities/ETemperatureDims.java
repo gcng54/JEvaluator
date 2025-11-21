@@ -51,7 +51,7 @@ public enum ETemperatureDims implements IDimension<ETemperatureDims> {
      * @return the base unit
      */
     @Override
-    public qmeasures.core.IUnit<?> getBaseUnit() { return qmeasures.temperature.ETemperatures.KELVIN; }
+    public qmeasures.core.IUnit<?> getBaseUnit() { return qmeasures.temperature.units.ETemperatures.KELVIN; }
 
     /**
      * Gets the minimum base value.

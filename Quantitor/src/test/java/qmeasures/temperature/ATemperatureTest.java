@@ -3,6 +3,8 @@ package qmeasures.temperature;
 import org.junit.jupiter.api.Test;
 
 import qmeasures.temperature.quantities.ETemperatureDims;
+import qmeasures.temperature.quantities.QTemperature;
+import qmeasures.temperature.units.ETemperatures;
 
 import static org.junit.jupiter.api.Assertions.*;
 

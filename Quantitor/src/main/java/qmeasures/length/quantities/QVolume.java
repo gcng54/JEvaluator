@@ -1,19 +1,19 @@
 package qmeasures.length.quantities;
 
 import org.jetbrains.annotations.NotNull;
-import qmeasures.length.units.ELengths;
+import qmeasures.length.units.ELengthUnit;
 
 public class QVolume extends ALengthDim<QVolume> {
 
     public QVolume(ALength<?> length) { super(length, ELengthDims.VOLUME); }
 
-    protected QVolume(double value) { super(value, ELengths.METER, ELengthDims.VOLUME); }
+    protected QVolume(double value) { super(value, ELengthUnit.METER, ELengthDims.VOLUME); }
 
-    public QVolume(double value, ELengths unit) {
+    public QVolume(double value, ELengthUnit unit) {
         super(value, unit, ELengthDims.VOLUME);
     }
 
-    @Override public QVolume of(double value, ELengths unit) {
+    @Override public QVolume of(double value, ELengthUnit unit) {
         return new QVolume(value, unit);
     }
 

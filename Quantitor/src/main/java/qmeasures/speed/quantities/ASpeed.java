@@ -3,7 +3,7 @@ package qmeasures.speed.quantities;
 import org.jetbrains.annotations.NotNull;
 import qmeasures.core.AQuantity;
 import qmeasures.core.Clampable;
-import qmeasures.speed.units.ESpeeds;
+import qmeasures.speed.units.ESpeedUnit;
 
 
 /**
@@ -12,7 +12,7 @@ import qmeasures.speed.units.ESpeeds;
  *
  * @param <Q> the concrete type of the speed quantity
  */
-public abstract class ASpeed<Q extends ASpeed<Q>> extends AQuantity<Q, ESpeeds, ESpeedDims> {
+public abstract class ASpeed<Q extends ASpeed<Q>> extends AQuantity<Q, ESpeedUnit, ESpeedDims> {
 
     /**
      * Constructs a speed quantity with the specified value, unit, and dimension.
@@ -20,20 +20,20 @@ public abstract class ASpeed<Q extends ASpeed<Q>> extends AQuantity<Q, ESpeeds, 
      * @param unit the speed unit
      * @param dimension the speed dimension
      */
-    protected ASpeed(double value, ESpeeds unit, ESpeedDims dimension) {  super(value, unit, dimension);  }
+    protected ASpeed(double value, ESpeedUnit unit, ESpeedDims dimension) {  super(value, unit, dimension);  }
 
     /**
      * Constructs a speed quantity with the specified value and dimension, using meters per second as the unit.
      * @param value the value in m/s
      * @param dimension the speed dimension
      */
-    protected ASpeed(double value, ESpeedDims dimension) {  super(value, ESpeeds.METERS_PER_SECOND, dimension);  }
+    protected ASpeed(double value, ESpeedDims dimension) {  super(value, ESpeedUnit.METERS_PER_SECOND, dimension);  }
 
     /**
      * Constructs a speed quantity with the specified value, using meters per second and SPEED as defaults.
      * @param value the value in m/s
      */
-    protected ASpeed(double value) {  super(value, ESpeeds.METERS_PER_SECOND, ESpeedDims.SPEED);  }
+    protected ASpeed(double value) {  super(value, ESpeedUnit.METERS_PER_SECOND, ESpeedDims.SPEED);  }
 
     /**
      * Creates a new instance of this speed type with the given value and unit.
@@ -41,13 +41,13 @@ public abstract class ASpeed<Q extends ASpeed<Q>> extends AQuantity<Q, ESpeeds, 
      * @param unit the unit
      * @return a new instance of Q
      */
-    @Override public abstract Q of(double value, ESpeeds unit);
+    @Override public abstract Q of(double value, ESpeedUnit unit);
 
     /**
      * Gets the unit of this speed quantity.
      * @return the speed unit
      */
-    @Override public ESpeeds getUnit() { return super.getUnit(); }
+    @Override public ESpeedUnit getUnit() { return super.getUnit(); }
     
     /**
      * Gets the dimension of this speed quantity.
@@ -83,7 +83,7 @@ public abstract class ASpeed<Q extends ASpeed<Q>> extends AQuantity<Q, ESpeeds, 
      */
     public <T extends ASpeed<T>> T to(Class<T> targetType) {
         try {
-            return targetType.getConstructor(double.class, ESpeeds.class)
+            return targetType.getConstructor(double.class, ESpeedUnit.class)
                             .newInstance(this.getValue(), this.getUnit());
         } catch (Exception e) {
             throw new IllegalArgumentException("Conversion to the specified type is not supported.", e);
@@ -94,15 +94,15 @@ public abstract class ASpeed<Q extends ASpeed<Q>> extends AQuantity<Q, ESpeeds, 
     // Get Quantity of this.value in Unit
 
     /** @return this speed in meters per second */
-    public Q ofMeterPerSecond() { return this.of(ESpeeds.METERS_PER_SECOND); }
+    public Q ofMeterPerSecond() { return this.of(ESpeedUnit.METERS_PER_SECOND); }
     /** @return this speed in kilometers per hour */
-    public Q ofKilometerPerHour() { return this.of(ESpeeds.KILOMETERS_PER_HOUR); }
+    public Q ofKilometerPerHour() { return this.of(ESpeedUnit.KILOMETERS_PER_HOUR); }
     
     // Get value in specific units
 
     /** @return the value in meters per second */
-    public double inMeterPerSecond() { return this.inUnit(ESpeeds.METERS_PER_SECOND); }
+    public double inMeterPerSecond() { return this.inUnit(ESpeedUnit.METERS_PER_SECOND); }
     /** @return the value in kilometers per hour */
-    public double inKilometerPerHour() { return this.inUnit(ESpeeds.KILOMETERS_PER_HOUR); }
+    public double inKilometerPerHour() { return this.inUnit(ESpeedUnit.KILOMETERS_PER_HOUR); }
     
 }

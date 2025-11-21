@@ -82,6 +82,8 @@ public abstract class AQuantity<Q extends AQuantity<Q, U, E>, U extends IUnit<U>
 
     public Q getMaxQ() { return of(unit.fromBaseValue(dimension.getMaxBase()), unit);  }
 
+    public double fromBaseValue(double baseValue) {return getUnit().fromBaseValue(baseValue);}
+
     /**
      * Returns true if the value was clamped.
      * @return true if clamped
@@ -172,9 +174,17 @@ public abstract class AQuantity<Q extends AQuantity<Q, U, E>, U extends IUnit<U>
     public Q pow(double exponent) { return of(Math.pow(this.getValue(), exponent)); }
     /** Takes the square root of this quantity. */
     public Q sqrt() { return of(Math.sqrt(this.getValue())); }
-    /** Floors the value of this quantity. */
+    /** Floors the value of this quantity. 
+     * floor() for 10.123456 -> will result to 10 <p>
+     * floor() for 0.123456 -> will result to 0 <p>
+     * floor() for -10.123456- > will result to -11 (this one is contr intuitive)
+    */
     public Q floor() { return of(Math.floor(this.getValue())); }
-    /** ceil the value of this quantity. */
+    /** ceil the value of this quantity. 
+     * ceil() for 10.123456 -> will result to 11 <p>
+     * ceil() for 0.123456 -> will result to 1 <p>
+     * ceil() for -10.123456- > will result to 10 (this one is contr intuitive)
+    */
     public Q ceil() { return of(Math.ceil(this.getValue())); }
     /** Returns the absolute value of this quantity. */
     public Q abs() { return of(Math.abs(this.getValue()));  }

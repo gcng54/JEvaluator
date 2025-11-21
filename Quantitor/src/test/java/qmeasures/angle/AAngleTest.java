@@ -16,7 +16,7 @@ import qmeasures.angle.quantities.QOrientation;
 import qmeasures.angle.quantities.QRotation;
 import qmeasures.angle.units.EAngles;
 import qmeasures.core.Clampable;
-import qmeasures.common.RDegMinSec;
+import qmeasures.qgeodetics.RDegMinSec;
 
 /**
  * Unit tests for AAngle and its methods.

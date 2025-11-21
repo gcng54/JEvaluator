@@ -193,5 +193,15 @@ public interface Clampable {
         }
         return remainder;
     }
+    
+    static double clampa(double d, double e, double f) {
+        if (d < e) {
+            return e;
+        }
+        if (d > f) {
+            return f;
+        }
+        return d;
+    }
 
 }

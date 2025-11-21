@@ -2,7 +2,7 @@ package qmeasures.length.quantities;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
-import qmeasures.length.units.ELengths;
+import qmeasures.length.units.ELengthUnit;
 
 /**
  * Concrete length quantity representing a distance.
@@ -11,11 +11,11 @@ public final class QDistance extends ALengthDim<QDistance> {
 
     public QDistance(ALength<?> length) { super(length, ELengthDims.DISTANCE); }
 
-    protected QDistance(double value) { super(value, ELengths.METER, ELengthDims.DISTANCE);  }
+    protected QDistance(double value) { super(value, ELengthUnit.METER, ELengthDims.DISTANCE);  }
 
-    public QDistance(double value, ELengths unit) { super(value, unit, ELengthDims.DISTANCE);  }
+    public QDistance(double value, ELengthUnit unit) { super(value, unit, ELengthDims.DISTANCE);  }
 
     @Contract("_, _ -> new")
-    @Override public @NotNull QDistance of(double value, ELengths unit) { return new QDistance(value, unit);  }
+    @Override public @NotNull QDistance of(double value, ELengthUnit unit) { return new QDistance(value, unit);  }
 
 }

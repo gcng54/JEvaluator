@@ -11,7 +11,7 @@ import qmeasures.length.quantities.QHeight;
 import qmeasures.length.quantities.QLength;
 import qmeasures.length.quantities.QRange;
 import qmeasures.length.quantities.QVolume;
-import qmeasures.length.units.ELengths;
+import qmeasures.length.units.ELengthUnit;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -23,8 +23,8 @@ public class ALengthTest {
 
     @BeforeEach
     void setUp() {
-        lengthMeter = new QLength(10.0, ELengths.METER);
-        lengthKm = new QLength(5.0, ELengths.KILOMETER);
+        lengthMeter = new QLength(10.0, ELengthUnit.METER);
+        lengthKm = new QLength(5.0, ELengthUnit.KILOMETER);
     }
 
     @Test
@@ -44,14 +44,14 @@ public class ALengthTest {
         assertEquals(2.0, lengthMeter.add( -8.0).inMeter(), 1e-9);
         assertEquals(8.0, lengthMeter.sub(2.0).inMeter(), 1e-9);
         assertEquals(5.0, lengthMeter.rsub(15.0).inMeter(), 1e-9);
-        assertEquals(2.0, lengthMeter.div(new QLength(5.0, ELengths.METER)).getValue(), 1e-9);
-        assertEquals(2.0, lengthMeter.ratio(new QLength(5.0, ELengths.METER)), 1e-9);
-        assertEquals(-1.0, lengthMeter.compareTo(new QLength(15.0, ELengths.METER)), 1e-9);
-        assertTrue(lengthMeter.less(new QLength(15.0, ELengths.METER)));
-        assertTrue(lengthMeter.lessOrEqual(new QLength(10.0, ELengths.METER)));
-        assertTrue(lengthKm.greater(new QLength(3000.0, ELengths.METER)));
-        assertTrue(lengthKm.greaterOrEqual(new QLength(5.0, ELengths.KILOMETER)));
-        assertTrue(lengthMeter.equalsTo(new QLength(10.0, ELengths.METER)));
+        assertEquals(2.0, lengthMeter.div(new QLength(5.0, ELengthUnit.METER)).getValue(), 1e-9);
+        assertEquals(2.0, lengthMeter.ratio(new QLength(5.0, ELengthUnit.METER)), 1e-9);
+        assertEquals(-1.0, lengthMeter.compareTo(new QLength(15.0, ELengthUnit.METER)), 1e-9);
+        assertTrue(lengthMeter.less(new QLength(15.0, ELengthUnit.METER)));
+        assertTrue(lengthMeter.lessOrEqual(new QLength(10.0, ELengthUnit.METER)));
+        assertTrue(lengthKm.greater(new QLength(3000.0, ELengthUnit.METER)));
+        assertTrue(lengthKm.greaterOrEqual(new QLength(5.0, ELengthUnit.KILOMETER)));
+        assertTrue(lengthMeter.equalsTo(new QLength(10.0, ELengthUnit.METER)));
         assertFalse(lengthMeter.isEqualToZero());
         assertFalse(lengthMeter.isCloseToZero());
         assertTrue(lengthMeter.isPositive());
@@ -65,7 +65,7 @@ public class ALengthTest {
 
     @Test
     void testGetUnitAndDimension() {
-        assertEquals(ELengths.METER, lengthMeter.getUnit());
+        assertEquals(ELengthUnit.METER, lengthMeter.getUnit());
         assertEquals(ELengthDims.LENGTH, lengthMeter.getDimension());
     }
 
@@ -108,18 +108,18 @@ public class ALengthTest {
 
     @Test
     void testDiv() {
-        QLength divisor = new QLength(2.0, ELengths.METER);
+        QLength divisor = new QLength(2.0, ELengthUnit.METER);
         QLength result = lengthMeter.div(divisor);
         assertEquals(5.0, result.getValue(), 1e-9);
         assertEquals(lengthMeter.getUnit(), result.getUnit());
 
         assertThrows(IllegalArgumentException.class, () -> lengthMeter.div(null));
-        assertEquals(0.0, new QLength(0.0, ELengths.METER).getValue());
+        assertEquals(0.0, new QLength(0.0, ELengthUnit.METER).getValue());
     }
 
     @Test
     void testDivByZeroLengthThrows() {
-        QLength zero = new QLength(0.0, ELengths.METER);
+        QLength zero = new QLength(0.0, ELengthUnit.METER);
         assertThrows(IllegalArgumentException.class, () -> lengthMeter.div(zero));
     }
 
@@ -155,21 +155,21 @@ public class ALengthTest {
     @Test
     void testClampBelowMinimum() {
         // AREA dimension has min 0.0; negative values should be clamped to 0.0
-        QArea negArea = new QArea(-5.0, ELengths.METER);
+        QArea negArea = new QArea(-5.0, ELengthUnit.METER);
         assertEquals(0.0, negArea.getValue(), 1e-12);
         assertTrue(negArea.wasClamped());
     }
 
     @Test
     void testAltitudeClamping() {
-        QAltitude altitude = new QAltitude(-1000.0, ELengths.METER);
+        QAltitude altitude = new QAltitude(-1000.0, ELengthUnit.METER);
         assertEquals(-430.0, altitude.getValue(), 1e-9);
         assertTrue(altitude.wasClamped());
     }
 
     @Test
     void testRangeClamping() {
-        QRange range = new QRange(20_000_000.0, ELengths.METER);
+        QRange range = new QRange(20_000_000.0, ELengthUnit.METER);
         assertEquals(10_000_000.0, range.getValue(), 1e-9);
         assertTrue(range.wasClamped());
     }

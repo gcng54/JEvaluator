@@ -3,11 +3,10 @@ package qmeasures.temperature.quantities;
 
 import qmeasures.core.AQuantity;
 import qmeasures.core.Clampable;
-import qmeasures.temperature.ETemperatures;
-import qmeasures.temperature.QTemperature;
-import qmeasures.temperature.units.QCelsius;
-import qmeasures.temperature.units.QFahrenheit;
-import qmeasures.temperature.units.QKelvin;
+import qmeasures.temperature.units.TCelsius;
+import qmeasures.temperature.units.ETemperatures;
+import qmeasures.temperature.units.TFahrenheit;
+import qmeasures.temperature.units.TKelvin;
 
 /**
  * Abstract base class for all temperature quantities (e.g., Kelvin, Celsius, Fahrenheit).
@@ -72,9 +71,9 @@ public abstract class ATemperature<Q extends ATemperature<Q>> extends AQuantity<
     public ATemperature<?> toDimension(ETemperatureDims dimension) {
         return switch (dimension) {
             case TEMPERATURE ->  to(QTemperature.class);
-            case KELVIN ->  to(QKelvin.class);
-            case CELSIUS ->  to(QCelsius.class);
-            case FAHRENHEIT ->  to(QFahrenheit.class);
+            case KELVIN ->  to(TKelvin.class);
+            case CELSIUS ->  to(TCelsius.class);
+            case FAHRENHEIT ->  to(TFahrenheit.class);
         };
     }
 

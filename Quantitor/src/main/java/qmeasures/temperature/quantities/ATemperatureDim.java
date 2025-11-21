@@ -2,7 +2,7 @@ package qmeasures.temperature.quantities;
 
 import org.jetbrains.annotations.NotNull;
 
-import qmeasures.temperature.ETemperatures;
+import qmeasures.temperature.units.ETemperatures;
 
 /**
  * Abstract base class for specific temperature dimensions (e.g., Celsius, Fahrenheit).

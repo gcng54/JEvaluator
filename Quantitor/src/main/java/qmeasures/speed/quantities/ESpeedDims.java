@@ -2,7 +2,7 @@ package qmeasures.speed.quantities;
 
 import qmeasures.core.Clampable;
 import qmeasures.core.IDimension;
-import qmeasures.speed.units.ESpeeds;
+import qmeasures.speed.units.ESpeedUnit;
 
 /**
  * Enumeration of speed dimensions (e.g., SPEED, GROUND_SPEED, SEA_SPEED, AIR_SPEED).
@@ -69,5 +69,5 @@ public enum ESpeedDims implements IDimension<ESpeedDims> {
      * Gets the base unit (always METERS_PER_SECOND).
      * @return the base unit
      */
-    @Override public ESpeeds getBaseUnit(){ return ESpeeds.METERS_PER_SECOND; }
+    @Override public ESpeedUnit getBaseUnit(){ return ESpeedUnit.METERS_PER_SECOND; }
 }

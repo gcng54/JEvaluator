@@ -2,7 +2,7 @@ package qmeasures.speed.quantities;
 
 import org.jetbrains.annotations.NotNull;
 
-import qmeasures.speed.units.ESpeeds;
+import qmeasures.speed.units.ESpeedUnit;
 
 /**
  * Abstract base class for specific speed dimensions (e.g., Ground Speed, Air Speed).
@@ -12,7 +12,7 @@ import qmeasures.speed.units.ESpeeds;
  */
 public abstract class ASpeedDim<Q extends ASpeedDim<Q>> extends ASpeed<Q> {
 
-    protected ASpeedDim(double value, ESpeeds unit, ESpeedDims dimension) {
+    protected ASpeedDim(double value, ESpeedUnit unit, ESpeedDims dimension) {
         super(value, unit, dimension);
     }
 
