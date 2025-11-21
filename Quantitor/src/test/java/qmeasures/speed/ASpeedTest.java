@@ -56,6 +56,13 @@ public class ASpeedTest {
         assertEquals(ESpeeds.KILOMETERS_PER_HOUR, gs.getUnit());
     }
 
+    @Test
+    void testGroundSpeedWrapsIntoRange() {
+        QGroundSpeed wrapped = new QGroundSpeed(400.0, ESpeeds.METERS_PER_SECOND);
+        assertEquals(57.0, wrapped.getValue(), 1e-9);
+        assertTrue(wrapped.wasClamped());
+    }
+
 
     @Test
     void testOfMeterPerSecondAndKilometerPerHour() {
@@ -79,5 +86,12 @@ public class ASpeedTest {
         QSpeed s2 = new QSpeed(36.0, ESpeeds.KILOMETERS_PER_HOUR);
         assertEquals(10.0, s2.inMeterPerSecond(), 1e-5);
         assertEquals(36.0, s2.inKilometerPerHour(), 1e-4);
+    }
+
+    @Test
+    void testDimensionConversionPreservesBaseValue() {
+        QSpeed base = new QSpeed(20.0, ESpeeds.MILES_PER_HOUR);
+        QAirSpeed airSpeed = (QAirSpeed) base.toDimension(ESpeedDims.AIR_SPEED);
+        assertEquals(base.inMeterPerSecond(), airSpeed.inMeterPerSecond(), 1e-9);
     }
 }

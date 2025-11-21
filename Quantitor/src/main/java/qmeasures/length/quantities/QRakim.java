@@ -1,6 +1,6 @@
 package qmeasures.length.quantities;
 
-import qmeasures.length.ELengths;
+import qmeasures.length.units.ELengths;
 
 /**
  * Concrete length quantity representing a distance.

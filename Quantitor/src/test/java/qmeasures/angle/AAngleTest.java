@@ -4,16 +4,19 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import qmeasures.angle.quantities.EAngleDims;
+import qmeasures.angle.quantities.QAngle;
 import qmeasures.angle.quantities.QAzimuth;
 import qmeasures.angle.quantities.QBearing;
-import qmeasures.angle.quantities.QElevation;
 import qmeasures.angle.quantities.QDirection;
+import qmeasures.angle.quantities.QElevation;
 import qmeasures.angle.quantities.QHeading;
 import qmeasures.angle.quantities.QLatitude;
 import qmeasures.angle.quantities.QLongitude;
 import qmeasures.angle.quantities.QOrientation;
 import qmeasures.angle.quantities.QRotation;
+import qmeasures.angle.units.EAngles;
 import qmeasures.core.Clampable;
+import qmeasures.common.RDegMinSec;
 
 /**
  * Unit tests for AAngle and its methods.
@@ -158,5 +161,31 @@ public class AAngleTest {
     void testGetClampMode() {
         QAngle a = new QAngle(0.0, EAngles.DEGREE);
         assertEquals(Clampable.EClampMode.WRAP, a.getClampMode());
+    }
+
+    @Test
+    void testDegMinSecFormatting() {
+        QAngle angle = new QAngle(123.5, EAngles.DEGREE);
+        RDegMinSec dms = angle.getDegMinSec();
+        assertEquals(123, dms.Degree());
+        assertEquals(30, dms.Minute());
+        assertEquals(0.0, dms.Second(), EPS);
+        assertEquals("123\u00b030'00.00\"", angle.toStringDMS());
+    }
+
+    @Test
+    void testTurnRatioWithMultipleTurns() {
+        QAngle angle = new QAngle(810.0, EAngles.DEGREE);
+        assertTrue(angle.isTurnQuarter());
+        assertFalse(angle.isTurnHalf());
+        assertFalse(angle.isTurnFull());
+    }
+
+    @Test
+    void testToDimensionCreatesOrientation() {
+        QAngle angle = new QAngle(45.0, EAngles.DEGREE);
+        QOrientation orientation = (QOrientation) angle.toDimension(EAngleDims.ORIENTATION);
+        assertEquals(45.0, orientation.getValue(), EPS);
+        assertEquals(EAngleDims.ORIENTATION, orientation.getDimension());
     }
 }

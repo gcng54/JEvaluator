@@ -1,11 +1,7 @@
 package qmeasures.angle.quantities;
 
-import qmeasures.angle.EAngles;
-import qmeasures.angle.units.QDegree;
+import qmeasures.angle.units.EAngles;
 
-/**
- * Concrete angle quantity representing course.
- */
 public final class QElevation extends AAngleDim<QElevation> {
 
     public QElevation(AAngle<?> Angle) {

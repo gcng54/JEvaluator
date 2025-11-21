@@ -1,4 +1,4 @@
-package qmeasures.angle;
+package qmeasures.angle.units;
 
 
 import java.util.Locale;

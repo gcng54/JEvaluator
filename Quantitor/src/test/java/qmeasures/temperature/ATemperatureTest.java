@@ -73,4 +73,32 @@ class ATemperatureTest {
       //  assertEquals(ETemperatures.FAHRENHEIT, converted.getUnit());
     }
 
+    @Test
+    void testInUnitConversionsReturnExpectedValues() {
+        QTemperature temp = new QTemperature(25.0, ETemperatures.CELSIUS);
+        assertEquals(25.0, temp.inCelsius(), 1e-9);
+        assertEquals(298.15, temp.inKelvin(), 1e-9);
+        assertEquals(77.0, temp.inFahrenheit(), 1e-9);
+    }
+
+    @Test
+    void testOfUnitConvenienceMethods() {
+        QTemperature base = new QTemperature(300.0, ETemperatures.KELVIN);
+        QTemperature asCelsius = base.ofCelsius();
+        assertEquals(base.inCelsius(), asCelsius.getValue(), 1e-9);
+        assertEquals(ETemperatures.CELSIUS, asCelsius.getUnit());
+
+        QTemperature manualFahrenheit = base.ofFahrenheit(32.0);
+        assertEquals(32.0, manualFahrenheit.getValue(), 1e-9);
+        assertEquals(ETemperatures.FAHRENHEIT, manualFahrenheit.getUnit());
+    }
+
+    @Test
+    void testExplicitOfCreatesConvertedInstance() {
+        QTemperature template = new QTemperature(0.0, ETemperatures.KELVIN);
+        QTemperature fahrenheit = template.of(32.0, ETemperatures.FAHRENHEIT);
+        assertEquals(32.0, fahrenheit.getValue(), 1e-9);
+        assertEquals(0.0, fahrenheit.inCelsius(), 1e-9);
+    }
+
 }

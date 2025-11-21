@@ -1,6 +1,6 @@
 package qmeasures.time.quantities;
 
-import qmeasures.time.ETimes;
+import qmeasures.time.units.ETimes;
 
 /**
  * Abstract base class for specific time dimensions.

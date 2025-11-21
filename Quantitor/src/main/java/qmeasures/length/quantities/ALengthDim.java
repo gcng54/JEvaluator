@@ -1,8 +1,6 @@
 package qmeasures.length.quantities;
 
-import qmeasures.angle.quantities.AAngle;
-import qmeasures.angle.quantities.EAngleDims;
-import qmeasures.length.ELengths;
+import qmeasures.length.units.ELengths;
 
 /**
  * Abstract base class for specific length dimensions.

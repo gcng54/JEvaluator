@@ -2,9 +2,8 @@ package qmeasures.angle.quantities;
 
 import org.jetbrains.annotations.NotNull;
 
-import qmeasures.angle.EAngles;
-import qmeasures.angle.QAngle;
-import qmeasures.angle.RDegMinSec;
+import qmeasures.angle.units.EAngles;
+import qmeasures.common.RDegMinSec;
 import qmeasures.core.AQuantity;
 import qmeasures.core.Clampable;
 
@@ -73,7 +72,6 @@ public abstract class AAngle<Q extends AAngle<Q>> extends AQuantity<Q, EAngles, 
 			case DIRECTION ->  to(QDirection.class);
 			case ROTATION ->  to(QRotation.class);
 			case ORIENTATION ->  to(QOrientation.class);
-			case ALTITUDE -> to(QAltitude.class);
 			default -> throw new IllegalArgumentException("Unexpected value: " + dimension);
 		};
 	}

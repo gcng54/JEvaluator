@@ -1,7 +1,7 @@
 package qmeasures.angle.quantities;
 
-import qmeasures.angle.EAngles;
-import qmeasures.angle.RDegMinSec;
+import qmeasures.angle.units.EAngles;
+import qmeasures.common.RDegMinSec;
 import qmeasures.core.Clampable;
 
 import java.util.Locale;

@@ -1,16 +1,15 @@
-package qmeasures.length;
+package qmeasures.length.quantities;
 
-import qmeasures.length.quantities.ALength;
-import qmeasures.length.quantities.ELengthDims;
+import qmeasures.length.units.ELengths;
 
-public class QVolume extends ALength<QVolume> {
+public class QVolume extends ALengthDim<QVolume> {
+
+    public QVolume(ALength<?> length) { super(length, ELengthDims.VOLUME); }
+
+    protected QVolume(double value) { super(value, ELengths.METER, ELengthDims.VOLUME); }
 
     public QVolume(double value, ELengths unit) {
         super(value, unit, ELengthDims.VOLUME);
-    }
-
-    public QVolume(double value) {
-        super(value, ELengths.METER, ELengthDims.VOLUME);
     }
 
     @Override public QVolume of(double value, ELengths unit) {

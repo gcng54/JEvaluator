@@ -3,7 +3,6 @@ package qmeasures.time.units;
 
 import qmeasures.time.quantities.ATime;
 import qmeasures.time.quantities.ETimeDims;
-import qmeasures.time.ETimes;
 
 /**
  * Time quantity representing a value in seconds.

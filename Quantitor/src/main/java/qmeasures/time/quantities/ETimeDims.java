@@ -3,7 +3,7 @@ package qmeasures.time.quantities;
 
 import qmeasures.core.Clampable;
 import qmeasures.core.IDimension;
-import qmeasures.time.ETimes;
+import qmeasures.time.units.ETimes;
 
 /**
  * Enumeration of time dimensions (e.g., TIME, DURATION, PERIOD, FREQUENCY).

@@ -1,6 +1,6 @@
 package qmeasures.angle.quantities;
 
-import qmeasures.angle.EAngles;
+import qmeasures.angle.units.EAngles;
 import qmeasures.angle.units.QDegree;
 
 /**

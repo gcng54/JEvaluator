@@ -1,5 +1,5 @@
 
-package qmeasures.time;
+package qmeasures.time.units;
 
 import java.util.Locale;
 import qmeasures.core.IUnit;

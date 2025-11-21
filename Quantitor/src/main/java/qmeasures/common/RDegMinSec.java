@@ -1,4 +1,4 @@
-package qmeasures.angle;
+package qmeasures.common;
 
 import org.jetbrains.annotations.NotNull;
 

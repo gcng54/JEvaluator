@@ -2,7 +2,7 @@
 package qmeasures.length.quantities;
 
 import qmeasures.core.IDimension;
-import qmeasures.length.ELengths;
+import qmeasures.length.units.ELengths;
 import qmeasures.core.Clampable;
 
 /**

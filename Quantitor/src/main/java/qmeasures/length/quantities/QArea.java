@@ -1,17 +1,14 @@
-package qmeasures.length;
+package qmeasures.length.quantities;
 
-import qmeasures.length.quantities.ALength;
-import qmeasures.length.quantities.ELengthDims;
+import qmeasures.length.units.ELengths;
 
-public class QArea extends ALength<QArea> {
+public class QArea extends ALengthDim<QArea> {
 
-    public QArea(double value, ELengths unit) {
-        super(value, unit, ELengthDims.AREA);
-    }
+    public QArea(ALength<?> length) { super(length, ELengthDims.AREA); }
 
-    public QArea(double value) {
-        super(value, ELengths.METER, ELengthDims.AREA);
-    }
+    protected QArea(double value) { super(value, ELengths.METER, ELengthDims.AREA); }
+    
+    public QArea(double value, ELengths unit) { super(value, unit, ELengthDims.AREA);  }
 
     @Override public QArea of(double value, ELengths unit) {
         return new QArea(value, unit);

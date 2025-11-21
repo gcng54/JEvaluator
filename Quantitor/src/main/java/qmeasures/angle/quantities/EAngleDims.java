@@ -5,7 +5,7 @@
 package qmeasures.angle.quantities;
 
 import qmeasures.core.IDimension;
-import qmeasures.angle.EAngles;
+import qmeasures.angle.units.EAngles;
 import qmeasures.core.Clampable;
 
 public enum EAngleDims implements IDimension<EAngleDims> {
@@ -31,9 +31,8 @@ public enum EAngleDims implements IDimension<EAngleDims> {
     /** Elevation (degrees, -90 to 90) is the angle above the horizon as Inclination*/
     ELEVATION("Elev", -90.0, 90.0),
     /** Orientation (degrees, 0 to 360) describes the angular position of an object*/
-    ORIENTATION("Ori", 0.0, 360.0),
-    /** Altitude (degrees, -90 to 90) is the angle of an object above a given plane, often the horizon. Similar to Elevation. */
-    ALTITUDE("Alt", -90.0, 90.0);
+    ORIENTATION("Ori", 0.0, 360.0);
+
 
     
     private final String symbol;

@@ -3,10 +3,7 @@ package qmeasures.length.quantities;
 
 import qmeasures.core.AQuantity;
 import qmeasures.core.Clampable;
-import qmeasures.length.ELengths;
-import qmeasures.length.QArea;
-import qmeasures.length.QLength;
-import qmeasures.length.QVolume;
+import qmeasures.length.units.ELengths;
 
 /**
  * Abstract base class for all length quantities (e.g., distance, altitude, height).

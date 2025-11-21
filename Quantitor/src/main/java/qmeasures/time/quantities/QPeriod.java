@@ -1,7 +1,7 @@
 package qmeasures.time.quantities;
 
 
-import qmeasures.time.ETimes;
+import qmeasures.time.units.ETimes;
 
 public class QPeriod extends ATimeDim<QPeriod> {
 

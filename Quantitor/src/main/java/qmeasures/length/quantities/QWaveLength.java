@@ -1,15 +1,13 @@
 package qmeasures.length.quantities;
 
-import qmeasures.length.ELengths;
+import qmeasures.length.units.ELengths;
 
 /**
  * Concrete length quantity representing a distance.
  */
 public final class QWaveLength extends ALengthDim<QWaveLength> {
 
-    public QWaveLength(ALength<?> length) {
-        super(length, ELengthDims.WAVE_LENGTH);
-    }
+    public QWaveLength(ALength<?> length) { super(length, ELengthDims.WAVE_LENGTH);  }
 
     public QWaveLength(double value) { super(value, ELengths.METER, ELengthDims.WAVE_LENGTH);  }
 

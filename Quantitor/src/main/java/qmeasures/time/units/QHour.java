@@ -1,5 +1,5 @@
 
-package qmeasures.time;
+package qmeasures.time.units;
 
 import qmeasures.time.quantities.ATime;
 import qmeasures.time.quantities.ETimeDims;
@@ -7,13 +7,13 @@ import qmeasures.time.quantities.ETimeDims;
 /**
  * Time quantity representing a value in seconds.
  */
-public class QSecond extends ATime<QSecond> {
+public class QHour extends ATime<QHour> {
 
     /**
      * Constructs a time quantity in seconds.
      * @param value the value in seconds
      */
-    public QSecond(double value) { super(value, ETimes.SECOND, ETimeDims.TIME);  }
+    public QHour(double value) { super(value, ETimes.HOUR, ETimeDims.TIME);  }
 
     /**
      * Creates a new QSecond instance from a value and unit.
@@ -21,6 +21,6 @@ public class QSecond extends ATime<QSecond> {
      * @param unit the time unit
      * @return a new QSecond instance
      */
-    @Override  public QSecond of(double value, ETimes unit) { return new QSecond(value);  }
+    @Override  public QHour of(double value, ETimes unit) { return new QHour(value);  }
 
 }

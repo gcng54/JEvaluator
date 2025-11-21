@@ -2,7 +2,7 @@ package qmeasures.angle.units;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-import qmeasures.angle.EAngles;
+
 import qmeasures.angle.quantities.EAngleDims;
 
 class QDegreeTest {

@@ -1,17 +1,15 @@
 package qmeasures.length.quantities;
 
-import qmeasures.length.ELengths;
+import qmeasures.length.units.ELengths;
 
 /**
  * Concrete length quantity representing a distance.
  */
 public final class QHeight extends ALengthDim<QHeight> {
 
-    public QHeight(ALength<?> length) {
-        super(length, ELengthDims.HEIGHT);
-    }
+    public QHeight(ALength<?> length) {        super(length, ELengthDims.HEIGHT);    }
 
-    public QHeight(double value) { super(value, ELengths.METER, ELengthDims.HEIGHT);  }
+    protected QHeight(double value) { super(value, ELengths.METER, ELengthDims.HEIGHT);  }
 
     public QHeight(double value, ELengths unit) { super(value, unit, ELengthDims.HEIGHT);  }
 

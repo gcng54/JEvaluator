@@ -5,8 +5,13 @@ import org.junit.jupiter.api.Test;
 import qmeasures.core.Clampable;
 import qmeasures.length.quantities.ELengthDims;
 import qmeasures.length.quantities.QAltitude;
+import qmeasures.length.quantities.QArea;
 import qmeasures.length.quantities.QDistance;
 import qmeasures.length.quantities.QHeight;
+import qmeasures.length.quantities.QLength;
+import qmeasures.length.quantities.QRange;
+import qmeasures.length.quantities.QVolume;
+import qmeasures.length.units.ELengths;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -113,6 +118,12 @@ public class ALengthTest {
     }
 
     @Test
+    void testDivByZeroLengthThrows() {
+        QLength zero = new QLength(0.0, ELengths.METER);
+        assertThrows(IllegalArgumentException.class, () -> lengthMeter.div(zero));
+    }
+
+    @Test
     void testUnitConversions() {
         assertEquals(10.0, lengthMeter.ofMeter().getValue());
         assertEquals(10.0, lengthMeter.ofMeter(10.0).getValue());
@@ -147,5 +158,19 @@ public class ALengthTest {
         QArea negArea = new QArea(-5.0, ELengths.METER);
         assertEquals(0.0, negArea.getValue(), 1e-12);
         assertTrue(negArea.wasClamped());
+    }
+
+    @Test
+    void testAltitudeClamping() {
+        QAltitude altitude = new QAltitude(-1000.0, ELengths.METER);
+        assertEquals(-430.0, altitude.getValue(), 1e-9);
+        assertTrue(altitude.wasClamped());
+    }
+
+    @Test
+    void testRangeClamping() {
+        QRange range = new QRange(20_000_000.0, ELengths.METER);
+        assertEquals(10_000_000.0, range.getValue(), 1e-9);
+        assertTrue(range.wasClamped());
     }
 }

@@ -1,9 +1,6 @@
-package qmeasures.angle;
+package qmeasures.angle.quantities;
 
-import qmeasures.angle.quantities.AAngle;
-import qmeasures.angle.quantities.AAngleDim;
-import qmeasures.angle.quantities.EAngleDims;
-import qmeasures.angle.units.QDegree;
+import qmeasures.angle.units.EAngles;
 
 /**
  * Represents an angle quantity with a specific value and unit.

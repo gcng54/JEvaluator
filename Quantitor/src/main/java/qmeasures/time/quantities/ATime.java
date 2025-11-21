@@ -3,8 +3,7 @@ package qmeasures.time.quantities;
 
 import qmeasures.core.AQuantity;
 import qmeasures.core.Clampable;
-import qmeasures.time.ETimes;
-import qmeasures.time.QTime;
+import qmeasures.time.units.ETimes;
 
 /**
  * Abstract base class for all time quantities (e.g., duration, period, frequency).

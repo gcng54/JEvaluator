@@ -1,7 +1,6 @@
-package qmeasures.time;
+package qmeasures.time.quantities;
 
-import qmeasures.time.quantities.ATime;
-import qmeasures.time.quantities.ETimeDims;
+import qmeasures.time.units.ETimes;
 
 public class QTime extends ATime<QTime> {
 

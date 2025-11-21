@@ -1,5 +1,5 @@
 
-package qmeasures.length;
+package qmeasures.length.units;
 
 import java.util.Locale;
 import qmeasures.core.IUnit;

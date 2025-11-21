@@ -1,11 +1,11 @@
 package qmeasures.angle.quantities;
 
-import qmeasures.angle.EAngles;
+import qmeasures.angle.units.EAngles;
 
 /**
  * Abstract base class for specific angle dimensions (e.g., Latitude, Heading).
  * This separates "Dimension" quantities from "Unit" quantities (like QDegree).
- * 
+ *
  * @param <Q> the concrete type of the dimension quantity
  */
 public abstract class AAngleDim<Q extends AAngleDim<Q>> extends AAngle<Q> {
@@ -37,5 +37,4 @@ public abstract class AAngleDim<Q extends AAngleDim<Q>> extends AAngle<Q> {
     };
 
 
-    // You can add dimension-specific logic here if needed
 }
