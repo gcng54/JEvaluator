@@ -1,6 +1,8 @@
 
 package qmeasures.core;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Objects;
 
 /**
@@ -125,7 +127,7 @@ public abstract class AQuantity<Q extends AQuantity<Q, U, E>, U extends IUnit<U>
      * @param other the other quantity
      * @return comparison result
      */
-    @Override public int compareTo(@SuppressWarnings("rawtypes") AQuantity other) {
+    @Override public int compareTo(@NotNull AQuantity other) {
         double thisBaseValue = this.getUnit().toBaseValue(this.getValue());
         double otherBaseValue = other.getUnit().toBaseValue(other.getValue());
         return Double.compare(thisBaseValue, otherBaseValue);
@@ -172,7 +174,7 @@ public abstract class AQuantity<Q extends AQuantity<Q, U, E>, U extends IUnit<U>
     public Q sqrt() { return of(Math.sqrt(this.getValue())); }
     /** Floors the value of this quantity. */
     public Q floor() { return of(Math.floor(this.getValue())); }
-    /** Ceils the value of this quantity. */
+    /** ceil the value of this quantity. */
     public Q ceil() { return of(Math.ceil(this.getValue())); }
     /** Returns the absolute value of this quantity. */
     public Q abs() { return of(Math.abs(this.getValue()));  }

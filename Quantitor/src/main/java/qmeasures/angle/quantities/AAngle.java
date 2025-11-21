@@ -25,7 +25,7 @@ public abstract class AAngle<Q extends AAngle<Q>> extends AQuantity<Q, EAngles, 
 
 	/**
 	 * Constructs an angle quantity with the specified value, using degrees and ANGLE as defaults.
-	 * @param value the value in degrees
+	 * @param degree the value in degrees
 	 */
 	protected AAngle(double degree) {  super(degree, EAngles.DEGREE, EAngleDims.ANGLE);  }
 

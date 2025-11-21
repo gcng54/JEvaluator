@@ -1,5 +1,7 @@
 package qmeasures.length.quantities;
 
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 import qmeasures.length.units.ELengths;
 
 /**
@@ -13,6 +15,7 @@ public final class QEarthRadius extends ALengthDim<QEarthRadius> {
 
     public QEarthRadius(double value, ELengths unit) { super(value, unit, ELengthDims.EARTH_RADIUS);  }
 
-    @Override public QEarthRadius of(double value, ELengths unit) { return new QEarthRadius(value, unit);  }
+    @Contract("_, _ -> new")
+    @Override public @NotNull QEarthRadius of(double value, ELengths unit) { return new QEarthRadius(value, unit);  }
 
 }

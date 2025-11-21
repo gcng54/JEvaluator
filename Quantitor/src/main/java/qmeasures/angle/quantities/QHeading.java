@@ -1,5 +1,7 @@
 package qmeasures.angle.quantities;
 
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 import qmeasures.angle.units.EAngles;
 
 /**
@@ -19,7 +21,8 @@ public final class QHeading extends AAngleDim<QHeading> {
         super(value, unit, EAngleDims.HEADING);
     }
 
-    @Override public QHeading of(double value, EAngles unit) {
+    @Contract("_, _ -> new")
+    @Override public @NotNull QHeading of(double value, EAngles unit) {
         return new QHeading(value, unit);
     }
 

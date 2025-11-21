@@ -1,6 +1,8 @@
 
 package qmeasures.core;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Locale;
 import java.util.Objects;
 
@@ -81,7 +83,7 @@ public interface IUnit<E extends IUnit<E>> {
      * @param targetUnit the target unit
      * @return the value in the target unit
      */
-    default double convert(double value, IUnit<E> sourceUnit, IUnit<E> targetUnit) {
+    default double convert(double value, @NotNull IUnit<E> sourceUnit, @NotNull IUnit<E> targetUnit) {
         return targetUnit.fromBaseValue(sourceUnit.toBaseValue(value));
     }
 

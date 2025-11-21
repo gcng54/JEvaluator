@@ -1,5 +1,6 @@
 package qmeasures.length.quantities;
 
+import org.jetbrains.annotations.NotNull;
 import qmeasures.length.units.ELengths;
 
 public class QVolume extends ALengthDim<QVolume> {
@@ -36,7 +37,7 @@ public class QVolume extends ALengthDim<QVolume> {
         return new QLength(new_value, this.getUnit());
     }
 
-    public QArea div(ALength<?> divisor) {
+    public QArea div(@NotNull ALength<?> divisor) {
         if (divisor.getBaseValue() == 0 || divisor == null) {
             throw new IllegalArgumentException("Division by zero or null is not allowed.");
         }
@@ -44,7 +45,7 @@ public class QVolume extends ALengthDim<QVolume> {
         return new QArea(new_value, this.getUnit());
     }
 
-    public QLength div(QArea divisor) {
+    public QLength div(@NotNull QArea divisor) {
         if (divisor.getBaseValue() == 0 || divisor == null) {
             throw new IllegalArgumentException("Division by zero or null is not allowed.");
         }

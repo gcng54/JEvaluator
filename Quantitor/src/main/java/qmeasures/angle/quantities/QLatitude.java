@@ -1,5 +1,7 @@
 package qmeasures.angle.quantities;
 
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 import qmeasures.angle.units.EAngles;
 import qmeasures.angle.units.QDegree;
 import qmeasures.angle.units.QRadian;
@@ -31,7 +33,8 @@ public final class QLatitude extends AAngleDim<QLatitude> {
      * @param degree the degree quantity
      * @return new QLatitude
      */
-    public static QLatitude of(QDegree degree) {
+    @Contract("_ -> new")
+    public static @NotNull QLatitude of(@NotNull QDegree degree) {
         return new QLatitude(degree.getValue(), EAngles.DEGREE);
     }
 
@@ -40,18 +43,20 @@ public final class QLatitude extends AAngleDim<QLatitude> {
      * @param radian the radian quantity
      * @return new QLatitude
      */
-    public static QLatitude of(QRadian radian) {
+    @Contract("_ -> new")
+    public static @NotNull QLatitude of(@NotNull QRadian radian) {
         return new QLatitude(radian.getValue(), EAngles.RADIAN);
     }
 
-    @Override public QLatitude of(double value, EAngles unit) {
+    @Contract("_, _ -> new")
+    @Override public @NotNull QLatitude of(double value, EAngles unit) {
         return new QLatitude(value, unit);
     }
 
     @Override public Clampable.EClampMode getClampMode(){ return Clampable.EClampMode.LATITUDE; }
 
 
-    public String toStringDMSO() {
+    public @NotNull String toStringDMSO() {
 
         RDegMinSec degMinSec = this.getDegMinSec();
 

@@ -1,7 +1,8 @@
-package qmeasures.speed;
+package qmeasures.speed.units;
 
 import java.util.Locale;
 
+import org.jetbrains.annotations.NotNull;
 import qmeasures.core.IUnit;
 import qmeasures.speed.quantities.ESpeedDims;
 
@@ -17,8 +18,11 @@ public enum ESpeeds implements IUnit<ESpeeds> {
   /** Miles per hour */
   MILES_PER_HOUR("mph", 0.44704),
   /** Knots (nautical miles per hour) */
-  KNOTS("kn", 0.514444);
-    
+  KNOTS("kn", 0.514444),
+  /** Mach number 
+   * Typical value at sea level is approximately 340.29 m/s */
+  MACH("Mach", 340.29);
+
   private final String symbol;
   private final double factor;
 
@@ -55,6 +59,7 @@ public enum ESpeeds implements IUnit<ESpeeds> {
       case METERS_PER_SECOND -> "meters/second";
       case KILOMETERS_PER_HOUR -> "kilometers/hour";
       case MILES_PER_HOUR -> "miles/hour";
+      case MACH -> "Mach";
     };
   }
 
@@ -63,7 +68,7 @@ public enum ESpeeds implements IUnit<ESpeeds> {
    * @param name_ the name
    * @return the ESpeeds value
    */
-  public static ESpeeds fromName(String name_) { return ESpeeds.valueOf(name_.toUpperCase(Locale.ENGLISH)); }
+  public static ESpeeds fromName(@NotNull String name_) { return ESpeeds.valueOf(name_.toUpperCase(Locale.ENGLISH)); }
 
   /**
    * Gets the base dimension for this unit (always SPEED).

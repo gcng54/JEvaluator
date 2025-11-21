@@ -1,5 +1,7 @@
 package qmeasures.length.quantities;
 
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 import qmeasures.length.units.ELengths;
 
 /**
@@ -13,6 +15,7 @@ public final class QRakim extends ALengthDim<QRakim> {
 
     public QRakim(double value, ELengths unit) { super(value, unit, ELengthDims.RAKIM);  }
 
-    @Override public QRakim of(double value, ELengths unit) { return new QRakim(value, unit);  }
+    @Contract("_, _ -> new")
+    @Override public @NotNull QRakim of(double value, ELengths unit) { return new QRakim(value, unit);  }
 
 }

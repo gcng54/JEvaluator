@@ -1,5 +1,7 @@
 package qmeasures.length.quantities;
 
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 import qmeasures.length.units.ELengths;
 
 /**
@@ -13,6 +15,7 @@ public final class QWaveLength extends ALengthDim<QWaveLength> {
 
     public QWaveLength(double value, ELengths unit) { super(value, unit, ELengthDims.WAVE_LENGTH);  }
 
-    @Override public QWaveLength of(double value, ELengths unit) { return new QWaveLength(value, unit);  }
+    @Contract("_, _ -> new")
+    @Override public @NotNull QWaveLength of(double value, ELengths unit) { return new QWaveLength(value, unit);  }
 
 }

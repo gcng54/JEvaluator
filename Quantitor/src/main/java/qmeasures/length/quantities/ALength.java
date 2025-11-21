@@ -1,6 +1,7 @@
 
 package qmeasures.length.quantities;
 
+import org.jetbrains.annotations.NotNull;
 import qmeasures.core.AQuantity;
 import qmeasures.core.Clampable;
 import qmeasures.length.units.ELengths;
@@ -65,7 +66,7 @@ public abstract class ALength<Q extends ALength<Q>> extends AQuantity<Q, ELength
      * @param dimension the target dimension
      * @return a new length quantity of the target dimension
      */
-    public ALength<?> toDimension(ELengthDims dimension) {
+    public ALength<?> toDimension(@NotNull ELengthDims dimension) {
         return switch (dimension) {
             case LENGTH ->  to(QLength.class);
             case DISTANCE ->  to(QDistance.class);

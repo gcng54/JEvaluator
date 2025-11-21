@@ -1,5 +1,7 @@
 package qmeasures.length.quantities;
 
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 import qmeasures.length.units.ELengths;
 
 /**
@@ -13,6 +15,7 @@ public final class QHeight extends ALengthDim<QHeight> {
 
     public QHeight(double value, ELengths unit) { super(value, unit, ELengthDims.HEIGHT);  }
 
-    @Override public QHeight of(double value, ELengths unit) { return new QHeight(value, unit);  }
+    @Contract("_, _ -> new")
+    @Override public @NotNull QHeight of(double value, ELengths unit) { return new QHeight(value, unit);  }
 
 }

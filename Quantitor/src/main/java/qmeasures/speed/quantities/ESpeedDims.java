@@ -2,7 +2,7 @@ package qmeasures.speed.quantities;
 
 import qmeasures.core.Clampable;
 import qmeasures.core.IDimension;
-import qmeasures.speed.ESpeeds;
+import qmeasures.speed.units.ESpeeds;
 
 /**
  * Enumeration of speed dimensions (e.g., SPEED, GROUND_SPEED, SEA_SPEED, AIR_SPEED).

@@ -1,5 +1,7 @@
 package qmeasures.angle.quantities;
 
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 import qmeasures.angle.units.EAngles;
 
 public final class QElevation extends AAngleDim<QElevation> {
@@ -16,7 +18,8 @@ public final class QElevation extends AAngleDim<QElevation> {
         super(value, unit, EAngleDims.ELEVATION);
     }
 
-    @Override public QElevation of(double value, EAngles unit) {
+    @Contract("_, _ -> new")
+    @Override public @NotNull QElevation of(double value, EAngles unit) {
         return new QElevation(value, unit);
     }
 }

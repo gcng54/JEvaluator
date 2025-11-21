@@ -1,9 +1,9 @@
 package qmeasures.speed.quantities;
 
+import org.jetbrains.annotations.NotNull;
 import qmeasures.core.AQuantity;
 import qmeasures.core.Clampable;
-import qmeasures.speed.ESpeeds;
-import qmeasures.speed.QSpeed;
+import qmeasures.speed.units.ESpeeds;
 
 
 /**
@@ -66,7 +66,7 @@ public abstract class ASpeed<Q extends ASpeed<Q>> extends AQuantity<Q, ESpeeds, 
      * @param dimension the target dimension
      * @return a new speed quantity of the target dimension
      */
-    public ASpeed<?> toDimension(ESpeedDims dimension) {
+    public ASpeed<?> toDimension(@NotNull ESpeedDims dimension) {
         return switch (dimension) {
             case SPEED ->  to(QSpeed.class);
             case GROUND_SPEED ->  to(QGroundSpeed.class);

@@ -1,5 +1,7 @@
 package qmeasures.angle.quantities;
 
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 import qmeasures.angle.units.EAngles;
 import qmeasures.angle.units.QDegree;
 
@@ -37,7 +39,8 @@ public final class QRotation extends AAngleDim<QRotation> {
         super(value, unit, EAngleDims.ROTATION);
     }
 
-    @Override public QRotation of(double value, EAngles unit) {
+    @Contract("_, _ -> new")
+    @Override public @NotNull QRotation of(double value, EAngles unit) {
         return new QRotation(value, unit);
     }
 

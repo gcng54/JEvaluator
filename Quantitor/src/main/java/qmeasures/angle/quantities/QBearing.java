@@ -1,5 +1,7 @@
 package qmeasures.angle.quantities;
 
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 import qmeasures.angle.units.EAngles;
 
 public final class QBearing extends AAngleDim<QBearing> {
@@ -16,7 +18,8 @@ public final class QBearing extends AAngleDim<QBearing> {
         super(value, unit, EAngleDims.BEARING);
     }
 
-    @Override public QBearing of(double value, EAngles unit) {
+    @Contract("_, _ -> new")
+    @Override public @NotNull QBearing of(double value, EAngles unit) {
         return new QBearing(value, unit);
     }
 }

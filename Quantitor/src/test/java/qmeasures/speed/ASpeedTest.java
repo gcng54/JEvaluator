@@ -7,6 +7,8 @@ import qmeasures.speed.quantities.ESpeedDims;
 import qmeasures.speed.quantities.QAirSpeed;
 import qmeasures.speed.quantities.QGroundSpeed;
 import qmeasures.speed.quantities.QSeaSpeed;
+import qmeasures.speed.quantities.QSpeed;
+import qmeasures.speed.units.ESpeeds;
 
 
 public class ASpeedTest {

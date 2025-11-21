@@ -1,5 +1,7 @@
 package qmeasures.angle.quantities;
 
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 import qmeasures.angle.units.EAngles;
 import qmeasures.common.RDegMinSec;
 import qmeasures.core.Clampable;
@@ -24,13 +26,14 @@ public final class QLongitude extends AAngleDim<QLongitude> {
         super(value, unit, EAngleDims.LONGITUDE);
     }
 
-    @Override public QLongitude of(double value, EAngles unit) {
+    @Contract("_, _ -> new")
+    @Override public @NotNull QLongitude of(double value, EAngles unit) {
         return new QLongitude(value, unit);
     }
 
     @Override public Clampable.EClampMode getClampMode(){ return Clampable.EClampMode.LONGITUDE; }
 
-    public String toStringDMS() {
+    public @NotNull String toStringDMS() {
 
         RDegMinSec degMinSec = this.getDegMinSec();
 

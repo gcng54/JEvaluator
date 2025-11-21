@@ -1,5 +1,7 @@
 package qmeasures.length.quantities;
 
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 import qmeasures.length.units.ELengths;
 
 /**
@@ -13,6 +15,7 @@ public final class QRange extends ALengthDim<QRange> {
 
     public QRange(double value, ELengths unit) { super(value, unit, ELengthDims.RANGE);  }
 
-    @Override public QRange of(double value, ELengths unit) { return new QRange(value, unit);  }
+    @Contract("_, _ -> new")
+    @Override public @NotNull QRange of(double value, ELengths unit) { return new QRange(value, unit);  }
 
 }

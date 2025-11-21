@@ -20,6 +20,6 @@ public abstract class ALengthDim<Q extends ALengthDim<Q>> extends ALength<Q> {
 
     protected ALengthDim(ALength<?> length) {super(length.getValue(), length.getUnit(), ELengthDims.LENGTH);  }
 
-	public Q of(ALength<?> length){  return of(length.getValue(), length.getUnit()); };
+	public Q of(ALength<?> length){  return of(length.getValue(), length.getUnit()); }
 
 }

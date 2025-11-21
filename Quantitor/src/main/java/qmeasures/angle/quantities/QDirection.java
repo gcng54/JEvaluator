@@ -1,5 +1,7 @@
 package qmeasures.angle.quantities;
 
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 import qmeasures.angle.units.EAngles;
 
 
@@ -19,7 +21,8 @@ public final class QDirection extends AAngleDim<QDirection> {
         super(value, unit, EAngleDims.DIRECTION);
     }
 
-    @Override public QDirection of(double value, EAngles unit) {
+    @Contract("_, _ -> new")
+    @Override public @NotNull QDirection of(double value, EAngles unit) {
         return new QDirection(value, unit);
     }
 

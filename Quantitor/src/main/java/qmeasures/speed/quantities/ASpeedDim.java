@@ -1,6 +1,8 @@
 package qmeasures.speed.quantities;
 
-import qmeasures.speed.ESpeeds;
+import org.jetbrains.annotations.NotNull;
+
+import qmeasures.speed.units.ESpeeds;
 
 /**
  * Abstract base class for specific speed dimensions (e.g., Ground Speed, Air Speed).
@@ -14,12 +16,12 @@ public abstract class ASpeedDim<Q extends ASpeedDim<Q>> extends ASpeed<Q> {
         super(value, unit, dimension);
     }
 
-    protected ASpeedDim(ASpeed<?> speed, ESpeedDims dimension) {
+    protected ASpeedDim(@NotNull ASpeed<?> speed, ESpeedDims dimension) {
         super(speed.getValue(), speed.getUnit(), dimension);
     }
 
-    protected ASpeedDim(ASpeed<?> speed) {super(speed.getValue(), speed.getUnit(), ESpeedDims.SPEED);  }
+    protected ASpeedDim(@NotNull ASpeed<?> speed) {super(speed.getValue(), speed.getUnit(), ESpeedDims.SPEED);  }
 
-	public Q of(ASpeed<?> speed){  return of(speed.getValue(), speed.getUnit()); };
+	public Q of(@NotNull ASpeed<?> speed){  return of(speed.getValue(), speed.getUnit()); };
 
 }
