@@ -1,8 +1,8 @@
-package qmeasures.qgeodetics;
+package qmeasures.geodetics;
 
 import qmeasures.angle.units.TDegree;
+import qmeasures.earth.QEarthRadius;
 import qmeasures.length.quantities.QDistance;
-import qmeasures.length.quantities.QEarthRadius;
 
 public class HaversineEquations {
 private HaversineEquations() {

@@ -9,9 +9,13 @@ import qmeasures.length.units.ELengthUnit;
  */
 public final class QDistance extends ALengthDim<QDistance> {
 
+    public QDistance(){
+        super(0.0, ELengthUnit.METER, ELengthDims.DISTANCE);
+    }
+    
     public QDistance(ALength<?> length) { super(length, ELengthDims.DISTANCE); }
 
-    protected QDistance(double value) { super(value, ELengthUnit.METER, ELengthDims.DISTANCE);  }
+    public QDistance(double value) { super(value, ELengthUnit.METER, ELengthDims.DISTANCE);  }
 
     public QDistance(double value, ELengthUnit unit) { super(value, unit, ELengthDims.DISTANCE);  }
 

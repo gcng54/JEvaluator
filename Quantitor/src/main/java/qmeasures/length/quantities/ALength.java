@@ -1,7 +1,6 @@
 
 package qmeasures.length.quantities;
 
-import org.jetbrains.annotations.NotNull;
 import qmeasures.core.AQuantity;
 import qmeasures.core.Clampable;
 import qmeasures.length.units.ELengthUnit;

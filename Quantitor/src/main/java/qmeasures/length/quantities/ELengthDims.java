@@ -34,10 +34,11 @@ public enum ELengthDims implements IDimension<ELengthDims> {
 	RANGE( "Rng", 0.0, 10_000_000.0),
     /** Wavelength (meters, positive only) */
 	WAVE_LENGTH("Wave", 0.0, Double.POSITIVE_INFINITY),
+
     /** Earth radius (meters) */
-    EARTH_RADIUS("Earth", 6_300_000.0, 6_400_000.0),
+    EARTH_RADIUS("Re", 6_300_000.0, 6_400_000.0),
     /** Earth distance for geocentric distance calculations (meters) */
-    GEOC_DISTANCE("Geoc", 0.0, 6_500_000.0);
+    EARTH_CENTRIC("Rc", 0.0, 6_500_000.0);
 
     private final String abbreviation;
     private final double minBaseValue;

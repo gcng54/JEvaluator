@@ -5,7 +5,7 @@ import org.jetbrains.annotations.NotNull;
 import qmeasures.angle.units.EAngles;
 import qmeasures.core.AQuantity;
 import qmeasures.core.Clampable;
-import qmeasures.qgeodetics.RDegMinSec;
+import qmeasures.geodetics.RDegMinSec;
 
 /**
  * Abstract base class for all angle quantities (e.g., latitude, longitude, bearing, azimuth).

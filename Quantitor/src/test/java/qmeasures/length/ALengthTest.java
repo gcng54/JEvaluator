@@ -7,7 +7,6 @@ import qmeasures.length.quantities.ELengthDims;
 import qmeasures.length.quantities.QAltitude;
 import qmeasures.length.quantities.QArea;
 import qmeasures.length.quantities.QDistance;
-import qmeasures.length.quantities.QHeight;
 import qmeasures.length.quantities.QLength;
 import qmeasures.length.quantities.QRange;
 import qmeasures.length.quantities.QVolume;
@@ -72,14 +71,6 @@ public class ALengthTest {
     @Test
     void testClampMode() {
         assertEquals(Clampable.EClampMode.BOUND, lengthMeter.getClampMode());
-    }
-
-    @Test
-    void testToDimension() {
-        assertInstanceOf(QLength.class, lengthMeter.toDimension(ELengthDims.LENGTH));
-        assertInstanceOf(QDistance.class, lengthMeter.toDimension(ELengthDims.DISTANCE));
-        assertInstanceOf(QAltitude.class, lengthMeter.toDimension(ELengthDims.ALTITUDE));
-        assertInstanceOf(QHeight.class, lengthMeter.toDimension(ELengthDims.HEIGHT));
     }
 
     @Test

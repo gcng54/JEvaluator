@@ -6,7 +6,7 @@ import qmeasures.angle.units.EAngles;
 import qmeasures.angle.units.TDegree;
 import qmeasures.angle.units.TRadian;
 import qmeasures.core.Clampable;
-import qmeasures.qgeodetics.RDegMinSec;
+import qmeasures.geodetics.RDegMinSec;
 
 import java.util.Locale;
 
@@ -20,7 +20,7 @@ public final class QLatitude extends AAngleDim<QLatitude> {
         super(Angle, EAngleDims.LATITUDE);
     }
 
-    protected QLatitude(double degree) {
+    public QLatitude(double degree) {
         super(degree, EAngles.DEGREE, EAngleDims.LATITUDE);
     }
 

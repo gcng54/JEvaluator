@@ -1,4 +1,4 @@
-package qmeasures.qgeodetics;
+package qmeasures.geodetics;
 
 import org.jetbrains.annotations.NotNull;
 

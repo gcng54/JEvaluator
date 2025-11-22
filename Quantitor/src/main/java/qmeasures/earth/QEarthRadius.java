@@ -1,7 +1,11 @@
-package qmeasures.length.quantities;
+package qmeasures.earth;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+
+import qmeasures.length.quantities.ALength;
+import qmeasures.length.quantities.ALengthDim;
+import qmeasures.length.quantities.ELengthDims;
 import qmeasures.length.units.ELengthUnit;
 
 /**
@@ -9,7 +13,7 @@ import qmeasures.length.units.ELengthUnit;
  */
 public final class QEarthRadius extends ALengthDim<QEarthRadius> {
 
-    public QEarthRadius(ALength<?> length) {        super(length, ELengthDims.EARTH_RADIUS);    }
+    public QEarthRadius(ALength<?> length) { super(length, ELengthDims.EARTH_RADIUS); }
 
     protected QEarthRadius(double value) { super(value, ELengthUnit.METER, ELengthDims.EARTH_RADIUS);  }
 

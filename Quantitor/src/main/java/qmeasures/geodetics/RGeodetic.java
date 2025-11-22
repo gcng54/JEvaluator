@@ -1,4 +1,4 @@
-package qmeasures.qgeodetics;
+package qmeasures.geodetics;
 
 import qmeasures.angle.quantities.QLatitude;
 import qmeasures.angle.quantities.QLongitude;
